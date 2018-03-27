@@ -1,6 +1,4 @@
-﻿//Original Scripts by IIColour (IIColour_Spectrum)
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class MainMenuHandler : MonoBehaviour
@@ -14,10 +12,10 @@ public class MainMenuHandler : MonoBehaviour
     private GameObject fileDataPanel;
     private GameObject continueButton;
 
-    private GUITexture[] button = new GUITexture[3];
-    private GUITexture[] buttonHighlight = new GUITexture[3];
-    private GUIText[] buttonText = new GUIText[3];
-    private GUIText[] buttonTextShadow = new GUIText[3];
+    private GUITexture[] button = new GUITexture[4];
+    private GUITexture[] buttonHighlight = new GUITexture[4];
+    private GUIText[] buttonText = new GUIText[4];
+    private GUIText[] buttonTextShadow = new GUIText[4];
 
     private GUIText fileNumbersText;
     private GUIText fileNumbersTextShadow;
@@ -38,14 +36,16 @@ public class MainMenuHandler : MonoBehaviour
 
         Transform newGameButton = transform.Find("NewGame");
         Transform settingsButton = transform.Find("Settings");
+		Transform exitButton = transform.Find("Exit");
 
         Transform[] buttonTransforms = new Transform[]
         {
             continueButton.transform,
             newGameButton,
-            settingsButton
+            settingsButton,
+			exitButton
         };
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             button[i] = buttonTransforms[i].Find("ButtonTexture").GetComponent<GUITexture>();
             buttonHighlight[i] = buttonTransforms[i].Find("ButtonHighlight").GetComponent<GUITexture>();
@@ -249,6 +249,15 @@ public class MainMenuHandler : MonoBehaviour
                     //yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
                     yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
                 }
+				else if (selectedButton == 3)
+				{
+					//EXIT
+					//yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
+					yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+
+					Application.Quit();
+					Debug.Log ("Quitting Game");
+				}
             }
             else if (Input.GetKeyDown(KeyCode.Delete))
             {
@@ -292,7 +301,7 @@ public class MainMenuHandler : MonoBehaviour
                 }
                 else if (Input.GetAxisRaw("Vertical") < 0)
                 {
-                    if (selectedButton < 2)
+                    if (selectedButton < 3)
                     {
                         updateButton(selectedButton + 1);
                         yield return new WaitForSeconds(0.2f);
