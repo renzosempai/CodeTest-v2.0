@@ -34,15 +34,15 @@ public class MainMenuHandler : MonoBehaviour
         fileDataPanel = transform.Find("FileData").gameObject;
         continueButton = transform.Find("Continue").gameObject;
 
-        Transform newGameButton = transform.Find("NewGame");
-        Transform settingsButton = transform.Find("Settings");
+        Transform playButton = transform.Find("Play");
+        Transform optionsButton = transform.Find("Options");
 		Transform exitButton = transform.Find("Exit");
 
         Transform[] buttonTransforms = new Transform[]
         {
             continueButton.transform,
-            newGameButton,
-            settingsButton,
+            playButton,
+            optionsButton,
 			exitButton
         };
         for (int i = 0; i < 4; i++)
@@ -228,7 +228,7 @@ public class MainMenuHandler : MonoBehaviour
 
                     GlobalVariables.global.SetDEBUGFileData();
 
-                    GlobalVariables.global.playerPosition = new Vector3(78, 0, 29);
+                    GlobalVariables.global.playerPosition = new Vector3(75, 0, 28);
                     GlobalVariables.global.playerDirection = 2;
                     GlobalVariables.global.fadeIn = true;
                     Application.LoadLevel("indoorsNW");
