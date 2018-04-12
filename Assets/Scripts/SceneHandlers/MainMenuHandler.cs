@@ -231,7 +231,7 @@ public class MainMenuHandler : MonoBehaviour
                     GlobalVariables.global.playerPosition = new Vector3(75, 0, 28);
                     GlobalVariables.global.playerDirection = 2;
                     GlobalVariables.global.fadeIn = true;
-                    Application.LoadLevel("indoorsNW");
+                    Application.LoadLevel("Level1Indoors");
                 }
                 else if (selectedButton == 2)
                 {
