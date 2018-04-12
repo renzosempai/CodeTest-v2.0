@@ -11,11 +11,13 @@ public class MainMenuHandler : MonoBehaviour
 
     private GameObject fileDataPanel;
     private GameObject continueButton;
+	private GameObject SelectTopicMenu;
+	private GameObject SelectTopicHolder;
 
-    private GUITexture[] button = new GUITexture[4];
-    private GUITexture[] buttonHighlight = new GUITexture[4];
-    private GUIText[] buttonText = new GUIText[4];
-    private GUIText[] buttonTextShadow = new GUIText[4];
+    private GUITexture[] button = new GUITexture[5];
+    private GUITexture[] buttonHighlight = new GUITexture[5];
+    private GUIText[] buttonText = new GUIText[5];
+    private GUIText[] buttonTextShadow = new GUIText[5];
 
     private GUIText fileNumbersText;
     private GUIText fileNumbersTextShadow;
@@ -36,6 +38,7 @@ public class MainMenuHandler : MonoBehaviour
 
         Transform playButton = transform.Find("Play");
         Transform optionsButton = transform.Find("Options");
+		Transform selectTopicButton = transform.Find("SelectCTopic");
 		Transform exitButton = transform.Find("Exit");
 
         Transform[] buttonTransforms = new Transform[]
@@ -43,9 +46,10 @@ public class MainMenuHandler : MonoBehaviour
             continueButton.transform,
             playButton,
             optionsButton,
+			selectTopicButton,
 			exitButton
         };
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5; i++)
         {
             button[i] = buttonTransforms[i].Find("ButtonTexture").GetComponent<GUITexture>();
             buttonHighlight[i] = buttonTransforms[i].Find("ButtonHighlight").GetComponent<GUITexture>();
@@ -73,6 +77,8 @@ public class MainMenuHandler : MonoBehaviour
         StartCoroutine(control());
     }
 
+
+
     private void updateButton(int newButtonIndex)
     {
         if (newButtonIndex != selectedButton)
@@ -94,7 +100,8 @@ public class MainMenuHandler : MonoBehaviour
         {
             new Vector2(132, 143),
             new Vector2(147, 143),
-            new Vector2(162, 143)
+			new Vector2(162, 143),
+            new Vector2(177, 143)
         };
         fileSelected.pixelOffset = highlightPositions[selectedFile];
         fileSelected.text = "" + (selectedFile + 1);
@@ -251,6 +258,15 @@ public class MainMenuHandler : MonoBehaviour
                 }
 				else if (selectedButton == 3)
 				{
+					//SELECT TOPIC
+					//yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
+					yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+				//Scene.main.Se
+
+
+				}
+				else if (selectedButton == 4)
+				{
 					//EXIT
 					//yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
 					yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
@@ -301,7 +317,7 @@ public class MainMenuHandler : MonoBehaviour
                 }
                 else if (Input.GetAxisRaw("Vertical") < 0)
                 {
-                    if (selectedButton < 3)
+                    if (selectedButton < 4)
                     {
                         updateButton(selectedButton + 1);
                         yield return new WaitForSeconds(0.2f);
