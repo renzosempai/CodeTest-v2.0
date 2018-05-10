@@ -239,7 +239,7 @@ public class SettingsHandler : MonoBehaviour
         {
             if (selectedOptionIndex[selectedOption] == 0)
             {
-                textSpeedHighlight.text = "Slow";
+         	  textSpeedHighlight.text = "Slow";
                 textSpeedHighlight.pixelOffset = new Vector2(155, 159);
                 PlayerPrefs.SetInt("textSpeed", 0);
             }
