@@ -14,10 +14,10 @@ public class MainMenuHandler : MonoBehaviour
 	private GameObject SelectTopicMenu;
 	private GameObject SelectTopicHolder;
 
-    private GUITexture[] button = new GUITexture[5];
-    private GUITexture[] buttonHighlight = new GUITexture[5];
-    private GUIText[] buttonText = new GUIText[5];
-    private GUIText[] buttonTextShadow = new GUIText[5];
+    private GUITexture[] button = new GUITexture[4];
+    private GUITexture[] buttonHighlight = new GUITexture[4];
+    private GUIText[] buttonText = new GUIText[4];
+    private GUIText[] buttonTextShadow = new GUIText[4];
 
     private GUIText fileNumbersText;
     private GUIText fileNumbersTextShadow;
@@ -38,7 +38,6 @@ public class MainMenuHandler : MonoBehaviour
 
         Transform playButton = transform.Find("Play");
         Transform optionsButton = transform.Find("Options");
-		Transform selectTopicButton = transform.Find("SelectCTopic");
 		Transform exitButton = transform.Find("Exit");
 
         Transform[] buttonTransforms = new Transform[]
@@ -46,10 +45,9 @@ public class MainMenuHandler : MonoBehaviour
             continueButton.transform,
             playButton,
             optionsButton,
-			selectTopicButton,
 			exitButton
         };
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
         {
             button[i] = buttonTransforms[i].Find("ButtonTexture").GetComponent<GUITexture>();
             buttonHighlight[i] = buttonTransforms[i].Find("ButtonHighlight").GetComponent<GUITexture>();
@@ -227,7 +225,7 @@ public class MainMenuHandler : MonoBehaviour
                 }
                 else if (selectedButton == 1)
                 {
-                    //NEW GAME
+                    //Play
                     //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
                     yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
 
@@ -257,15 +255,6 @@ public class MainMenuHandler : MonoBehaviour
                     yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
                 }
 				else if (selectedButton == 3)
-				{
-					//SELECT TOPIC
-					//yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
-					yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
-				//Scene.main.Se
-
-
-				}
-				else if (selectedButton == 4)
 				{
 					//EXIT
 					//yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));

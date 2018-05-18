@@ -1,6 +1,4 @@
-﻿//Original Scripts by IIColour (IIColour_Spectrum)
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class PauseHandler : MonoBehaviour
@@ -11,16 +9,16 @@ public class PauseHandler : MonoBehaviour
     private GUIText selectedText;
     private GUIText selectedTextShadow;
 
-    public Texture2D iconPokedexTex;
-    public Texture2D iconPartyTex;
-    public Texture2D iconBagTex;
+//    public Texture2D iconPokedexTex;
+//    public Texture2D iconPartyTex;
+//    public Texture2D iconBagTex;
     public Texture2D iconTrainerTex;
     public Texture2D iconSaveTex;
     public Texture2D iconSettingsTex;
 
-    private RotatableGUIItem iconPokedex;
-    private RotatableGUIItem iconParty;
-    private RotatableGUIItem iconBag;
+//    private RotatableGUIItem iconPokedex;
+//    private RotatableGUIItem iconParty;
+//    private RotatableGUIItem iconBag;
     private RotatableGUIItem iconTrainer;
     private RotatableGUIItem iconSave;
     private RotatableGUIItem iconSettings;
@@ -54,9 +52,9 @@ public class PauseHandler : MonoBehaviour
         selectedText = transform.Find("SelectedText").GetComponent<GUIText>();
         selectedTextShadow = selectedText.transform.Find("SelectedTextShadow").GetComponent<GUIText>();
 
-        iconPokedex = transform.Find("IconPokedex").GetComponent<RotatableGUIItem>();
-        iconParty = transform.Find("IconParty").GetComponent<RotatableGUIItem>();
-        iconBag = transform.Find("IconBag").GetComponent<RotatableGUIItem>();
+//        iconPokedex = transform.Find("IconPokedex").GetComponent<RotatableGUIItem>();
+//        iconParty = transform.Find("IconParty").GetComponent<RotatableGUIItem>();
+//        iconBag = transform.Find("IconBag").GetComponent<RotatableGUIItem>();
         iconTrainer = transform.Find("IconTrainer").GetComponent<RotatableGUIItem>();
         iconSave = transform.Find("IconSave").GetComponent<RotatableGUIItem>();
         iconSettings = transform.Find("IconSettings").GetComponent<RotatableGUIItem>();
@@ -75,9 +73,9 @@ public class PauseHandler : MonoBehaviour
 
         setSelectedText("");
 
-        iconPokedex.transform.position = new Vector3(iconPokedex.transform.position.x, -0.0833f, 1);
-        iconParty.transform.position = new Vector3(iconParty.transform.position.x, -0.0833f, 1);
-        iconBag.transform.position = new Vector3(iconBag.transform.position.x, -0.0833f, 1);
+//        iconPokedex.transform.position = new Vector3(iconPokedex.transform.position.x, -0.0833f, 1);
+//        iconParty.transform.position = new Vector3(iconParty.transform.position.x, -0.0833f, 1);
+//        iconBag.transform.position = new Vector3(iconBag.transform.position.x, -0.0833f, 1);
         iconTrainer.transform.position = new Vector3(iconTrainer.transform.position.x, 1.0833f, 1);
         iconSave.transform.position = new Vector3(iconSave.transform.position.x, 1.0833f, 1);
         iconSettings.transform.position = new Vector3(iconSettings.transform.position.x, 1.0833f, 1);
@@ -108,16 +106,16 @@ public class PauseHandler : MonoBehaviour
                 pauseBottom.pixelInset.width, pauseBottom.pixelInset.height);
             pauseTop.pixelInset = new Rect(pauseTop.pixelInset.x, 192 - (increment * 96), pauseTop.pixelInset.width,
                 pauseTop.pixelInset.height);
-            iconPokedex.transform.position = new Vector3(iconPokedex.transform.position.x,
-                -0.0833f + (increment * 0.4167f), 1);
-            iconParty.transform.position = new Vector3(iconParty.transform.position.x, -0.0833f + (increment * 0.4167f),
-                1);
-            iconBag.transform.position = new Vector3(iconBag.transform.position.x, -0.0833f + (increment * 0.4167f), 1);
+//            iconPokedex.transform.position = new Vector3(iconPokedex.transform.position.x,
+//                -0.0833f + (increment * 0.4167f), 1);
+//            iconParty.transform.position = new Vector3(iconParty.transform.position.x, -0.0833f + (increment * 0.4167f),
+//                1);
+//            iconBag.transform.position = new Vector3(iconBag.transform.position.x, -0.0833f + (increment * 0.4167f), 1);
             iconTrainer.transform.position = new Vector3(iconTrainer.transform.position.x,
-                1.0833f - (increment * 0.4167f), 1);
-            iconSave.transform.position = new Vector3(iconSave.transform.position.x, 1.0833f - (increment * 0.4167f), 1);
+                1.0833f - (increment * 0.5f), 1);
+            iconSave.transform.position = new Vector3(iconSave.transform.position.x, 1.0833f - (increment * 0.5f), 1);
             iconSettings.transform.position = new Vector3(iconSettings.transform.position.x,
-                1.0833f - (increment * 0.4167f), 1);
+                1.0833f - (increment * 0.5f), 1);
             yield return null;
         }
     }
@@ -137,11 +135,11 @@ public class PauseHandler : MonoBehaviour
                 pauseBottom.pixelInset.width, pauseBottom.pixelInset.height);
             pauseTop.pixelInset = new Rect(pauseTop.pixelInset.x, 96 + (increment * 96), pauseTop.pixelInset.width,
                 pauseTop.pixelInset.height);
-            iconPokedex.transform.position = new Vector3(iconPokedex.transform.position.x,
-                0.3333f - (increment * 0.4167f), 1);
-            iconParty.transform.position = new Vector3(iconParty.transform.position.x, 0.3333f - (increment * 0.4167f),
-                1);
-            iconBag.transform.position = new Vector3(iconBag.transform.position.x, 0.3333f - (increment * 0.4167f), 1);
+//            iconPokedex.transform.position = new Vector3(iconPokedex.transform.position.x,
+//                0.3333f - (increment * 0.4167f), 1);
+//            iconParty.transform.position = new Vector3(iconParty.transform.position.x, 0.3333f - (increment * 0.4167f),
+//                1);
+//            iconBag.transform.position = new Vector3(iconBag.transform.position.x, 0.3333f - (increment * 0.4167f), 1);
             iconTrainer.transform.position = new Vector3(iconTrainer.transform.position.x,
                 0.6667f + (increment * 0.4167f), 1);
             iconSave.transform.position = new Vector3(iconSave.transform.position.x, 0.6667f + (increment * 0.4167f), 1);
@@ -185,34 +183,36 @@ public class PauseHandler : MonoBehaviour
 
     public IEnumerator updateIcon(int index)
     {
+//        if (selectedIcon == 1)
+//        {
+//            targetIcon = iconPokedex;
+//            setSelectedText("Pokédex");
+//        }
+//        else if (selectedIcon == 2)
+//        {
+//            targetIcon = iconParty;
+//            setSelectedText("Pokémon Party");
+//        }
+//        else if (selectedIcon == 3)
+//        {
+//            targetIcon = iconBag;
+//            setSelectedText("Bag");
+//        }
         if (selectedIcon == 1)
-        {
-            targetIcon = iconPokedex;
-            setSelectedText("Pokédex");
-        }
-        else if (selectedIcon == 2)
-        {
-            targetIcon = iconParty;
-            setSelectedText("Pokémon Party");
-        }
-        else if (selectedIcon == 3)
-        {
-            targetIcon = iconBag;
-            setSelectedText("Bag");
-        }
-        else if (selectedIcon == 4)
         {
            targetIcon = iconTrainer;
           //  setSelectedText(SaveData.currentSave.playerName);
+			setSelectedText("Help");
 
         }
-        else if (selectedIcon == 5)
+        else if (selectedIcon == 2)
         {
             targetIcon = iconSave;
         //   setSelectedText("Save Game");
+			setSelectedText("Quit Game");
 
         }
-        else if (selectedIcon == 6)
+        else if (selectedIcon == 3)
         {
             targetIcon = iconSettings;
             setSelectedText("Settings");
@@ -223,16 +223,16 @@ public class PauseHandler : MonoBehaviour
             setSelectedText("");
         }
 
-        iconPokedex.angle = 0;
-        iconParty.angle = 0;
-        iconBag.angle = 0;
+//        iconPokedex.angle = 0;
+//        iconParty.angle = 0;
+//        iconBag.angle = 0;
         iconTrainer.angle = 0;
         iconSave.angle = 0;
         iconSettings.angle = 0;
 
-        iconPokedex.size = new Vector2(32, 32);
-        iconParty.size = new Vector2(32, 32);
-        iconBag.size = new Vector2(32, 32);
+//        iconPokedex.size = new Vector2(32, 32);
+//        iconParty.size = new Vector2(32, 32);
+//        iconBag.size = new Vector2(32, 32);
         iconTrainer.size = new Vector2(32, 32);
         iconSave.size = new Vector2(32, 32);
         iconSettings.size = new Vector2(32, 32);
@@ -271,9 +271,9 @@ public class PauseHandler : MonoBehaviour
 
     private void hideIcons()
     {
-        iconPokedex.hide = true;
-        iconParty.hide = true;
-        iconBag.hide = true;
+//        iconPokedex.hide = true;
+//        iconParty.hide = true;
+//        iconBag.hide = true;
         iconTrainer.hide = true;
         iconSave.hide = true;
         iconSettings.hide = true;
@@ -281,9 +281,9 @@ public class PauseHandler : MonoBehaviour
 
     private void unhideIcons()
     {
-        iconPokedex.hide = false;
-        iconParty.hide = false;
-        iconBag.hide = false;
+//        iconPokedex.hide = false;
+//        iconParty.hide = false;
+//        iconBag.hide = false;
         iconTrainer.hide = false;
         iconSave.hide = false;
         iconSettings.hide = false;
@@ -299,9 +299,9 @@ public class PauseHandler : MonoBehaviour
             {
                 increment = 1;
             }
-            iconPokedex.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
-            iconParty.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
-            iconBag.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
+//            iconPokedex.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
+//            iconParty.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
+//            iconBag.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
             iconTrainer.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
             iconSave.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
             iconSettings.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
@@ -319,9 +319,9 @@ public class PauseHandler : MonoBehaviour
             {
                 increment = 1;
             }
-            iconPokedex.color = new Color(increment, increment, increment, 1f);
-            iconParty.color = new Color(increment, increment, increment, 1f);
-            iconBag.color = new Color(increment, increment, increment, 1f);
+//            iconPokedex.color = new Color(increment, increment, increment, 1f);
+//            iconParty.color = new Color(increment, increment, increment, 1f);
+//            iconBag.color = new Color(increment, increment, increment, 1f);
             iconTrainer.color = new Color(increment, increment, increment, 1f);
             iconSave.color = new Color(increment, increment, increment, 1f);
             iconSettings.color = new Color(increment, increment, increment, 1f);
@@ -332,7 +332,7 @@ public class PauseHandler : MonoBehaviour
 
     public IEnumerator control()
     {
-        selectedIcon = 0;
+        selectedIcon = 2;
         unhideIcons();
         StartCoroutine("updateIcon", selectedIcon);
         SfxHandler.Play(openClip);
@@ -342,24 +342,24 @@ public class PauseHandler : MonoBehaviour
         {
             if (selectedIcon == 0)
             {
-                if (Input.GetAxisRaw("Vertical") > 0)
-                {
-                    selectedIcon = 2;
-                    StartCoroutine("updateIcon", selectedIcon);
-                    SfxHandler.Play(selectClip);
-                }
-                else if (Input.GetAxisRaw("Horizontal") < 0)
+//                if (Input.GetAxisRaw("Vertical") > 0)
+//                {
+//                    selectedIcon = 2;
+//                    StartCoroutine("updateIcon", selectedIcon);
+//                    SfxHandler.Play(selectClip);
+//                }
+                if (Input.GetAxisRaw("Horizontal") < 0)
                 {
                     selectedIcon = 1;
                     StartCoroutine("updateIcon", selectedIcon);
                     SfxHandler.Play(selectClip);
                 }
-                else if (Input.GetAxisRaw("Vertical") < 0)
-                {
-                    selectedIcon = 5;
-                    StartCoroutine("updateIcon", selectedIcon);
-                    SfxHandler.Play(selectClip);
-                }
+//                else if (Input.GetAxisRaw("Vertical") < 0)
+//                {
+//                    selectedIcon = 5;
+//                    StartCoroutine("updateIcon", selectedIcon);
+//                    SfxHandler.Play(selectClip);
+//                }
                 else if (Input.GetAxisRaw("Horizontal") > 0)
                 {
                     selectedIcon = 3;
@@ -369,17 +369,17 @@ public class PauseHandler : MonoBehaviour
             }
             else
             {
-                if (Input.GetAxisRaw("Vertical") > 0)
-                {
-                    if (selectedIcon > 3)
-                    {
-                        selectedIcon -= 3;
-                        StartCoroutine("updateIcon", selectedIcon);
-                        SfxHandler.Play(selectClip);
-                        yield return new WaitForSeconds(0.2f);
-                    }
-                }
-                else if (Input.GetAxisRaw("Horizontal") > 0)
+//                if (Input.GetAxisRaw("Vertical") > 0)
+//                {
+//                    if (selectedIcon > 3)
+//                    {
+//                        selectedIcon -= 3;
+//                        StartCoroutine("updateIcon", selectedIcon);
+//                        SfxHandler.Play(selectClip);
+//                        yield return new WaitForSeconds(0.2f);
+//                    }
+//                }
+                if (Input.GetAxisRaw("Horizontal") > 0)
                 {
                     if (selectedIcon != 3 && selectedIcon != 6)
                     {
@@ -389,16 +389,16 @@ public class PauseHandler : MonoBehaviour
                         yield return new WaitForSeconds(0.2f);
                     }
                 }
-                else if (Input.GetAxisRaw("Vertical") < 0)
-                {
-                    if (selectedIcon < 4)
-                    {
-                        selectedIcon += 3;
-                        StartCoroutine("updateIcon", selectedIcon);
-                        SfxHandler.Play(selectClip);
-                        yield return new WaitForSeconds(0.2f);
-                    }
-                }
+//                else if (Input.GetAxisRaw("Vertical") < 0)
+//                {
+//                    if (selectedIcon < 4)
+//                    {
+//                        selectedIcon += 3;
+//                        StartCoroutine("updateIcon", selectedIcon);
+//                        SfxHandler.Play(selectClip);
+//                        yield return new WaitForSeconds(0.2f);
+//                    }
+//                }
                 else if (Input.GetAxisRaw("Horizontal") < 0)
                 {
                     if (selectedIcon != 1 && selectedIcon != 4)
@@ -411,45 +411,45 @@ public class PauseHandler : MonoBehaviour
                 }
                 else if (Input.GetButton("Select"))
                 {
+//                    if (selectedIcon == 1)
+//                    {
+//                        //Pokedex
+//                        Debug.Log("Pokédex not yet implemented");
+//                        yield return new WaitForSeconds(0.2f);
+//                    }
+//                    else if (selectedIcon == 2)
+//                    {
+//                        //Party
+//                        SfxHandler.Play(selectClip);
+//                        //StartCoroutine(fadeIcons(0.4f));
+//                        //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
+//                        yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+//                        hideIcons();
+//
+//                        yield return StartCoroutine(runSceneUntilDeactivated(Scene.main.Party.gameObject));
+//
+//                        unhideIcons();
+//                        //StartCoroutine(unfadeIcons(0.4f));
+//                        //yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
+//                        yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
+//                    }
+//                    else if (selectedIcon == 3)
+//                    {
+//                        //Bag
+//                        SfxHandler.Play(selectClip);
+//                        //StartCoroutine(fadeIcons(0.4f));
+//                        //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
+//                        yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+//                        hideIcons();
+//
+//                        yield return StartCoroutine(runSceneUntilDeactivated(Scene.main.Bag.gameObject));
+//
+//                        unhideIcons();
+//                        //StartCoroutine(unfadeIcons(0.4f));
+//                        //yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
+//                        yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
+//                    }
                     if (selectedIcon == 1)
-                    {
-                        //Pokedex
-                        Debug.Log("Pokédex not yet implemented");
-                        yield return new WaitForSeconds(0.2f);
-                    }
-                    else if (selectedIcon == 2)
-                    {
-                        //Party
-                        SfxHandler.Play(selectClip);
-                        //StartCoroutine(fadeIcons(0.4f));
-                        //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
-                        yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
-                        hideIcons();
-
-                        yield return StartCoroutine(runSceneUntilDeactivated(Scene.main.Party.gameObject));
-
-                        unhideIcons();
-                        //StartCoroutine(unfadeIcons(0.4f));
-                        //yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
-                        yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
-                    }
-                    else if (selectedIcon == 3)
-                    {
-                        //Bag
-                        SfxHandler.Play(selectClip);
-                        //StartCoroutine(fadeIcons(0.4f));
-                        //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
-                        yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
-                        hideIcons();
-
-                        yield return StartCoroutine(runSceneUntilDeactivated(Scene.main.Bag.gameObject));
-
-                        unhideIcons();
-                        //StartCoroutine(unfadeIcons(0.4f));
-                        //yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
-                        yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
-                    }
-                    else if (selectedIcon == 4)
                     {
                         //TrainerCard
 //                        SfxHandler.Play(selectClip);
@@ -466,7 +466,7 @@ public class PauseHandler : MonoBehaviour
                         yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
 	
                     }
-                    else if (selectedIcon == 5)
+                    else if (selectedIcon == 2)
                     {
 //                        //Save
 //                      //  saveDataDisplay.gameObject.SetActive(true);
@@ -535,7 +535,7 @@ public class PauseHandler : MonoBehaviour
 						yield return new WaitForSeconds(0.2f);
 						Application.Quit ();
                     }
-                    else if (selectedIcon == 6)
+                    else if (selectedIcon == 3)
                     {
                         //Settings
                         SfxHandler.Play(selectClip);
