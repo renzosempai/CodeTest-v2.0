@@ -58,8 +58,9 @@ public class GlobalVariables : MonoBehaviour
 
             if (!PlayerPrefs.HasKey("textSpeed") || !PlayerPrefs.HasKey("musicVolume") ||
                 !PlayerPrefs.HasKey("sfxVolume") ||
-                !PlayerPrefs.HasKey("frameStyle") || !PlayerPrefs.HasKey("battleScene") ||
-                !PlayerPrefs.HasKey("battleStyle") ||
+                !PlayerPrefs.HasKey("frameStyle") || 
+//				!PlayerPrefs.HasKey("battleScene") ||
+//                !PlayerPrefs.HasKey("battleStyle") ||
                 !PlayerPrefs.HasKey("screenSize") || !PlayerPrefs.HasKey("fullscreen"))
             {
                 //if a playerpref isn't set
@@ -70,8 +71,8 @@ public class GlobalVariables : MonoBehaviour
                 PlayerPrefs.SetFloat("musicVolume", mVol);
                 PlayerPrefs.SetFloat("sfxVolume", sVol);
                 PlayerPrefs.SetInt("frameStyle", 1);
-                PlayerPrefs.SetInt("battleScene", 1);
-                PlayerPrefs.SetInt("battleStyle", 0);
+//                PlayerPrefs.SetInt("battleScene", 1);
+//                PlayerPrefs.SetInt("battleStyle", 0);
                 PlayerPrefs.SetInt("screenSize", 1);
                 PlayerPrefs.SetInt("fullscreen", 0);
                 PlayerPrefs.Save();

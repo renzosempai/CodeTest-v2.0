@@ -1,6 +1,4 @@
-﻿//Original Scripts by IIColour (IIColour_Spectrum)
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(Trainer))]
@@ -70,6 +68,7 @@ public class InteractTrainer : MonoBehaviour
 
     private DialogBoxHandler Dialog;
     //private SceneTransition sceneTransition;
+
 
     void Awake()
     {

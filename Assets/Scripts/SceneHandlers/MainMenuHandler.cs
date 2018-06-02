@@ -171,14 +171,14 @@ public class MainMenuHandler : MonoBehaviour
             fileDataPanel.SetActive(false);
             for (int i = 1; i < 3; i++)
             {
-                button[i].pixelInset = new Rect(button[i].pixelInset.x, button[i].pixelInset.y + 64f,
+                button[i].pixelInset = new Rect(button[i].pixelInset.x, button[i].pixelInset.y,
                     button[i].pixelInset.width, button[i].pixelInset.height);
                 buttonHighlight[i].pixelInset = new Rect(buttonHighlight[i].pixelInset.x,
-                    buttonHighlight[i].pixelInset.y + 64f, buttonHighlight[i].pixelInset.width,
+                    buttonHighlight[i].pixelInset.y, buttonHighlight[i].pixelInset.width,
                     buttonHighlight[i].pixelInset.height);
-                buttonText[i].pixelOffset = new Vector2(buttonText[i].pixelOffset.x, buttonText[i].pixelOffset.y + 64f);
+                buttonText[i].pixelOffset = new Vector2(buttonText[i].pixelOffset.x, buttonText[i].pixelOffset.y);
                 buttonTextShadow[i].pixelOffset = new Vector2(buttonTextShadow[i].pixelOffset.x,
-                    buttonTextShadow[i].pixelOffset.y + 64f);
+                    buttonTextShadow[i].pixelOffset.y);
             }
         }
         else
@@ -306,7 +306,7 @@ public class MainMenuHandler : MonoBehaviour
                 }
                 else if (Input.GetAxisRaw("Vertical") < 0)
                 {
-                    if (selectedButton < 4)
+                    if (selectedButton < 3)
                     {
                         updateButton(selectedButton + 1);
                         yield return new WaitForSeconds(0.2f);

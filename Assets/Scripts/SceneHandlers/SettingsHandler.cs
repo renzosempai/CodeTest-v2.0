@@ -1,6 +1,4 @@
-﻿//Original Scripts by IIColour (IIColour_Spectrum)
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class SettingsHandler : MonoBehaviour
@@ -21,12 +19,12 @@ public class SettingsHandler : MonoBehaviour
         sfxVolumeHighlight,
         frameStyle,
         frameStyleShadow,
-        battleScene,
-        battleSceneShadow,
-        battleSceneHighlight,
-        battleStyle,
-        battleStyleShadow,
-        battleStyleHighlight,
+//        battleScene,
+//        battleSceneShadow,
+//        battleSceneHighlight,
+//        battleStyle,
+//        battleStyleShadow,
+//        battleStyleHighlight,
         screenSize,
         screenSizeShadow,
         screenSizeHighlight,
@@ -39,24 +37,24 @@ public class SettingsHandler : MonoBehaviour
 
     private int[] selectedOptionSize = new int[]
     {
-        3, 21, 21, 2, 2, 2, 5, 3
+        3, 21, 21, 2, 5, 3
     };
 
     private int[] selectedOptionIndex = new int[]
     {
-        2, 7, 14, 0, 1, 0, 0, 0
+        2, 7, 14, 0, 0, 0
     };
 
     private string[] selectedOptionText = new string[]
     {
-        "How quickly to draw text to the screen.",
-        "Adjust the volume of the music.",
-        "Adjust the volume of the sound effects.",
-        "Change the appearance of the text boxes.",
-        "Display animations during battles.",
-        "Switch before opponent's next Pokemon?",
-        "Adjust the resolution of the screen.",
-        "Set the fullscreen mode."
+        "How quickly to draw text to the screen",
+        "Adjust the volume of the music",
+        "Adjust the volume of the sound effects",
+        "Change the appearance of the text boxes",
+//        "Display animations during battles.",
+//        "Switch before opponent's next Pokemon?",
+        "Adjust the resolution of the screen",
+        "Set to fullscreen mode"
     };
 
     private AudioSource SettingsAudio;
@@ -85,12 +83,12 @@ public class SettingsHandler : MonoBehaviour
         sfxVolumeHighlight = sfxVolume.transform.Find("SFXVolumeHighlight").GetComponent<GUIText>();
         frameStyle = transform.Find("FrameStyle").GetComponent<GUIText>();
         frameStyleShadow = frameStyle.transform.Find("FrameStyleShadow").GetComponent<GUIText>();
-        battleScene = transform.Find("BattleScene").GetComponent<GUIText>();
-        battleSceneShadow = battleScene.transform.Find("BattleSceneShadow").GetComponent<GUIText>();
-        battleSceneHighlight = battleScene.transform.Find("BattleSceneHighlight").GetComponent<GUIText>();
-        battleStyle = transform.Find("BattleStyle").GetComponent<GUIText>();
-        battleStyleShadow = battleStyle.transform.Find("BattleStyleShadow").GetComponent<GUIText>();
-        battleStyleHighlight = battleStyle.transform.Find("BattleStyleHighlight").GetComponent<GUIText>();
+//        battleScene = transform.Find("BattleScene").GetComponent<GUIText>();
+//        battleSceneShadow = battleScene.transform.Find("BattleSceneShadow").GetComponent<GUIText>();
+//        battleSceneHighlight = battleScene.transform.Find("BattleSceneHighlight").GetComponent<GUIText>();
+//        battleStyle = transform.Find("BattleStyle").GetComponent<GUIText>();
+//        battleStyleShadow = battleStyle.transform.Find("BattleStyleShadow").GetComponent<GUIText>();
+//        battleStyleHighlight = battleStyle.transform.Find("BattleStyleHighlight").GetComponent<GUIText>();
         screenSize = transform.Find("ScreenSize").GetComponent<GUIText>();
         screenSizeShadow = screenSize.transform.Find("ScreenSizeShadow").GetComponent<GUIText>();
         screenSizeHighlight = screenSize.transform.Find("ScreenSizeHighlight").GetComponent<GUIText>();
@@ -209,27 +207,27 @@ public class SettingsHandler : MonoBehaviour
         if (1710 < resWidth && 960 < resHeight)
         {
             screenSize.text = "x1     x2     x3     x4     x5";
-            selectedOptionSize[6] = 5;
+            selectedOptionSize[4] = 5;
         }
         else if (1368 < resWidth && 768 < resHeight)
         {
             screenSize.text = "x1     x2     x3     x4";
-            selectedOptionSize[6] = 4;
+            selectedOptionSize[4] = 4;
         }
         else if (1026 < resWidth && 576 < resHeight)
         {
             screenSize.text = "x1     x2     x3";
-            selectedOptionSize[6] = 3;
+            selectedOptionSize[4] = 3;
         }
         else if (684 < resWidth && 384 < resHeight)
         {
             screenSize.text = "x1     x2";
-            selectedOptionSize[6] = 2;
+            selectedOptionSize[4] = 2;
         }
         else
         {
             screenSize.text = "x1";
-            selectedOptionSize[6] = 1;
+            selectedOptionSize[4] = 1;
         }
     }
 
@@ -240,19 +238,19 @@ public class SettingsHandler : MonoBehaviour
             if (selectedOptionIndex[selectedOption] == 0)
             {
          	  textSpeedHighlight.text = "Slow";
-                textSpeedHighlight.pixelOffset = new Vector2(155, 159);
+                textSpeedHighlight.pixelOffset = new Vector2(155, 143);
                 PlayerPrefs.SetInt("textSpeed", 0);
             }
             else if (selectedOptionIndex[selectedOption] == 1)
             {
                 textSpeedHighlight.text = "Medium";
-                textSpeedHighlight.pixelOffset = new Vector2(191, 159);
+                textSpeedHighlight.pixelOffset = new Vector2(191, 143);
                 PlayerPrefs.SetInt("textSpeed", 1);
             }
             else
             {
                 textSpeedHighlight.text = "Fast";
-                textSpeedHighlight.pixelOffset = new Vector2(238, 159);
+                textSpeedHighlight.pixelOffset = new Vector2(238, 143);
                 PlayerPrefs.SetInt("textSpeed", 2);
             }
         }
@@ -285,38 +283,38 @@ public class SettingsHandler : MonoBehaviour
             DialogBoxBorder.texture = Resources.Load<Texture>("Frame/dialog" + (selectedOptionIndex[3] + 1));
             PlayerPrefs.SetInt("frameStyle", selectedOptionIndex[3] + 1);
         }
+//        else if (selectedOption == 4)
+//        {
+//            if (selectedOptionIndex[selectedOption] == 0)
+//            {
+//                battleSceneHighlight.text = "Off";
+//                battleSceneHighlight.pixelOffset = new Vector2(186, 95);
+//            }
+//            else
+//            {
+//                battleSceneHighlight.text = "On";
+//                battleSceneHighlight.pixelOffset = new Vector2(217, 95);
+//            }
+//        }
+//        else if (selectedOption == 5)
+//        {
+//            if (selectedOptionIndex[selectedOption] == 0)
+//            {
+//                battleStyleHighlight.text = "Switch";
+//                battleStyleHighlight.pixelOffset = new Vector2(171, 79);
+//            }
+//            else
+//            {
+//                battleStyleHighlight.text = "Set";
+//                battleStyleHighlight.pixelOffset = new Vector2(217, 79);
+//            }
+//        }
         else if (selectedOption == 4)
         {
             if (selectedOptionIndex[selectedOption] == 0)
             {
-                battleSceneHighlight.text = "Off";
-                battleSceneHighlight.pixelOffset = new Vector2(186, 95);
-            }
-            else
-            {
-                battleSceneHighlight.text = "On";
-                battleSceneHighlight.pixelOffset = new Vector2(217, 95);
-            }
-        }
-        else if (selectedOption == 5)
-        {
-            if (selectedOptionIndex[selectedOption] == 0)
-            {
-                battleStyleHighlight.text = "Switch";
-                battleStyleHighlight.pixelOffset = new Vector2(171, 79);
-            }
-            else
-            {
-                battleStyleHighlight.text = "Set";
-                battleStyleHighlight.pixelOffset = new Vector2(217, 79);
-            }
-        }
-        else if (selectedOption == 6)
-        {
-            if (selectedOptionIndex[selectedOption] == 0)
-            {
                 screenSizeHighlight.text = "x1";
-                screenSizeHighlight.pixelOffset = new Vector2(150, 63);
+                screenSizeHighlight.pixelOffset = new Vector2(150, 79);
                 if (!Screen.fullScreen)
                 {
                     Screen.SetResolution(342, 192, Screen.fullScreen);
@@ -325,7 +323,7 @@ public class SettingsHandler : MonoBehaviour
             else if (selectedOptionIndex[selectedOption] == 1)
             {
                 screenSizeHighlight.text = "x2";
-                screenSizeHighlight.pixelOffset = new Vector2(177, 63);
+                screenSizeHighlight.pixelOffset = new Vector2(177, 79);
                 if (!Screen.fullScreen)
                 {
                     Screen.SetResolution(684, 384, Screen.fullScreen);
@@ -334,7 +332,7 @@ public class SettingsHandler : MonoBehaviour
             else if (selectedOptionIndex[selectedOption] == 2)
             {
                 screenSizeHighlight.text = "x3";
-                screenSizeHighlight.pixelOffset = new Vector2(204, 63);
+                screenSizeHighlight.pixelOffset = new Vector2(204, 79);
                 if (!Screen.fullScreen)
                 {
                     Screen.SetResolution(1026, 576, Screen.fullScreen);
@@ -343,41 +341,41 @@ public class SettingsHandler : MonoBehaviour
             else if (selectedOptionIndex[selectedOption] == 3)
             {
                 screenSizeHighlight.text = "x4";
-                screenSizeHighlight.pixelOffset = new Vector2(231, 63);
+                screenSizeHighlight.pixelOffset = new Vector2(231, 79);
                 if (!Screen.fullScreen)
                 {
-                    Screen.SetResolution(1368, 768, Screen.fullScreen);
+                    Screen.SetResolution(1366, 768, Screen.fullScreen);
                 }
             }
             else
             {
                 screenSizeHighlight.text = "x5";
-                screenSizeHighlight.pixelOffset = new Vector2(258, 63);
+                screenSizeHighlight.pixelOffset = new Vector2(258, 79);
                 if (!Screen.fullScreen)
                 {
                     Screen.SetResolution(1710, 960, Screen.fullScreen);
                 }
             }
         }
-        else if (selectedOption == 7)
+        else if (selectedOption == 5)
         {
             if (selectedOptionIndex[selectedOption] == 0)
             {
                 fullscreenHighlight.text = "Off";
-                fullscreenHighlight.pixelOffset = new Vector2(149, 47);
-                Screen.SetResolution(342 * (selectedOptionIndex[6] + 1), 192 * (selectedOptionIndex[6] + 1), false);
+                fullscreenHighlight.pixelOffset = new Vector2(149, 63);
+                Screen.SetResolution(342 * (selectedOptionIndex[5] + 1), 192 * (selectedOptionIndex[5] + 1), false);
             }
             else if (selectedOptionIndex[selectedOption] == 1)
             {
                 fullscreenHighlight.text = "Border";
-                fullscreenHighlight.pixelOffset = new Vector2(180, 47);
-                Screen.SetResolution(342 * (selectedOptionIndex[6] + 1), 192 * (selectedOptionIndex[6] + 1), true);
+                fullscreenHighlight.pixelOffset = new Vector2(180, 63);
+                Screen.SetResolution(342 * (selectedOptionIndex[5] + 1), 192 * (selectedOptionIndex[5] + 1), true);
             }
             else if (selectedOptionIndex[selectedOption] == 2)
             {
                 fullscreenHighlight.text = "Stretch";
-                fullscreenHighlight.pixelOffset = new Vector2(231, 47);
-                Screen.SetResolution(342 * selectedOptionSize[6], 192 * selectedOptionSize[6], true);
+                fullscreenHighlight.pixelOffset = new Vector2(231, 63);
+                Screen.SetResolution(342 * selectedOptionSize[5], 192 * selectedOptionSize[5], true);
             }
         }
     }
@@ -393,10 +391,10 @@ public class SettingsHandler : MonoBehaviour
             PlayerPrefs.SetFloat("musicVolume", mVol);
             PlayerPrefs.SetFloat("sfxVolume", sVol);
             PlayerPrefs.SetInt("frameStyle", selectedOptionIndex[3] + 1);
-            PlayerPrefs.SetInt("battleScene", selectedOptionIndex[4]);
-            PlayerPrefs.SetInt("battleStyle", selectedOptionIndex[5]);
-            PlayerPrefs.SetInt("screenSize", selectedOptionIndex[6] + 1);
-            PlayerPrefs.SetInt("fullscreen", selectedOptionIndex[7]);
+//            PlayerPrefs.SetInt("battleScene", selectedOptionIndex[4]);
+//            PlayerPrefs.SetInt("battleStyle", selectedOptionIndex[5]);
+            PlayerPrefs.SetInt("screenSize", selectedOptionIndex[4] + 1);
+            PlayerPrefs.SetInt("fullscreen", selectedOptionIndex[5]);
         }
         else
         {
@@ -404,10 +402,10 @@ public class SettingsHandler : MonoBehaviour
             selectedOptionIndex[1] = Mathf.RoundToInt(Mathf.Sqrt(PlayerPrefs.GetFloat("musicVolume")) * 20f);
             selectedOptionIndex[2] = Mathf.RoundToInt(Mathf.Sqrt(PlayerPrefs.GetFloat("sfxVolume")) * 20f);
             selectedOptionIndex[3] = PlayerPrefs.GetInt("frameStyle") - 1;
-            selectedOptionIndex[4] = PlayerPrefs.GetInt("battleScene");
-            selectedOptionIndex[5] = PlayerPrefs.GetInt("battleStyle");
-            selectedOptionIndex[6] = PlayerPrefs.GetInt("screenSize") - 1;
-            selectedOptionIndex[7] = PlayerPrefs.GetInt("fullscreen");
+//            selectedOptionIndex[4] = PlayerPrefs.GetInt("battleScene");
+//            selectedOptionIndex[5] = PlayerPrefs.GetInt("battleStyle");
+            selectedOptionIndex[4] = PlayerPrefs.GetInt("screenSize") - 1;
+            selectedOptionIndex[5] = PlayerPrefs.GetInt("fullscreen");
         }
         for (int i = 0; i < 8; i++)
         {
@@ -425,10 +423,10 @@ public class SettingsHandler : MonoBehaviour
         PlayerPrefs.SetFloat("musicVolume", mVol);
         PlayerPrefs.SetFloat("sfxVolume", sVol);
         PlayerPrefs.SetInt("frameStyle", selectedOptionIndex[3] + 1);
-        PlayerPrefs.SetInt("battleScene", selectedOptionIndex[4]);
-        PlayerPrefs.SetInt("battleStyle", selectedOptionIndex[5]);
-        PlayerPrefs.SetInt("screenSize", selectedOptionIndex[6] + 1);
-        PlayerPrefs.SetInt("fullscreen", selectedOptionIndex[7]);
+//        PlayerPrefs.SetInt("battleScene", selectedOptionIndex[4]);
+//        PlayerPrefs.SetInt("battleStyle", selectedOptionIndex[5]);
+        PlayerPrefs.SetInt("screenSize", selectedOptionIndex[4] + 1);
+        PlayerPrefs.SetInt("fullscreen", selectedOptionIndex[5]);
         PlayerPrefs.Save();
     }
 
@@ -446,15 +444,15 @@ public class SettingsHandler : MonoBehaviour
             selectedOptionIndex[1],
             selectedOptionIndex[2],
             selectedOptionIndex[3],
+//            selectedOptionIndex[4],
+//            selectedOptionIndex[5],
             selectedOptionIndex[4],
-            selectedOptionIndex[5],
-            selectedOptionIndex[6],
-            selectedOptionIndex[7]
+            selectedOptionIndex[5]
         };
         //	float originalMVol = PlayerPrefs.GetFloat("musicVolume");
 //		float originalSVol = PlayerPrefs.GetFloat("sfxVolume");
         selectedOption = 0;
-        selectRow.pixelInset = new Rect(51, 144, selectRow.pixelInset.width, selectRow.pixelInset.height);
+        selectRow.pixelInset = new Rect(51, 128, selectRow.pixelInset.width, selectRow.pixelInset.height);
         drawDialogBox();
         drawTextInstant(selectedOptionText[0]);
         while (running)
@@ -479,7 +477,7 @@ public class SettingsHandler : MonoBehaviour
             }
             else if (Input.GetAxisRaw("Vertical") < 0)
             {
-                if (selectedOption < 7)
+                if (selectedOption < 5)
                 {
                     selectedOption += 1;
                     StopCoroutine("drawText");
