@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using MoonSharp.Interpreter;
 
 [RequireComponent(typeof(Trainer))]
 public class InteractTrainer : MonoBehaviour

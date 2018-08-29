@@ -28,7 +28,7 @@ public class LuaInterfaceTest : MonoBehaviour
 		string str = (string)lua["str"];
 		str = lua.GetString("str"); // again, a convenience function that does the same thing
 		output += "str: " + str + "\n";
-		
+
 		lua.DoString("str = 'another string'"); // write to Lua global variable str. strings can be in single-quotes or double quotes
 		str = lua.GetString("str"); // retrieve the updated value
 		output += "str: " + str + "\n";
@@ -178,4 +178,3 @@ public class LuaInterfaceTest : MonoBehaviour
 		//GUILayout.EndHorizontal();
 	}
 }
-
