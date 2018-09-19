@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-	private string num;
+	private string answer;
 
 
 	private int countGuess;
@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour {
 	public Text text;
 
 	void Awake(){
-		num = "semicolon";
+		answer = "semicolon";
 		text.text = "What is needed to end a code of line?";
 	}
 
@@ -32,18 +32,18 @@ public class GameController : MonoBehaviour {
 	}
 
 	void CompareGuesses(string guess){
-		if (guess == num) {
+		if (guess == answer) {
 			text.text = "Correct Answer: " + guess + ", It took " + countGuess + " guesses";
 			btn.SetActive (true);
 
-		} else if (guess != num) {
+		} else if (guess != answer) {
 			
 			text.text = "Wrong. Please guess again.";
 		}
 	}
 	public void PlayAgain(){
 	
-		num = "string";
+		answer = "string";
 		text.text = "It is a type of input that is composed of characters:";
 		countGuess = 0;
 		btn.SetActive (false);
