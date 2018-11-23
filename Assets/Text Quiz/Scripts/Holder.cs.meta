@@ -1,16 +1,9 @@
 fileFormatVersion: 2
-guid: 8688e001e964a6c4f9d9510126887cf6
-labels:
-- DynamicC#
-- C#Scripting
-- C#
-- Runtime
-- Modding
-- ModSupport
-- Security
-timeCreated: 1484245079
-licenseType: Store
+guid: 8c319467181ff5346a2c344f13588d4d
+timeCreated: 1541522882
+licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
   executionOrder: 0
