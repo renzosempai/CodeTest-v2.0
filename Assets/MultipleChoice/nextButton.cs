@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class nextButton : MonoBehaviour {
 
+
 	public Transform scorePanel;
 
 	public int score = 0;
 
 	public Transform result;
+
+	public Transform nonext;
 	// Use this for initialization
 	void Start () {
 		
@@ -24,8 +27,11 @@ public class nextButton : MonoBehaviour {
 
 		TextControl.randQuestion = -1;
 		score++;
-		scorePanel.GetComponent<TextMesh> ().text = " "+score;
+		scorePanel.GetComponent<TextMesh> ().text = "Score: "+score;
 		result.GetComponent<TextMesh> ().text = " ";
+		nonext.GetComponent<TextMesh> ().text = " ";
+
+
 
 	}
 }

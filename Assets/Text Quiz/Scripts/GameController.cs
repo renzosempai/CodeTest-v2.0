@@ -59,6 +59,7 @@ public class GameController : MonoBehaviour {
 	//	GameObject.Find ("Hold").GetComponent<BattleHandler> ().victor = +1;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = true;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().busy = false;
+		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = +1;
 
 
 
