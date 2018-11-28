@@ -10,14 +10,16 @@ public class TextController : MonoBehaviour {
 
 
 	public Transform resultObj;
-
-	public Transform nextButtons;
+	public GameObject hider1;
+	public GameObject hider2;
 
 	public static string selectedAnswer;
 
 	public static string choiceSelected="n";
 
 	public static int randQuestion = -1;
+
+	public GameObject btn2;
 
 	// Use this for initialization
 	void Start () {
@@ -39,19 +41,24 @@ public class TextController : MonoBehaviour {
 				choiceSelected = "n"; 
 				if (correctAnswer [randQuestion] == selectedAnswer) {
 			
-					resultObj.GetComponent<TextMesh> ().text = "Correct, click Next to continue";
+					resultObj.GetComponent<TextMesh> ().text = "Correct, click Done to continue";
 
-					nextButtons.GetComponent<TextMesh> ().text = "Done";
+
+				btn2.SetActive (true);
 				}
 				if (correctAnswer [randQuestion] != selectedAnswer) {
 			
 					resultObj.GetComponent<TextMesh> ().text = "Wrong Answer";
-					nextButtons.GetComponent<TextMesh> ().text = " ";
+
 
 			
 				}
 			}
 		}
-	
+	public void Done(){
+		resultObj.GetComponent<TextMesh> ().text = "HUMANAG CLICK ANG DONE";
+		hider1.SetActive (false);
+		hider2.SetActive (false);
+	}
 
 }

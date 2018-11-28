@@ -7,11 +7,11 @@ public class nextButtons : MonoBehaviour {
 
 
 
-	public int score = 0;
+//	public int score = 0;
 
 	public Transform result;
-	public GameObject donee;
-	public Transform nonext;
+//	public GameObject done;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -26,13 +26,14 @@ public class nextButtons : MonoBehaviour {
 	{
 
 		TextController.randQuestion = -1;
-		score++;
+
+//		score++;
 
 		result.GetComponent<TextMesh> ().text = " ";
-		nonext.GetComponent<TextMesh> ().text = " ";
-		if (score == 1) {
-			donee.SetActive (true);
-		}
+
+//		if (score == 1) {
+//			done.SetActive (true);
+//		}
 
 
 

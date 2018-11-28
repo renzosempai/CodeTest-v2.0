@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Text2 : MonoBehaviour {
 
-	List<string> secondchoice = new List<string>() {" three "," five "," six "," twelve ", " thirteen "};
+	List<string> secondchoice = new List<string>() {" three "};
 	// Use this for initialization
 	void Start () {
 		//GetComponent<TextMesh> ().text = secondchoice [0];
