@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TextController : MonoBehaviour {
 
-	List<string> questions = new List<string>() {"1 + 1 = 3"};
-
+	List<string> questions = new List<string> () { " " };
 	List<string> correctAnswer = new List<string>() {"False"};
 
 
