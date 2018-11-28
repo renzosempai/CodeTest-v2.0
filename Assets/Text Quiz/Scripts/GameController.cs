@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
+
 	private string answer;
 	private int counter;
 
@@ -56,12 +57,24 @@ public class GameController : MonoBehaviour {
 	}
 	public void Done(){
 
-	//	GameObject.Find ("Hold").GetComponent<BattleHandler> ().victor = +1;
+//	GameObject.Find ("Hold").GetComponent<BattleHandler> ().victor = +1;
+		BgmHandler.main.ResumeMain(1.4f);
+		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = 0;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = true;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().busy = false;
-		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = +1;
+//		StartCoroutine(ScreenFade.main.Fade(false, 1f));
+		StartCoroutine(BacktoWorld());
+//		StartCoroutine(ScreenFade.main.Fade(true, 1f));
+//		Scene.main.Battle.gameObject.SetActive(false);
+//		PlayerMovement.player.unsetCheckBusyWith(this.gameObject);
+//		GlobalVariables.global.Respawn();
+//		running = false;
+		
+	}
 
-
-
+	IEnumerator BacktoWorld(){
+		yield return new WaitForSeconds(0.4f);
+//		StartCoroutine(ScreenFade.main.Fade(true, 1f));
+		Scene.main.Battle.gameObject.SetActive(false);
 	}
 }
