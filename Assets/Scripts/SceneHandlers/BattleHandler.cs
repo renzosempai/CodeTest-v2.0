@@ -3560,7 +3560,7 @@ public class BattleHandler : MonoBehaviour
         }
         //Set trainer sprites to the center of the platform initially
         playerTrainerSprite1.rectTransform.localPosition = new Vector3(0,
-            playerTrainerSprite1.rectTransform.localPosition.y, 0);
+        playerTrainerSprite1.rectTransform.localPosition.y, 0);
         trainerSprite1.rectTransform.localPosition = new Vector3(0, trainerSprite1.rectTransform.localPosition.y, 0);
 
 
@@ -6136,7 +6136,7 @@ public class BattleHandler : MonoBehaviour
 //        else
 //        {
 //            //if not defeated, the scene won't have faded out already
-//            StartCoroutine(ScreenFade.main.Fade(false, 1f));
+//            
 //            BgmHandler.main.ResumeMain(1.4f);
 //        }
 //        yield return new WaitForSeconds(1.4f);
