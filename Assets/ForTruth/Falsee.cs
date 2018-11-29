@@ -13,7 +13,7 @@ public class Falsee : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (TextController.randQuestion>-1){
+		if (MainText.randQuestion>-1){
 			GetComponent<Text> ().text = secondchoice [MainText.randQuestion];
 		}
 	}
