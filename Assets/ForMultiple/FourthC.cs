@@ -23,6 +23,6 @@ public class FourthC : MonoBehaviour {
 
 		Testhold.selectedAnswer = gameObject.name;
 		Testhold.choiceSelected = "y";
-		Debug.Log ("clicked",gameObject);
+		Debug.Log ("clicked 4");
 	}
 }

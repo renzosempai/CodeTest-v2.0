@@ -22,5 +22,6 @@ public class ThirdC : MonoBehaviour {
 
 		Testhold.selectedAnswer = gameObject.name;
 		Testhold.choiceSelected = "y";
+		Debug.Log ("clicked 3");
 	}
 }

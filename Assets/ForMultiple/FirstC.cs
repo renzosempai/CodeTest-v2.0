@@ -22,5 +22,6 @@ public class FirstC : MonoBehaviour {
 
 		Testhold.selectedAnswer = gameObject.name;
 		Testhold.choiceSelected = "y";
+		Debug.Log ("clicked 1");
 	}
 }
