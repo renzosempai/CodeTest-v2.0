@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MainText : MonoBehaviour {
 
 	List<string> questions = new List<string> () { " " };
-	List<string> correctAnswer = new List<string>() {"False"};
+	List<string> correctAnswer = new List<string>() {"FalseButton"};
 
 
 
@@ -19,6 +19,7 @@ public class MainText : MonoBehaviour {
 	public static int randQuestion = -1;
 
 	public GameObject btn2;
+
 
 	// Use this for initialization
 	void Start () {

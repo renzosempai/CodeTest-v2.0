@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FirstC : MonoBehaviour {
 
-	List<string> firstchoice = new List<string>() {" one "};
+//	List<string> firstchoice = new List<string>() {" one "};
 	// Use this for initialization
 	void Start () {
 		//GetComponent<TextMesh> ().text = firstchoice [0];
@@ -13,12 +13,12 @@ public class FirstC : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-		if (Testhold.randQuestion>-1){
-			GetComponent<Text> ().text = firstchoice [Testhold.randQuestion];
-		}
+//
+//		if (Testhold.randQuestion>-1){
+//			GetComponent<Text> ().text = firstchoice [Testhold.randQuestion];
+//		}
 	}
-	void OnMouseDown(){
+	public void Answer(){
 
 		Testhold.selectedAnswer = gameObject.name;
 		Testhold.choiceSelected = "y";
