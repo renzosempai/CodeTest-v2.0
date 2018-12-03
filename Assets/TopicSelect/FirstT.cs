@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class FirstT : MonoBehaviour {
-
+	public GameObject CharSelection;
+	public GameObject Topics;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,6 +16,7 @@ public class FirstT : MonoBehaviour {
 		
 	}
 	public void Topic(){
-		SceneManager.LoadScene ("Level1Indoors");
+		CharSelection.SetActive (true);
+		Topics.SetActive (false);
 	}
 }

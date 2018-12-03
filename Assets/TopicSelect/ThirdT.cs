@@ -1,20 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class ThirdT : MonoBehaviour {
 
+	public GameObject CharSelection;
+	public GameObject Topics;
 	// Use this for initialization
 	void Start () {
-		
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 	public void Topic(){
-		SceneManager.LoadScene ("Level1Indoors");
+		CharSelection.SetActive (true);
+		Topics.SetActive (false);
 	}
 }
