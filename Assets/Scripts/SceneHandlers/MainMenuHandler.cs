@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MainMenuHandler : MonoBehaviour
 {
@@ -227,16 +228,16 @@ public class MainMenuHandler : MonoBehaviour
                 {
                     //Play
                     //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
-                    yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+//                    yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
 
-                    SaveData.currentSave = new SaveData(fileCount);
-
-                    GlobalVariables.global.SetDEBUGFileData();
-
-                    GlobalVariables.global.playerPosition = new Vector3(75, 0, 28);
-                    GlobalVariables.global.playerDirection = 2;
-                    GlobalVariables.global.fadeIn = true;
-                    Application.LoadLevel("Level1Indoors");
+//                    SaveData.currentSave = new SaveData(fileCount);
+//
+////                    GlobalVariables.global.SetDEBUGFileData();
+////
+////                    GlobalVariables.global.playerPosition = new Vector3(75, 0, 28);
+////                    GlobalVariables.global.playerDirection = 2;
+////                    GlobalVariables.global.fadeIn = true;
+					SceneManager.LoadScene("TopicSelect");
                 }
                 else if (selectedButton == 2)
                 {
