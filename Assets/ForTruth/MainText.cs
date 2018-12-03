@@ -65,7 +65,7 @@ public class MainText : MonoBehaviour {
 
 	IEnumerator BacktoWorld(){
 		yield return new WaitForSeconds(0.4f);
-		//		StartCoroutine(ScreenFade.main.Fade(true, 1f));
+		StartCoroutine(ScreenFade.main.Fade(true, 2f));
 		Scene.main.Battle.gameObject.SetActive(false);
 	}
 
