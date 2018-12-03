@@ -17,7 +17,10 @@ public class SecondT : MonoBehaviour {
 
 	}
 	public void Topic(){
+		
 		CharSelection.SetActive (true);
 		Topics.SetActive (false);
+		GameObject.Find ("Male").GetComponent<SelectMale> ().secondM++;
+		GameObject.Find ("Female").GetComponent<SelectFemale> ().secondF++;
 	}
 }

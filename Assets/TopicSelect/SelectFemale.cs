@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SelectFemale : MonoBehaviour {
-
+	public int firstF;
+	public int secondF;
+	public int thirdF;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,6 +17,12 @@ public class SelectFemale : MonoBehaviour {
 		
 	}
 	public void CharSelected(){
-		SceneManager.LoadScene ("Level1Indoors");
+		if (firstF == 1) {
+			SceneManager.LoadScene ("Level1Indoors");
+		} else if (secondF == 1) {
+			SceneManager.LoadScene ("Level1");
+		} else if (thirdF == 1) {
+			SceneManager.LoadScene ("Level2");
+		}
 	}
 }

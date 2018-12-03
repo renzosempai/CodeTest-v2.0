@@ -19,5 +19,7 @@ public class ThirdT : MonoBehaviour {
 	public void Topic(){
 		CharSelection.SetActive (true);
 		Topics.SetActive (false);
+		GameObject.Find ("Male").GetComponent<SelectMale> ().thirdM++;
+		GameObject.Find ("Female").GetComponent<SelectFemale> ().thirdF++;
 	}
 }

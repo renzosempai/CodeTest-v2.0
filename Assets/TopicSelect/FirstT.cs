@@ -6,6 +6,7 @@ using UnityEngine;
 public class FirstT : MonoBehaviour {
 	public GameObject CharSelection;
 	public GameObject Topics;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,7 +17,12 @@ public class FirstT : MonoBehaviour {
 		
 	}
 	public void Topic(){
+
+
 		CharSelection.SetActive (true);
 		Topics.SetActive (false);
+		GameObject.Find ("Male").GetComponent<SelectMale> ().firstM++;
+		GameObject.Find ("Female").GetComponent<SelectFemale> ().firstF++;
 	}
+
 }

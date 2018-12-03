@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SelectMale : MonoBehaviour {
-
+	public int firstM;
+	public int secondM;
+	public int thirdM;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,6 +17,14 @@ public class SelectMale : MonoBehaviour {
 		
 	}
 	public void CharSelected(){
-		SceneManager.LoadScene ("Level1Indoors");
+
+		if (firstM == 1) {
+			SceneManager.LoadScene ("Level1Indoors");
+		} else if (secondM == 1) {
+			SceneManager.LoadScene ("Level1"); 
+
+		} else if (thirdM == 1) {
+			SceneManager.LoadScene ("Level2");
+		}
 	}
 }
