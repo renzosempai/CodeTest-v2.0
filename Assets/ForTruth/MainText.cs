@@ -56,7 +56,17 @@ public class MainText : MonoBehaviour {
 		}
 	}
 	public void Done(){
-		resultObj.GetComponent<Text> ().text = "HUMANAG CLICK ANG DONE";
+		BgmHandler.main.ResumeMain(1.4f);
+		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = 0;
+		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = true;
+		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().busy = false;
+		StartCoroutine(BacktoWorld());
+	}
+
+	IEnumerator BacktoWorld(){
+		yield return new WaitForSeconds(0.4f);
+		//		StartCoroutine(ScreenFade.main.Fade(true, 1f));
+		Scene.main.Battle.gameObject.SetActive(false);
 	}
 
 }

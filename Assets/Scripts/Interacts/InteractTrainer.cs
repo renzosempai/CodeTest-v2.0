@@ -21,8 +21,20 @@ public class InteractTrainer : MonoBehaviour
         Patrol
     }
 
+	public enum Exercise
+	{
+		MultipleChoice,
+		TextQuiz,
+		TrueorFalse
+	}
+
+	public GameObject MultipleChoice;
+	public GameObject TextQuiz;
+	public GameObject TrueorFalse;
+
     public Gender trainerGender;
     public TrainerBehaviour trainerBehaviour;
+	public Exercise exercise;
 
     public string trainerSpriteName;
     private Sprite[] spriteSheet;
@@ -594,6 +606,21 @@ public class InteractTrainer : MonoBehaviour
                         yield return null;
                     }
                     Dialog.undrawDialogBox();
+				
+					if (exercise == Exercise.MultipleChoice) {
+						MultipleChoice.SetActive(true);
+					} 
+					else {
+						if (exercise == Exercise.TextQuiz) {
+							TextQuiz.SetActive(true);
+						} 
+							else {
+								if (exercise == Exercise.TrueorFalse) {
+									TrueorFalse.SetActive(true);
+								} 
+							}
+
+						}
                 }
 
                 //custom cutouts not yet implemented
@@ -638,6 +665,8 @@ public class InteractTrainer : MonoBehaviour
                             yield return null;
                         }
                         Dialog.undrawDialogBox();
+
+
                     }
                 }
             }

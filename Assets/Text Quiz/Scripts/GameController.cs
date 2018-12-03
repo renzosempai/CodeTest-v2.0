@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
+	private DialogBoxHandler Dialog;
+
+	public string[] trainerPostDefeatDialog;
 
 	private string answer;
 	private int counter;
@@ -56,25 +59,34 @@ public class GameController : MonoBehaviour {
 		btn.SetActive (false);
 	}
 	public void Done(){
-
-//	GameObject.Find ("Hold").GetComponent<BattleHandler> ().victor = +1;
 		BgmHandler.main.ResumeMain(1.4f);
 		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = 0;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = true;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().busy = false;
-//		StartCoroutine(ScreenFade.main.Fade(false, 1f));
+		StartCoroutine(DefeatDialogue());
 		StartCoroutine(BacktoWorld());
-//		StartCoroutine(ScreenFade.main.Fade(true, 1f));
-//		Scene.main.Battle.gameObject.SetActive(false);
-//		PlayerMovement.player.unsetCheckBusyWith(this.gameObject);
-//		GlobalVariables.global.Respawn();
-//		running = false;
-		
+	}
+
+	IEnumerator DefeatDialogue(){
+		if (Scene.main.Battle.victor == 0)
+		{
+			//Display all of the defeated Dialog. (if any)
+			for (int i = 0; i < trainerPostDefeatDialog.Length; i++)
+			{
+				Dialog.drawDialogBox();
+				yield return Dialog.StartCoroutine("drawText", trainerPostDefeatDialog[i]);
+				while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+				{
+					yield return null;
+				}
+				Dialog.undrawDialogBox();
+			}
+		}
 	}
 
 	IEnumerator BacktoWorld(){
-		yield return new WaitForSeconds(0.4f);
 //		StartCoroutine(ScreenFade.main.Fade(true, 1f));
+		yield return new WaitForSeconds(1.6f);
 		Scene.main.Battle.gameObject.SetActive(false);
 	}
 }

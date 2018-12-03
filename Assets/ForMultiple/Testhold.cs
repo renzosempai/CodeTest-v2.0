@@ -50,8 +50,7 @@ public class Testhold : MonoBehaviour {
 			if (correctAnswer [randQuestion] != selectedAnswer) {
 
 				resultsObj.GetComponent<Text> ().text = "Wrong Answer";
-
-
+//				StartCoroutine(Wait());
 
 			}
 		}
@@ -66,8 +65,11 @@ public class Testhold : MonoBehaviour {
 
 	IEnumerator BacktoWorld(){
 		yield return new WaitForSeconds(0.4f);
-		//		StartCoroutine(ScreenFade.main.Fade(true, 1f));
+		StartCoroutine(ScreenFade.main.Fade(true, 2f));
 		Scene.main.Battle.gameObject.SetActive(false);
 	}
-
+		
+//	IEnumerator Wait(){
+//		yield return new WaitForSeconds(0.4f);
+//	}
 }
