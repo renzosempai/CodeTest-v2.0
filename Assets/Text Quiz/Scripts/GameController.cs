@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GameController : MonoBehaviour {
 
 	private string answer;
@@ -12,6 +13,7 @@ public class GameController : MonoBehaviour {
 
 //	[SerializeField]
 //	public GameObject btn;
+	public GameObject wrong;
 
 	[SerializeField]
 	public GameObject btn2;
@@ -22,27 +24,32 @@ public class GameController : MonoBehaviour {
 	[SerializeField]
 	public Text text;
 
-	void Awake(){
+void Awake(){
 		answer = "Pointers";
-		text.text = "In C Programming, it is a variable that stores/points the address of another variable and is also used to allocate memory dynamically at run time. " +
-			"Input the correct answer";
-	}
 
-	public void GetInput(string guess){
-		CompareGuesses (guess);
-		input.text = " ";
-		countGuess++;
+
 	
+	}
+	public void GetInput(string guess){ 
+		
+			input.text = " ";
+	
+			CompareGuesses (guess);
+			countGuess++;
+	
+
 	}
 
 	void CompareGuesses(string guess){
 		if (guess == answer) {
 			text.text = "Correct Answer: " + guess + ", It took " + countGuess + " guesses";
-			btn2.SetActive (true);
+			wrong.SetActive (false);
+		}
 //			counter++;
-		} else if (guess != answer) {
-			
-			text.text = "Wrong. Please guess again.";
+	 else if(guess != answer) {
+
+
+			wrong.SetActive (true);
 		}
 //		if (counter == 2) {
 //			btn2.SetActive (true);
@@ -68,4 +75,5 @@ public class GameController : MonoBehaviour {
 		StartCoroutine(ScreenFade.main.Fade(true, 2f));
 		Scene.main.Battle.gameObject.SetActive(false);
 	}
+
 }
