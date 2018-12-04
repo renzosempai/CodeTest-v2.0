@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class GameController : MonoBehaviour {
+public class TextQuizHolder : MonoBehaviour {
 
 	private string answer;
 	private int counter;
 
 	private int countGuess;
 
-//	[SerializeField]
-//	public GameObject btn;
-	public GameObject wrong;
-
 	[SerializeField]
-	public GameObject btn2;
+	public GameObject btnDone;
 
 	[SerializeField]
 	public InputField input;
@@ -24,48 +19,37 @@ public class GameController : MonoBehaviour {
 	[SerializeField]
 	public Text text;
 
-void Awake(){
-		answer = "Pointers";
+	[SerializeField]
+	public string Question;
+
+	[SerializeField]
+	public string Answer;
+
+	void Awake(){
+//		answer = "Pointers";
+//		text.text = "In C Programming, it is a variable that stores/points the address of another variable and is also used to allocate memory dynamically at run time. " +
+//			"Input the correct answer";
 
 
-	
 	}
-	public void GetInput(string guess){ 
-		
-			input.text = " ";
-	
-			CompareGuesses (guess);
 
-			countGuess++;
+	public void GetInput(string guess){
+		CompareGuesses (guess);
+		input.text = " ";
+		countGuess++;
 	
-
 	}
 
 	void CompareGuesses(string guess){
 		if (guess == answer) {
 			text.text = "Correct Answer: " + guess + ", It took " + countGuess + " guesses";
-			wrong.SetActive (false);
-		}
+			btnDone.SetActive (true);
 //			counter++;
-//	 else if (guess != answer) {
-//
-//
-//			wrong.SetActive (false);
-//		} 
-		else {
-			wrong.SetActive (true);
+		} else if (guess != answer) {
+			text.text = "Wrong. Please guess again.";
 		}
-//		if (counter == 2		) {
-//			btn2.SetActive (true);
-//		}
 	}
-//	public void PlayAgain(){
-//
-//		answer = "string";
-//		text.text = "It is a type of input that is composed of characters:";
-//		countGuess = 0;
-//		btn.SetActive (false);
-//	}
+
 	public void Done(){
 		BgmHandler.main.ResumeMain(1.4f);
 		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = 0;
@@ -79,5 +63,4 @@ void Awake(){
 		StartCoroutine(ScreenFade.main.Fade(true, 2f));
 		Scene.main.Battle.gameObject.SetActive(false);
 	}
-
 }

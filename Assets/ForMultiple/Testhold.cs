@@ -7,7 +7,7 @@ public class Testhold : MonoBehaviour {
 
 	List<string> questions = new List<string>() {"1 + 1 = ?"};
 
-	List<string> correctAnswer = new List<string>() {"4"};
+	List<string> correctAnswer = new List<string>() {"3"};
 
 //	public Text textquest;
 

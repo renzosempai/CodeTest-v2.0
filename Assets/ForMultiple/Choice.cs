@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Choice : MonoBehaviour {
 
+
 //	List<string> firstchoice = new List<string>() {" one "};
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,6 @@ public class Choice : MonoBehaviour {
 
 		Testhold.selectedAnswer = gameObject.name;
 		Testhold.choiceSelected = "y";
-		Debug.Log ("clicked 1");
 	}
+
 }
