@@ -7,6 +7,9 @@ public class SelectFemale : MonoBehaviour {
 	public int firstF;
 	public int secondF;
 	public int thirdF;
+	public int fourthF;
+	public int fifthF;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -23,6 +26,10 @@ public class SelectFemale : MonoBehaviour {
 			SceneManager.LoadScene ("Level1");
 		} else if (thirdF == 1) {
 			SceneManager.LoadScene ("Level2");
+		} else if (fourthF == 1) {
+//			SceneManager.LoadScene (" ");
+		} else if (fifthF == 1) {
+//			SceneManager.LoadScene (" ");
 		}
 	}
 }

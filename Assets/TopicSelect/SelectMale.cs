@@ -7,6 +7,8 @@ public class SelectMale : MonoBehaviour {
 	public int firstM;
 	public int secondM;
 	public int thirdM;
+	public int fourthM;
+	public int fifthM;
 	// Use this for initialization
 	void Start () {
 		
@@ -25,6 +27,10 @@ public class SelectMale : MonoBehaviour {
 
 		} else if (thirdM == 1) {
 			SceneManager.LoadScene ("Level2");
+		} else if (fourthM == 1) {
+//			SceneManager.LoadScene (" ");
+		} else if (fifthM == 1) {
+//			SceneManager.LoadScene (" ");
 		}
 	}
 }
