@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TextQuizHolder : MonoBehaviour {
 
-	private string answer;
+	//	private string answer;
 	private int counter;
 
 	private int countGuess;
@@ -17,18 +17,25 @@ public class TextQuizHolder : MonoBehaviour {
 	public InputField input;
 
 	[SerializeField]
-	public Text text;
+	public Transform text;
 
 	[SerializeField]
+	public Text thistext;
+
 	public string Question;
 
-	[SerializeField]
+
 	public string Answer;
+	private string sagot;
 
 	void Awake(){
-		answer = "Pointers";
-		text.text = "In C Programming, it is a variable that stores/points the address of another variable and is also used to allocate memory dynamically at run time. " +
-			"Input the correct answer";
+
+		sagot = Answer;
+
+		text.GetComponent<Text> ().text = Question;
+
+		//		text.text = "In C Programming, it is a variable that stores/points the address of another variable and is also used to allocate memory dynamically at run time. " +
+		//			"Input the correct answer";
 
 
 	}
@@ -37,16 +44,17 @@ public class TextQuizHolder : MonoBehaviour {
 		CompareGuesses (guess);
 		input.text = " ";
 		countGuess++;
-	
+
 	}
 
 	void CompareGuesses(string guess){
-		if (guess == answer) {
-			text.text = "Correct Answer: " + guess + ", It took " + countGuess + " guesses";
+		if (guess == sagot) {
+
+			thistext.text = "Correct Answer: " + guess + ", It took " + countGuess + " guesses";
 			btnDone.SetActive (true);
-//			counter++;
-		} else if (guess != answer) {
-			text.text = "Wrong. Please guess again.";
+			//			counter++;
+		} else if (guess != sagot){
+			thistext.text = "Wrong. Please guess again.";
 		}
 	}
 
