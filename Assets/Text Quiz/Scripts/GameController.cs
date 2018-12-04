@@ -35,6 +35,7 @@ void Awake(){
 			input.text = " ";
 	
 			CompareGuesses (guess);
+
 			countGuess++;
 	
 
@@ -46,12 +47,15 @@ void Awake(){
 			wrong.SetActive (false);
 		}
 //			counter++;
-	 else if(guess != answer) {
-
-
+//	 else if (guess != answer) {
+//
+//
+//			wrong.SetActive (false);
+//		} 
+		else {
 			wrong.SetActive (true);
 		}
-//		if (counter == 2) {
+//		if (counter == 2		) {
 //			btn2.SetActive (true);
 //		}
 	}
