@@ -26,9 +26,9 @@ public class TextQuizHolder : MonoBehaviour {
 	public string Answer;
 
 	void Awake(){
-//		answer = "Pointers";
-//		text.text = "In C Programming, it is a variable that stores/points the address of another variable and is also used to allocate memory dynamically at run time. " +
-//			"Input the correct answer";
+		answer = "Pointers";
+		text.text = "In C Programming, it is a variable that stores/points the address of another variable and is also used to allocate memory dynamically at run time. " +
+			"Input the correct answer";
 
 
 	}
