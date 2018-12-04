@@ -9,11 +9,12 @@ public class TextQuizHolder : MonoBehaviour {
 	private int counter;
 
 	private int countGuess;
+	public GameObject wrong;
 
 	[SerializeField]
 	public GameObject btnDone;
 
-	[SerializeField]
+//	[SerializeField]
 	public InputField input;
 
 	[SerializeField]
@@ -50,11 +51,11 @@ public class TextQuizHolder : MonoBehaviour {
 	void CompareGuesses(string guess){
 		if (guess == sagot) {
 
-			thistext.text = "Correct Answer: " + guess + ", It took " + countGuess + " guesses";
+			thistext.text = "Correct Answer: " + guess + " Please click Done to continue";
 			btnDone.SetActive (true);
 			//			counter++;
 		} else if (guess != sagot){
-			thistext.text = "Wrong. Please guess again.";
+			wrong.SetActive (true);
 		}
 	}
 
