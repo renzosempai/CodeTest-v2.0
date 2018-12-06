@@ -21,8 +21,8 @@ public class Choice : MonoBehaviour {
 	}
 	public void Answer(){
 
-		Testhold.selectedAnswer = gameObject.name;
-		Testhold.choiceSelected = "y";
+		MultipleChoiceHolder.selectedAnswer = gameObject.name;
+		MultipleChoiceHolder.choiceSelected = "y";
 	}
 
 }

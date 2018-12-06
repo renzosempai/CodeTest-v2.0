@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
-using MoonSharp.Interpreter;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Trainer))]
 public class InteractTrainer : MonoBehaviour
@@ -99,6 +100,11 @@ public class InteractTrainer : MonoBehaviour
         hitBox = transform.Find("NPC_Object");
 
         spriteSheet = Resources.LoadAll<Sprite>("OverworldNPCSprites/" + trainerSpriteName);
+
+		//set here for the gameobjects to not be destroyed after changing scenes
+		DontDestroyOnLoad (MultipleChoice);
+		DontDestroyOnLoad (TextQuiz);
+		DontDestroyOnLoad (TrueorFalse);
     }
 
     void Start()
@@ -606,22 +612,23 @@ public class InteractTrainer : MonoBehaviour
                         yield return null;
                     }
                     Dialog.undrawDialogBox();
-				
+
+					//exercises to set active condition
 					if (exercise == Exercise.MultipleChoice) {
-						MultipleChoice.SetActive(true);
+						StartCoroutine (DelayMultipleChoice ());
 					} 
 					else {
 						if (exercise == Exercise.TextQuiz) {
-							TextQuiz.SetActive(true);
+							StartCoroutine (DelayTextQuiz ());
 						} 
-							else {
-								if (exercise == Exercise.TrueorFalse) {
-									TrueorFalse.SetActive(true);
-								} 
-							}
-
+						else {
+							if (exercise == Exercise.TrueorFalse) {
+								StartCoroutine (DelayTrueORFalse ());
+							} 
 						}
+					}
                 }
+					
 
                 //custom cutouts not yet implemented
                 StartCoroutine(ScreenFade.main.FadeCutout(false, ScreenFade.slowedSpeed, null));
@@ -637,6 +644,7 @@ public class InteractTrainer : MonoBehaviour
                     BgmHandler.main.PlayOverlay(Scene.main.Battle.defaultTrainerBGM,
                         Scene.main.Battle.defaultTrainerBGMLoopStart);
                 }
+
                 Scene.main.Battle.gameObject.SetActive(false);
                 yield return new WaitForSeconds(1.6f);
 
@@ -689,4 +697,19 @@ public class InteractTrainer : MonoBehaviour
             PlayerMovement.player.unsetCheckBusyWith(this.gameObject);
         }
     }
+
+	IEnumerator DelayMultipleChoice(){
+		yield return new WaitForSeconds(0.9f);
+		MultipleChoice.SetActive (true);
+	}
+
+	IEnumerator DelayTextQuiz(){
+		yield return new WaitForSeconds(0.9f);
+		TextQuiz.SetActive (true);
+	}
+
+	IEnumerator DelayTrueORFalse(){
+		yield return new WaitForSeconds(0.9f);
+		TrueorFalse.SetActive (true);
+	}
 }

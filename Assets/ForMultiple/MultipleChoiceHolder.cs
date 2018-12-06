@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Testhold : MonoBehaviour {
+public class MultipleChoiceHolder : MonoBehaviour {
 
 	List<string> questions = new List<string>() {"1 + 1 = ?"};
+	List<string> correctAnswer = new List<string>() {"1"};
 
-	List<string> correctAnswer = new List<string>() {"3"};
 
 //	public Text textquest;
 
@@ -16,6 +16,13 @@ public class Testhold : MonoBehaviour {
 
 	public GameObject btn;
 
+//	public enum TheAnswer{
+//		Choice1,
+//		Choice2,
+//		Choice3,
+//		Choice4
+//	}
+//	public GameObject Disable;
 
 	public static string selectedAnswer;
 
@@ -23,9 +30,13 @@ public class Testhold : MonoBehaviour {
 
 	public static int randQuestion = -1;
 
+	public GameObject CallMultipleChoice;
+
 	// Use this for initialization
 	void Start () {
-
+		
+		DontDestroyOnLoad (resultsObj);
+		DontDestroyOnLoad (btn);
 	}
 
 	// Update is called once per frame
@@ -37,24 +48,25 @@ public class Testhold : MonoBehaviour {
 		if  (randQuestion > -1) {
 			GetComponent<Text> ().text = questions [randQuestion];
 		}
-		//Debug.Log (questions [randQuestion]);
-		if (choiceSelected == "y") {
+			//Debug.Log (questions [randQuestion]);
+			if (choiceSelected == "y") {
 
-			choiceSelected = "n"; 
-			if (correctAnswer [randQuestion] == selectedAnswer) {
+				choiceSelected = "n"; 
+			if (correctAnswer[randQuestion] == selectedAnswer) {
 
-				resultsObj.GetComponent<Text> ().text = "Correct, click Done to continue";
-				btn.SetActive (true);
+					resultsObj.GetComponent<Text> ().text = "Correct, click Done to continue";
+					btn.SetActive (true);
 
-			}
-			if (correctAnswer [randQuestion] != selectedAnswer) {
+				}
+			if (correctAnswer[randQuestion] != selectedAnswer) {
 
-				resultsObj.GetComponent<Text> ().text = "Wrong Answer";
+					resultsObj.GetComponent<Text> ().text = "Wrong Answer";
 //				StartCoroutine(Wait());
 
+				}
 			}
 		}
-	}
+
 	public void Done(){
 		BgmHandler.main.ResumeMain(1.4f);
 		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = 0;
@@ -65,6 +77,7 @@ public class Testhold : MonoBehaviour {
 
 	IEnumerator BacktoWorld(){
 		yield return new WaitForSeconds(0.4f);
+		CallMultipleChoice.SetActive (false);
 		StartCoroutine(ScreenFade.main.Fade(true, 2f));
 		Scene.main.Battle.gameObject.SetActive(false);
 	}

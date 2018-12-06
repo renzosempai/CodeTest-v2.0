@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TextQuizHolder : MonoBehaviour {
 
+	public GameObject CallTextQuiz;
+
 	//	private string answer;
 	private int counter;
 
@@ -29,34 +31,56 @@ public class TextQuizHolder : MonoBehaviour {
 	public string Answer;
 	private string sagot;
 
+	public void Start()
+	{
+		//Adds a listener that invokes the "LockInput" method when the player finishes editing the main input field.
+		//Passes the main input field into the method when "LockInput" is invoked
+		input.onEndEdit.AddListener(delegate {LockInput(input); });
+
+		//Stated at start so it won't be destroyed after changing scenes
+		DontDestroyOnLoad (wrong);
+		DontDestroyOnLoad (btnDone);
+		DontDestroyOnLoad (input);
+		DontDestroyOnLoad (text);
+		DontDestroyOnLoad (thistext);
+	}
+
+	void LockInput(InputField input)
+	{
+		if (input.text.Length > 0)
+		{
+			Debug.Log("Input has been entered");
+		}
+		else if (input.text.Length == 0)
+		{
+			Debug.Log("Submitted empty");
+		}
+	}
+
 	void Awake(){
-
 		sagot = Answer;
-
 		text.GetComponent<Text> ().text = Question;
-
-		//		text.text = "In C Programming, it is a variable that stores/points the address of another variable and is also used to allocate memory dynamically at run time. " +
-		//			"Input the correct answer";
-
-
+			
 	}
 
 	public void GetInput(string guess){
 		CompareGuesses (guess);
-		input.text = " ";
-		countGuess++;
-
+//		input.text = "";
+//		countGuess++;
 	}
 
 	void CompareGuesses(string guess){
 		if (guess == sagot) {
 
-			thistext.text = "Correct Answer: " + guess + " Please click Done to continue";
+			thistext.text = "Correct Answer: " + guess + ", Please click Done to continue";
+			wrong.SetActive (false);
 			btnDone.SetActive (true);
 			//			counter++;
+
 		} else if (guess != sagot){
 			wrong.SetActive (true);
 		}
+
 	}
 
 	public void Done(){
@@ -69,6 +93,7 @@ public class TextQuizHolder : MonoBehaviour {
 
 	IEnumerator BacktoWorld(){
 		yield return new WaitForSeconds(0.4f);
+		CallTextQuiz.SetActive (false);
 		StartCoroutine(ScreenFade.main.Fade(true, 2f));
 		Scene.main.Battle.gameObject.SetActive(false);
 	}

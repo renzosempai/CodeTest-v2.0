@@ -668,26 +668,26 @@ public class BattleHandler : MonoBehaviour
     //////////////////////////////////
     /// ANIMATIONS
     //
-    private IEnumerator animatePokemon(Image pokemon, Sprite[] animation)
-    {
-        int frame = 0;
-        while (animation != null)
-        {
-            if (animation.Length > 0)
-            {
-                if (frame < animation.Length - 1)
-                {
-                    frame += 1;
-                }
-                else
-                {
-                    frame = 0;
-                }
-                pokemon.sprite = animation[frame];
-            }
-            yield return new WaitForSeconds(0.08f);
-        }
-    }
+//    private IEnumerator animatePokemon(Image pokemon, Sprite[] animation)
+//    {
+//        int frame = 0;
+//        while (animation != null)
+//        {
+//            if (animation.Length > 0)
+//            {
+//                if (frame < animation.Length - 1)
+//                {
+//                    frame += 1;
+//                }
+//                else
+//                {
+//                    frame = 0;
+//                }
+//                pokemon.sprite = animation[frame];
+//            }
+//            yield return new WaitForSeconds(0.08f);
+//        }
+//    }
 
     private IEnumerator animateOverlayer(RawImage overlay, Texture overlayTex, float verMovement, float hozMovement,
         float time, float fadeTime)
@@ -720,182 +720,182 @@ public class BattleHandler : MonoBehaviour
     }
 
     /// Slides the Pokemon's Platform across the screen. Takes 1.9f seconds.
-    private IEnumerator slidePokemon(Image platform, Image pokemon, bool showPokemon, bool fromRight,
-        Vector3 destinationPosition)
-    {
-        Vector3 startPosition = (fromRight)
-            ? new Vector3(171 + (platform.rectTransform.sizeDelta.x * platform.rectTransform.localScale.x / 2f),
-                destinationPosition.y, 0)
-            : new Vector3(-171 - (platform.rectTransform.sizeDelta.x * platform.rectTransform.localScale.x / 2f),
-                destinationPosition.y, 0);
-        Vector3 distance = destinationPosition - startPosition;
+//    private IEnumerator slidePokemon(Image platform, Image pokemon, bool showPokemon, bool fromRight,
+//        Vector3 destinationPosition)
+//    {
+//        Vector3 startPosition = (fromRight)
+//            ? new Vector3(171 + (platform.rectTransform.sizeDelta.x * platform.rectTransform.localScale.x / 2f),
+//                destinationPosition.y, 0)
+//            : new Vector3(-171 - (platform.rectTransform.sizeDelta.x * platform.rectTransform.localScale.x / 2f),
+//                destinationPosition.y, 0);
+//        Vector3 distance = destinationPosition - startPosition;
+//
+//        pokemon.color = new Color(0.25f, 0.25f, 0.25f, 1);
+//
+//        pokemon.transform.parent.parent.gameObject.SetActive(showPokemon);
+//
+//        float speed = 1.5f;
+//        float increment = 0f;
+//        while (increment < 1)
+//        {
+//            increment += (1 / speed) * Time.deltaTime;
+//            if (increment > 1)
+//            {
+//                increment = 1f;
+//            }
+//            platform.rectTransform.localPosition = startPosition + (distance * increment);
+//            yield return null;
+//        }
+//
+//        speed = 0.4f;
+//        increment = 0f;
+//        while (increment < 1)
+//        {
+//            increment += (1 / speed) * Time.deltaTime;
+//            if (increment > 1)
+//            {
+//                increment = 1f;
+//            }
+//            pokemon.color = new Color(0.25f + (0.25f * increment), 0.25f + (0.25f * increment),
+//                0.25f + (0.25f * increment), 1);
+//            yield return null;
+//        }
+//    }
 
-        pokemon.color = new Color(0.25f, 0.25f, 0.25f, 1);
+//    private IEnumerator slideTrainer(Image platform, Image trainer, bool isOpponent, bool slideOut)
+//    {
+//        Vector3 startPosition = trainer.rectTransform.localPosition;
+//        //assume !slide out for both
+//        float destinationPositionX = (isOpponent && !slideOut) ? platform.rectTransform.sizeDelta.x * 0.3f : 0;
+//        //if it actually was slide out, use the formula to find the hidden position
+//        if (slideOut)
+//        {
+//            destinationPositionX = (171 - Mathf.Abs(platform.rectTransform.localPosition.x)) /
+//                                   platform.rectTransform.localScale.x + trainer.rectTransform.sizeDelta.x / 2f;
+//        }
+//        //flip direction if is player
+//        if (!isOpponent)
+//        {
+//            destinationPositionX = -destinationPositionX;
+//        }
+//
+//        Vector3 distance = new Vector3(destinationPositionX, startPosition.y, 0) - startPosition;
+//
+//        float speed = 128f;
+//        float time = Mathf.Abs(distance.x) / speed;
+//
+//        float increment = 0f;
+//        while (increment < 1)
+//        {
+//            increment += (1 / time) * Time.deltaTime;
+//            if (increment > 1)
+//            {
+//                increment = 1f;
+//            }
+//            trainer.rectTransform.localPosition = startPosition + (distance * increment);
+//            yield return null;
+//        }
+//    }
 
-        pokemon.transform.parent.parent.gameObject.SetActive(showPokemon);
+//    private IEnumerator animatePlayerThrow(Image trainer, Sprite[] throwAnim, bool finishThrow)
+//    {
+//        trainer.sprite = throwAnim[1];
+//        yield return new WaitForSeconds(0.4f);
+//        trainer.sprite = throwAnim[2];
+//        yield return new WaitForSeconds(0.05f);
+//        trainer.sprite = throwAnim[3];
+//        if (finishThrow)
+//        {
+//            yield return new WaitForSeconds(0.05f);
+//            trainer.sprite = throwAnim[4];
+//        }
+//    }
 
-        float speed = 1.5f;
-        float increment = 0f;
-        while (increment < 1)
-        {
-            increment += (1 / speed) * Time.deltaTime;
-            if (increment > 1)
-            {
-                increment = 1f;
-            }
-            platform.rectTransform.localPosition = startPosition + (distance * increment);
-            yield return null;
-        }
+//    private IEnumerator releasePokemon(Image pokemon)
+//    {
+//        Vector2 normalSize = pokemon.rectTransform.sizeDelta;
+//        pokemon.rectTransform.sizeDelta = new Vector2(0, 0);
+//        pokemon.color = new Color(0.812f, 0.312f, 0.312f, 1);
+//
+//        pokemon.transform.parent.parent.gameObject.SetActive(true);
+//
+//        SfxHandler.Play(pokeballOpenClip);
+//
+//        float speed = 0.3f;
+//        float increment = 0f;
+//        while (increment < 1)
+//        {
+//            increment += (1 / speed) * Time.deltaTime;
+//            if (increment > 1)
+//            {
+//                increment = 1f;
+//            }
+//            pokemon.rectTransform.sizeDelta = normalSize * increment;
+//            pokemon.color = new Color(0.812f - (0.312f * increment), 0.312f + (0.188f * increment),
+//                0.312f + (0.188f * increment), 1);
+//            yield return null;
+//        }
+//
+//        pokemon.rectTransform.sizeDelta = normalSize;
+//        pokemon.color = new Color(0.5f, 0.5f, 0.5f, 1);
+//    }
 
-        speed = 0.4f;
-        increment = 0f;
-        while (increment < 1)
-        {
-            increment += (1 / speed) * Time.deltaTime;
-            if (increment > 1)
-            {
-                increment = 1f;
-            }
-            pokemon.color = new Color(0.25f + (0.25f * increment), 0.25f + (0.25f * increment),
-                0.25f + (0.25f * increment), 1);
-            yield return null;
-        }
-    }
+//    private IEnumerator withdrawPokemon(Image pokemon)
+//    {
+//        Vector2 normalSize = pokemon.rectTransform.sizeDelta;
+//
+//        SfxHandler.Play(pokeballOpenClip);
+//
+//        float speed = 0.3f;
+//        float increment = 0f;
+//        while (increment < 1)
+//        {
+//            increment += (1 / speed) * Time.deltaTime;
+//            if (increment > 1)
+//            {
+//                increment = 1f;
+//            }
+//            pokemon.rectTransform.sizeDelta = normalSize * (1 - increment);
+//            pokemon.color = new Color(0.5f + (0.312f * increment), 0.5f - (0.188f * increment),
+//                0.5f - (0.188f * increment), 1);
+//            yield return null;
+//        }
+//        pokemon.transform.parent.parent.gameObject.SetActive(false);
+//
+//        pokemon.rectTransform.sizeDelta = normalSize;
+//        pokemon.color = new Color(0.5f, 0.5f, 0.5f, 1);
+//    }
 
-    private IEnumerator slideTrainer(Image platform, Image trainer, bool isOpponent, bool slideOut)
-    {
-        Vector3 startPosition = trainer.rectTransform.localPosition;
-        //assume !slide out for both
-        float destinationPositionX = (isOpponent && !slideOut) ? platform.rectTransform.sizeDelta.x * 0.3f : 0;
-        //if it actually was slide out, use the formula to find the hidden position
-        if (slideOut)
-        {
-            destinationPositionX = (171 - Mathf.Abs(platform.rectTransform.localPosition.x)) /
-                                   platform.rectTransform.localScale.x + trainer.rectTransform.sizeDelta.x / 2f;
-        }
-        //flip direction if is player
-        if (!isOpponent)
-        {
-            destinationPositionX = -destinationPositionX;
-        }
-
-        Vector3 distance = new Vector3(destinationPositionX, startPosition.y, 0) - startPosition;
-
-        float speed = 128f;
-        float time = Mathf.Abs(distance.x) / speed;
-
-        float increment = 0f;
-        while (increment < 1)
-        {
-            increment += (1 / time) * Time.deltaTime;
-            if (increment > 1)
-            {
-                increment = 1f;
-            }
-            trainer.rectTransform.localPosition = startPosition + (distance * increment);
-            yield return null;
-        }
-    }
-
-    private IEnumerator animatePlayerThrow(Image trainer, Sprite[] throwAnim, bool finishThrow)
-    {
-        trainer.sprite = throwAnim[1];
-        yield return new WaitForSeconds(0.4f);
-        trainer.sprite = throwAnim[2];
-        yield return new WaitForSeconds(0.05f);
-        trainer.sprite = throwAnim[3];
-        if (finishThrow)
-        {
-            yield return new WaitForSeconds(0.05f);
-            trainer.sprite = throwAnim[4];
-        }
-    }
-
-    private IEnumerator releasePokemon(Image pokemon)
-    {
-        Vector2 normalSize = pokemon.rectTransform.sizeDelta;
-        pokemon.rectTransform.sizeDelta = new Vector2(0, 0);
-        pokemon.color = new Color(0.812f, 0.312f, 0.312f, 1);
-
-        pokemon.transform.parent.parent.gameObject.SetActive(true);
-
-        SfxHandler.Play(pokeballOpenClip);
-
-        float speed = 0.3f;
-        float increment = 0f;
-        while (increment < 1)
-        {
-            increment += (1 / speed) * Time.deltaTime;
-            if (increment > 1)
-            {
-                increment = 1f;
-            }
-            pokemon.rectTransform.sizeDelta = normalSize * increment;
-            pokemon.color = new Color(0.812f - (0.312f * increment), 0.312f + (0.188f * increment),
-                0.312f + (0.188f * increment), 1);
-            yield return null;
-        }
-
-        pokemon.rectTransform.sizeDelta = normalSize;
-        pokemon.color = new Color(0.5f, 0.5f, 0.5f, 1);
-    }
-
-    private IEnumerator withdrawPokemon(Image pokemon)
-    {
-        Vector2 normalSize = pokemon.rectTransform.sizeDelta;
-
-        SfxHandler.Play(pokeballOpenClip);
-
-        float speed = 0.3f;
-        float increment = 0f;
-        while (increment < 1)
-        {
-            increment += (1 / speed) * Time.deltaTime;
-            if (increment > 1)
-            {
-                increment = 1f;
-            }
-            pokemon.rectTransform.sizeDelta = normalSize * (1 - increment);
-            pokemon.color = new Color(0.5f + (0.312f * increment), 0.5f - (0.188f * increment),
-                0.5f - (0.188f * increment), 1);
-            yield return null;
-        }
-        pokemon.transform.parent.parent.gameObject.SetActive(false);
-
-        pokemon.rectTransform.sizeDelta = normalSize;
-        pokemon.color = new Color(0.5f, 0.5f, 0.5f, 1);
-    }
-
-    private IEnumerator faintPokemonAnimation(Image pokemon)
-    {
-        Vector3 startPosition = pokemon.rectTransform.localPosition;
-        Vector3 distance = new Vector3(0, pokemon.rectTransform.sizeDelta.y, 0);
-
-        pokemon.transform.parent.parent.gameObject.SetActive(true);
-
-        SfxHandler.Play(faintClip);
-
-        float speed = 0.5f;
-        float increment = 0f;
-        while (increment < 1)
-        {
-            increment += (1 / speed) * Time.deltaTime;
-            if (increment > 1)
-            {
-                increment = 1f;
-            }
-
-            //	pokemon.fillAmount = 1-increment;
-            pokemon.rectTransform.localPosition = startPosition - (distance * increment);
-
-            yield return null;
-        }
-
-        pokemon.transform.parent.parent.gameObject.SetActive(false);
-
-        pokemon.fillAmount = 1f;
-        pokemon.rectTransform.localPosition = startPosition;
-    }
+//    private IEnumerator faintPokemonAnimation(Image pokemon)
+//    {
+//        Vector3 startPosition = pokemon.rectTransform.localPosition;
+//        Vector3 distance = new Vector3(0, pokemon.rectTransform.sizeDelta.y, 0);
+//
+//        pokemon.transform.parent.parent.gameObject.SetActive(true);
+//
+//        SfxHandler.Play(faintClip);
+//
+//        float speed = 0.5f;
+//        float increment = 0f;
+//        while (increment < 1)
+//        {
+//            increment += (1 / speed) * Time.deltaTime;
+//            if (increment > 1)
+//            {
+//                increment = 1f;
+//            }
+//
+//            //	pokemon.fillAmount = 1-increment;
+//            pokemon.rectTransform.localPosition = startPosition - (distance * increment);
+//
+//            yield return null;
+//        }
+//
+//        pokemon.transform.parent.parent.gameObject.SetActive(false);
+//
+//        pokemon.fillAmount = 1f;
+//        pokemon.rectTransform.localPosition = startPosition;
+//    }
 
 //    private IEnumerator slidePokemonStats(int position, bool retract)
 //    {
@@ -932,223 +932,223 @@ public class BattleHandler : MonoBehaviour
 //        }
 //    }
 
-    private void hidePartyBar(bool isOpponent)
-    {
-        Image bar = (isOpponent) ? opponentPartyBar : playerPartyBar;
-        Image[] space = (isOpponent) ? opponentPartyBarSpace : playerPartyBarSpace;
-
-        bar.color = new Color(bar.color.r, bar.color.g, bar.color.b, 0);
-        bar.rectTransform.sizeDelta = new Vector2(0, bar.rectTransform.sizeDelta.y);
-        for (int i = 0; i < 6; i++)
-        {
-            space[i].color = new Color(space[i].color.r, space[i].color.g, space[i].color.b, 0);
-            space[i].rectTransform.localPosition = new Vector3(-96 + (16 * i) + 128,
-                space[i].rectTransform.localPosition.y);
-        }
-    }
+//    private void hidePartyBar(bool isOpponent)
+//    {
+//        Image bar = (isOpponent) ? opponentPartyBar : playerPartyBar;
+//        Image[] space = (isOpponent) ? opponentPartyBarSpace : playerPartyBarSpace;
+//
+//        bar.color = new Color(bar.color.r, bar.color.g, bar.color.b, 0);
+//        bar.rectTransform.sizeDelta = new Vector2(0, bar.rectTransform.sizeDelta.y);
+//        for (int i = 0; i < 6; i++)
+//        {
+//            space[i].color = new Color(space[i].color.r, space[i].color.g, space[i].color.b, 0);
+//            space[i].rectTransform.localPosition = new Vector3(-96 + (16 * i) + 128,
+//                space[i].rectTransform.localPosition.y);
+//        }
+//    }
 
     /// <summary> Displays the party length bar. </summary>
     /// <param name="isOpponent">Does this bar belong to the opponent?</param>
     /// <param name="party">The party, used to determine length and if fainted.</param>
-    private IEnumerator displayPartyBar(bool isOpponent, Pokemon[] party)
-    {
-        Image bar = (isOpponent) ? opponentPartyBar : playerPartyBar;
-        Image[] space = (isOpponent) ? opponentPartyBarSpace : playerPartyBarSpace;
-
-        hidePartyBar(isOpponent); //this line reset the position to hidden, but also sets alpha to 0
-        //set alpha to 1
-        bar.color = new Color(bar.color.r, bar.color.g, bar.color.b, 1);
-        for (int i = 0; i < 6; i++)
-        {
-            space[i].color = new Color(space[i].color.r, space[i].color.g, space[i].color.b, 1);
-        }
-
-        StartCoroutine(stretchBar(bar, 128, 320));
-        yield return new WaitForSeconds(0.1f);
-        for (int i = 0; i < 6; i++)
-        {
-            //Set space sprite
-            space[i].sprite = partySpaceTex;
-            if (party.Length > i)
-            {
-                if (party[i] != null)
-                {
-                    if (party[i].getStatus() == Pokemon.Status.FAINTED)
-                    {
-                        space[i].sprite = partyFaintTex;
-                    }
-                    else if (party[i].getStatus() == Pokemon.Status.NONE)
-                    {
-                        space[i].sprite = partyBallTex;
-                    }
-                    else
-                    {
-                        space[i].sprite = partyStatusTex;
-                    }
-                }
-            }
-            //slide down the line
-            StartCoroutine(slidePartyBarBall(space[i], -96 + (16 * i) + 128, -99 + (16 * i), 0.35f));
-            yield return new WaitForSeconds(0.05f);
-        }
-        //Wait for last space to stop moving
-        yield return new WaitForSeconds(0.3f);
-        //Slide all spaces back a tiny bit
-        for (int i = 0; i < 6; i++)
-        {
-            StartCoroutine(slidePartyBarBall(space[i], -99 + (16 * i), -96 + (16 * i), 0.1f));
-        }
-        //Wait for last space to stop moving
-        yield return new WaitForSeconds(0.1f);
-    }
-
-    private IEnumerator dismissPartyBar(bool isOpponent)
-    {
-        Image bar = (isOpponent) ? opponentPartyBar : playerPartyBar;
-        Image[] space = (isOpponent) ? opponentPartyBarSpace : playerPartyBarSpace;
-
-        //Slide all out and fade
-        Image[] images = new Image[space.Length + 1];
-        images[0] = bar;
-        for (int i = 0; i < space.Length; i++)
-        {
-            images[i + 1] = space[i];
-        }
-        StartCoroutine(fadeImages(images, 0.6f));
-
-        StartCoroutine(stretchBar(bar, 192, 128));
-        yield return new WaitForSeconds(0.1f);
-        for (int i = 0; i < 6; i++)
-        {
-            //slide down the line
-            StartCoroutine(slidePartyBarBall(space[i], -96 + (16 * i), -96 + (16 * i) - 192, 0.5f));
-            yield return new WaitForSeconds(0.05f + (0.02f * i));
-        }
-        //Wait for last space to stop moving
-        yield return new WaitForSeconds(0.45f);
-        hidePartyBar(isOpponent);
-    }
-
-    private IEnumerator fadeImages(Image[] images, float time)
-    {
-        float increment = 0f;
-        while (increment < 1)
-        {
-            increment += (1 / time) * Time.deltaTime;
-            if (increment > 1)
-            {
-                increment = 1f;
-            }
-
-            for (int i = 0; i < images.Length; i++)
-            {
-                images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, 1 - increment);
-            }
-            yield return null;
-        }
-    }
-
-    private IEnumerator slidePartyBarBall(Image ball, float startX, float destinationX, float speed)
-    {
-        ball.rectTransform.localPosition = new Vector3(startX, ball.rectTransform.localPosition.y, 0);
-
-        float distanceX = destinationX - startX;
-
-        float increment = 0;
-        while (increment < 1)
-        {
-            increment += (1 / speed) * Time.deltaTime;
-            if (increment > 1)
-            {
-                increment = 1;
-            }
-
-            ball.rectTransform.localPosition = new Vector3(startX + (distanceX * increment),
-                ball.rectTransform.localPosition.y, 0);
-            yield return null;
-        }
-    }
-
-    private IEnumerator animatePartyIcons()
-    {
-        bool animating = true;
-        while (animating)
-        {
-            for (int i = 0; i < 6; i++)
-            {
-                pokemonSlotIcon[i].sprite = pokemonIconAnim[i][0];
-            }
-            yield return new WaitForSeconds(0.15f);
-            for (int i = 0; i < 6; i++)
-            {
-                pokemonSlotIcon[i].sprite = (i == pokePartyPosition) ? pokemonIconAnim[i][1] : pokemonIconAnim[i][0];
-            }
-            yield return new WaitForSeconds(0.15f);
-
-            for (int i = 0; i < 6; i++)
-            {
-                pokemonSlotIcon[i].sprite = (i == pokePartyPosition) ? pokemonIconAnim[i][0] : pokemonIconAnim[i][1];
-            }
-            yield return new WaitForSeconds(0.15f);
-            for (int i = 0; i < 6; i++)
-            {
-                pokemonSlotIcon[i].sprite = pokemonIconAnim[i][1];
-            }
-            yield return new WaitForSeconds(0.15f);
-        }
-    }
-
-
-    private IEnumerator stretchBar(Image bar, float targetSize)
-    {
-        yield return StartCoroutine(stretchBar(bar, targetSize, 32f, false, null, null, 0));
-    }
-
-    private IEnumerator stretchBar(Image bar, float targetSize, float pixelsPerSec)
-    {
-        yield return StartCoroutine(stretchBar(bar, targetSize, pixelsPerSec, false, null, null, 0));
-    }
-
-    private IEnumerator stretchBar(Image bar, float targetSize, float pixelsPerSec, bool isHP, Text hpText,
-        Text hpTextShadow, int endValue)
-    {
-        float increment = 0f;
-        if (pixelsPerSec <= 0)
-        {
-            pixelsPerSec = 32;
-        }
-        float startSize = bar.rectTransform.sizeDelta.x;
-        float distance = targetSize - startSize;
-        float time = Mathf.Abs(distance) / pixelsPerSec;
-
-        int startValue = (hpText != null) ? int.Parse(hpText.text) : 0;
-        float valueDistance = endValue - startValue;
-
-        while (increment < 1)
-        {
-            increment += (1 / time) * Time.deltaTime;
-            if (increment > 1)
-            {
-                increment = 1;
-            }
-
-            bar.rectTransform.sizeDelta = new Vector2(startSize + (distance * increment), bar.rectTransform.sizeDelta.y);
-
-            if (isHP)
-            {
-                setHPBarColor(bar, 48f);
-            }
-            if (hpText != null)
-            {
-                hpText.text = "" + (startValue + Mathf.FloorToInt(valueDistance * increment));
-                if (hpTextShadow != null)
-                {
-                    hpTextShadow.text = hpText.text;
-                }
-            }
-            yield return null;
-        }
-    }
+//    private IEnumerator displayPartyBar(bool isOpponent, Pokemon[] party)
+//    {
+//        Image bar = (isOpponent) ? opponentPartyBar : playerPartyBar;
+//        Image[] space = (isOpponent) ? opponentPartyBarSpace : playerPartyBarSpace;
+//
+//        hidePartyBar(isOpponent); //this line reset the position to hidden, but also sets alpha to 0
+//        //set alpha to 1
+//        bar.color = new Color(bar.color.r, bar.color.g, bar.color.b, 1);
+//        for (int i = 0; i < 6; i++)
+//        {
+//            space[i].color = new Color(space[i].color.r, space[i].color.g, space[i].color.b, 1);
+//        }
+//
+//        StartCoroutine(stretchBar(bar, 128, 320));
+//        yield return new WaitForSeconds(0.1f);
+//        for (int i = 0; i < 6; i++)
+//        {
+//            //Set space sprite
+//            space[i].sprite = partySpaceTex;
+//            if (party.Length > i)
+//            {
+//                if (party[i] != null)
+//                {
+//                    if (party[i].getStatus() == Pokemon.Status.FAINTED)
+//                    {
+//                        space[i].sprite = partyFaintTex;
+//                    }
+//                    else if (party[i].getStatus() == Pokemon.Status.NONE)
+//                    {
+//                        space[i].sprite = partyBallTex;
+//                    }
+//                    else
+//                    {
+//                        space[i].sprite = partyStatusTex;
+//                    }
+//                }
+//            }
+//            //slide down the line
+//            StartCoroutine(slidePartyBarBall(space[i], -96 + (16 * i) + 128, -99 + (16 * i), 0.35f));
+//            yield return new WaitForSeconds(0.05f);
+//        }
+//        //Wait for last space to stop moving
+//        yield return new WaitForSeconds(0.3f);
+//        //Slide all spaces back a tiny bit
+//        for (int i = 0; i < 6; i++)
+//        {
+//            StartCoroutine(slidePartyBarBall(space[i], -99 + (16 * i), -96 + (16 * i), 0.1f));
+//        }
+//        //Wait for last space to stop moving
+//        yield return new WaitForSeconds(0.1f);
+//    }
+//
+//    private IEnumerator dismissPartyBar(bool isOpponent)
+//    {
+//        Image bar = (isOpponent) ? opponentPartyBar : playerPartyBar;
+//        Image[] space = (isOpponent) ? opponentPartyBarSpace : playerPartyBarSpace;
+//
+//        //Slide all out and fade
+//        Image[] images = new Image[space.Length + 1];
+//        images[0] = bar;
+//        for (int i = 0; i < space.Length; i++)
+//        {
+//            images[i + 1] = space[i];
+//        }
+//        StartCoroutine(fadeImages(images, 0.6f));
+//
+//        StartCoroutine(stretchBar(bar, 192, 128));
+//        yield return new WaitForSeconds(0.1f);
+//        for (int i = 0; i < 6; i++)
+//        {
+//            //slide down the line
+//            StartCoroutine(slidePartyBarBall(space[i], -96 + (16 * i), -96 + (16 * i) - 192, 0.5f));
+//            yield return new WaitForSeconds(0.05f + (0.02f * i));
+//        }
+//        //Wait for last space to stop moving
+//        yield return new WaitForSeconds(0.45f);
+//        hidePartyBar(isOpponent);
+//    }
+//
+//    private IEnumerator fadeImages(Image[] images, float time)
+//    {
+//        float increment = 0f;
+//        while (increment < 1)
+//        {
+//            increment += (1 / time) * Time.deltaTime;
+//            if (increment > 1)
+//            {
+//                increment = 1f;
+//            }
+//
+//            for (int i = 0; i < images.Length; i++)
+//            {
+//                images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, 1 - increment);
+//            }
+//            yield return null;
+//        }
+//    }
+//
+//    private IEnumerator slidePartyBarBall(Image ball, float startX, float destinationX, float speed)
+//    {
+//        ball.rectTransform.localPosition = new Vector3(startX, ball.rectTransform.localPosition.y, 0);
+//
+//        float distanceX = destinationX - startX;
+//
+//        float increment = 0;
+//        while (increment < 1)
+//        {
+//            increment += (1 / speed) * Time.deltaTime;
+//            if (increment > 1)
+//            {
+//                increment = 1;
+//            }
+//
+//            ball.rectTransform.localPosition = new Vector3(startX + (distanceX * increment),
+//                ball.rectTransform.localPosition.y, 0);
+//            yield return null;
+//        }
+//    }
+//
+//    private IEnumerator animatePartyIcons()
+//    {
+//        bool animating = true;
+//        while (animating)
+//        {
+//            for (int i = 0; i < 6; i++)
+//            {
+//                pokemonSlotIcon[i].sprite = pokemonIconAnim[i][0];
+//            }
+//            yield return new WaitForSeconds(0.15f);
+//            for (int i = 0; i < 6; i++)
+//            {
+//                pokemonSlotIcon[i].sprite = (i == pokePartyPosition) ? pokemonIconAnim[i][1] : pokemonIconAnim[i][0];
+//            }
+//            yield return new WaitForSeconds(0.15f);
+//
+//            for (int i = 0; i < 6; i++)
+//            {
+//                pokemonSlotIcon[i].sprite = (i == pokePartyPosition) ? pokemonIconAnim[i][0] : pokemonIconAnim[i][1];
+//            }
+//            yield return new WaitForSeconds(0.15f);
+//            for (int i = 0; i < 6; i++)
+//            {
+//                pokemonSlotIcon[i].sprite = pokemonIconAnim[i][1];
+//            }
+//            yield return new WaitForSeconds(0.15f);
+//        }
+//    }
+//
+//
+//    private IEnumerator stretchBar(Image bar, float targetSize)
+//    {
+//        yield return StartCoroutine(stretchBar(bar, targetSize, 32f, false, null, null, 0));
+//    }
+//
+//    private IEnumerator stretchBar(Image bar, float targetSize, float pixelsPerSec)
+//    {
+//        yield return StartCoroutine(stretchBar(bar, targetSize, pixelsPerSec, false, null, null, 0));
+//    }
+//
+//    private IEnumerator stretchBar(Image bar, float targetSize, float pixelsPerSec, bool isHP, Text hpText,
+//        Text hpTextShadow, int endValue)
+//    {
+//        float increment = 0f;
+//        if (pixelsPerSec <= 0)
+//        {
+//            pixelsPerSec = 32;
+//        }
+//        float startSize = bar.rectTransform.sizeDelta.x;
+//        float distance = targetSize - startSize;
+//        float time = Mathf.Abs(distance) / pixelsPerSec;
+//
+//        int startValue = (hpText != null) ? int.Parse(hpText.text) : 0;
+//        float valueDistance = endValue - startValue;
+//
+//        while (increment < 1)
+//        {
+//            increment += (1 / time) * Time.deltaTime;
+//            if (increment > 1)
+//            {
+//                increment = 1;
+//            }
+//
+//            bar.rectTransform.sizeDelta = new Vector2(startSize + (distance * increment), bar.rectTransform.sizeDelta.y);
+//
+//            if (isHP)
+//            {
+//                setHPBarColor(bar, 48f);
+//            }
+//            if (hpText != null)
+//            {
+//                hpText.text = "" + (startValue + Mathf.FloorToInt(valueDistance * increment));
+//                if (hpTextShadow != null)
+//                {
+//                    hpTextShadow.text = hpText.text;
+//                }
+//            }
+//            yield return null;
+//        }
+//    }
 
     //////////////////////////////////
 
@@ -1158,161 +1158,161 @@ public class BattleHandler : MonoBehaviour
     // 
     /// updates the displayed task.
     /// 0 = task choice, 1 = move choice, 2 = bag choice, 3 = pokemon choice, 4 = item list, 5 = summary, 6 = moves
-    private void updateCurrentTask(int newState)
-    {
-        if (currentTask == 0)
-        {
-            buttonBag.gameObject.SetActive(false);
-            buttonFight.gameObject.SetActive(false);
-            buttonPoke.gameObject.SetActive(false);
-            buttonRun.gameObject.SetActive(false);
-        }
-        else if (currentTask == 1)
-        {
-            buttonMove[0].gameObject.SetActive(false);
-            buttonMove[1].gameObject.SetActive(false);
-            buttonMove[2].gameObject.SetActive(false);
-            buttonMove[3].gameObject.SetActive(false);
-            buttonMegaEvolution.gameObject.SetActive(false);
-            buttonMoveReturn.gameObject.SetActive(false);
-        }
-        else if (currentTask == 2)
-        {
-            //Bag
-            bagObject.SetActive(false);
-            buttonItemCategory[0].gameObject.SetActive(false);
-            buttonItemCategory[1].gameObject.SetActive(false);
-            buttonItemCategory[2].gameObject.SetActive(false);
-            buttonItemCategory[3].gameObject.SetActive(false);
-            buttonItemLastUsed.gameObject.SetActive(false);
-        }
-        else if (currentTask == 3)
-        {
-            //Poke
-            pokeObject.SetActive(false);
-            pokemonPartyObject.SetActive(false);
-            StopCoroutine(animatingPartyIcons);
-        }
-        else if (currentTask == 4)
-        {
-            //ItemList
-            bagObject.SetActive(false);
-            itemList.SetActive(false);
-            updateItemListDisplay();
-        }
-        else if (currentTask == 5)
-        {
-            //Summary
-            pokeObject.SetActive(false);
-            buttonSwitch.gameObject.SetActive(false);
-            buttonCheck.gameObject.SetActive(false);
-            pokemonSelectedPokemon.SetActive(false);
-            pokemonSummary.SetActive(false);
-        }
-        else if (currentTask == 6)
-        {
-            //Moves
-            pokeObject.SetActive(false);
-            buttonSwitch.gameObject.SetActive(false);
-            buttonCheck.gameObject.SetActive(false);
-            pokemonSelectedPokemon.SetActive(false);
-            pokemonMoves.SetActive(false);
-        }
-
-        currentTask = newState;
-
-        if (currentTask == 0)
-        {
-            buttonBag.gameObject.SetActive(true);
-            buttonFight.gameObject.SetActive(true);
-            buttonPoke.gameObject.SetActive(true);
-            buttonRun.gameObject.SetActive(true);
-        }
-        else if (currentTask == 1)
-        {
-            buttonMove[0].gameObject.SetActive(true);
-            buttonMove[1].gameObject.SetActive(true);
-            buttonMove[2].gameObject.SetActive(true);
-            buttonMove[3].gameObject.SetActive(true);
-            buttonMegaEvolution.gameObject.SetActive(true);
-            buttonMoveReturn.gameObject.SetActive(true);
-        }
-        else if (currentTask == 2)
-        {
-            //Bag
-            bagObject.SetActive(true);
-            buttonItemCategory[0].gameObject.SetActive(true);
-            buttonItemCategory[1].gameObject.SetActive(true);
-            buttonItemCategory[2].gameObject.SetActive(true);
-            buttonItemCategory[3].gameObject.SetActive(true);
-            buttonItemLastUsed.gameObject.SetActive(true);
-            updateSelectedBagCategory(bagCategoryPosition);
-        }
-        else if (currentTask == 3)
-        {
-            //Poke
-            pokeObject.SetActive(true);
-            pokemonPartyObject.SetActive(true);
-            updatePokemonSlotsDisplay();
-            updateSelectedPokemonSlot(pokePartyPosition);
-            animatingPartyIcons = StartCoroutine(animatePartyIcons());
-        }
-        else if (currentTask == 4)
-        {
-            //ItemList
-            bagObject.SetActive(true);
-            itemList.SetActive(true);
-            if (bagCategoryPosition == 0)
-            {
-                itemListString = SaveData.currentSave.Bag.getBattleTypeArray(ItemData.BattleType.HPPPRESTORE);
-                itemListCategoryText.text = "HP/PP Restore";
-            }
-            else if (bagCategoryPosition == 1)
-            {
-                itemListString = SaveData.currentSave.Bag.getBattleTypeArray(ItemData.BattleType.POKEBALLS);
-                itemListCategoryText.text = "Poké Balls";
-            }
-            else if (bagCategoryPosition == 2)
-            {
-                itemListString = SaveData.currentSave.Bag.getBattleTypeArray(ItemData.BattleType.STATUSHEALER);
-                itemListCategoryText.text = "Status Healers";
-            }
-            else if (bagCategoryPosition == 3)
-            {
-                itemListString = SaveData.currentSave.Bag.getBattleTypeArray(ItemData.BattleType.BATTLEITEMS);
-                itemListCategoryText.text = "Battle Items";
-            }
-            itemListCategoryTextShadow.text = itemListCategoryText.text;
-            itemListPagePosition = 0;
-
-            itemListPageCount = Mathf.CeilToInt((float) itemListString.Length / 8f);
-            updateItemListDisplay();
-        }
-        else if (currentTask == 5)
-        {
-            //Summary
-            pokeObject.SetActive(true);
-            buttonSwitch.gameObject.SetActive(true);
-            buttonCheck.gameObject.SetActive(true);
-            buttonCheckText.text = "Check Moves";
-            buttonCheckTextShadow.text = buttonCheckText.text;
-            pokemonSelectedPokemon.SetActive(true);
-            pokemonSummary.SetActive(true);
-            updatePokemonSummaryDisplay(SaveData.currentSave.PC.boxes[0][pokePartyPosition]);
-        }
-        else if (currentTask == 6)
-        {
-            //Moves
-            pokeObject.SetActive(true);
-            buttonSwitch.gameObject.SetActive(true);
-            buttonCheck.gameObject.SetActive(true);
-            buttonCheckText.text = "Check Summary";
-            buttonCheckTextShadow.text = buttonCheckText.text;
-            pokemonSelectedPokemon.SetActive(true);
-            pokemonMoves.SetActive(true);
-            updateMovesPosition(5);
-        }
-    }
+//    private void updateCurrentTask(int newState)
+//    {
+//        if (currentTask == 0)
+//        {
+//            buttonBag.gameObject.SetActive(false);
+//            buttonFight.gameObject.SetActive(false);
+//            buttonPoke.gameObject.SetActive(false);
+//            buttonRun.gameObject.SetActive(false);
+//        }
+//        else if (currentTask == 1)
+//        {
+//            buttonMove[0].gameObject.SetActive(false);
+//            buttonMove[1].gameObject.SetActive(false);
+//            buttonMove[2].gameObject.SetActive(false);
+//            buttonMove[3].gameObject.SetActive(false);
+//            buttonMegaEvolution.gameObject.SetActive(false);
+//            buttonMoveReturn.gameObject.SetActive(false);
+//        }
+//        else if (currentTask == 2)
+//        {
+//            //Bag
+//            bagObject.SetActive(false);
+//            buttonItemCategory[0].gameObject.SetActive(false);
+//            buttonItemCategory[1].gameObject.SetActive(false);
+//            buttonItemCategory[2].gameObject.SetActive(false);
+//            buttonItemCategory[3].gameObject.SetActive(false);
+//            buttonItemLastUsed.gameObject.SetActive(false);
+//        }
+//        else if (currentTask == 3)
+//        {
+//            //Poke
+//            pokeObject.SetActive(false);
+//            pokemonPartyObject.SetActive(false);
+//            StopCoroutine(animatingPartyIcons);
+//        }
+//        else if (currentTask == 4)
+//        {
+//            //ItemList
+//            bagObject.SetActive(false);
+//            itemList.SetActive(false);
+//            updateItemListDisplay();
+//        }
+//        else if (currentTask == 5)
+//        {
+//            //Summary
+//            pokeObject.SetActive(false);
+//            buttonSwitch.gameObject.SetActive(false);
+//            buttonCheck.gameObject.SetActive(false);
+//            pokemonSelectedPokemon.SetActive(false);
+//            pokemonSummary.SetActive(false);
+//        }
+//        else if (currentTask == 6)
+//        {
+//            //Moves
+//            pokeObject.SetActive(false);
+//            buttonSwitch.gameObject.SetActive(false);
+//            buttonCheck.gameObject.SetActive(false);
+//            pokemonSelectedPokemon.SetActive(false);
+//            pokemonMoves.SetActive(false);
+//        }
+//
+//        currentTask = newState;
+//
+//        if (currentTask == 0)
+//        {
+//            buttonBag.gameObject.SetActive(true);
+//            buttonFight.gameObject.SetActive(true);
+//            buttonPoke.gameObject.SetActive(true);
+//            buttonRun.gameObject.SetActive(true);
+//        }
+//        else if (currentTask == 1)
+//        {
+//            buttonMove[0].gameObject.SetActive(true);
+//            buttonMove[1].gameObject.SetActive(true);
+//            buttonMove[2].gameObject.SetActive(true);
+//            buttonMove[3].gameObject.SetActive(true);
+//            buttonMegaEvolution.gameObject.SetActive(true);
+//            buttonMoveReturn.gameObject.SetActive(true);
+//        }
+//        else if (currentTask == 2)
+//        {
+//            //Bag
+//            bagObject.SetActive(true);
+//            buttonItemCategory[0].gameObject.SetActive(true);
+//            buttonItemCategory[1].gameObject.SetActive(true);
+//            buttonItemCategory[2].gameObject.SetActive(true);
+//            buttonItemCategory[3].gameObject.SetActive(true);
+//            buttonItemLastUsed.gameObject.SetActive(true);
+//            updateSelectedBagCategory(bagCategoryPosition);
+//        }
+//        else if (currentTask == 3)
+//        {
+//            //Poke
+//            pokeObject.SetActive(true);
+//            pokemonPartyObject.SetActive(true);
+//            updatePokemonSlotsDisplay();
+//            updateSelectedPokemonSlot(pokePartyPosition);
+//            animatingPartyIcons = StartCoroutine(animatePartyIcons());
+//        }
+//        else if (currentTask == 4)
+//        {
+//            //ItemList
+//            bagObject.SetActive(true);
+//            itemList.SetActive(true);
+//            if (bagCategoryPosition == 0)
+//            {
+//                itemListString = SaveData.currentSave.Bag.getBattleTypeArray(ItemData.BattleType.HPPPRESTORE);
+//                itemListCategoryText.text = "HP/PP Restore";
+//            }
+//            else if (bagCategoryPosition == 1)
+//            {
+//                itemListString = SaveData.currentSave.Bag.getBattleTypeArray(ItemData.BattleType.POKEBALLS);
+//                itemListCategoryText.text = "Poké Balls";
+//            }
+//            else if (bagCategoryPosition == 2)
+//            {
+//                itemListString = SaveData.currentSave.Bag.getBattleTypeArray(ItemData.BattleType.STATUSHEALER);
+//                itemListCategoryText.text = "Status Healers";
+//            }
+//            else if (bagCategoryPosition == 3)
+//            {
+//                itemListString = SaveData.currentSave.Bag.getBattleTypeArray(ItemData.BattleType.BATTLEITEMS);
+//                itemListCategoryText.text = "Battle Items";
+//            }
+//            itemListCategoryTextShadow.text = itemListCategoryText.text;
+//            itemListPagePosition = 0;
+//
+//            itemListPageCount = Mathf.CeilToInt((float) itemListString.Length / 8f);
+//            updateItemListDisplay();
+//        }
+//        else if (currentTask == 5)
+//        {
+//            //Summary
+//            pokeObject.SetActive(true);
+//            buttonSwitch.gameObject.SetActive(true);
+//            buttonCheck.gameObject.SetActive(true);
+//            buttonCheckText.text = "Check Moves";
+//            buttonCheckTextShadow.text = buttonCheckText.text;
+//            pokemonSelectedPokemon.SetActive(true);
+//            pokemonSummary.SetActive(true);
+//            updatePokemonSummaryDisplay(SaveData.currentSave.PC.boxes[0][pokePartyPosition]);
+//        }
+//        else if (currentTask == 6)
+//        {
+//            //Moves
+//            pokeObject.SetActive(true);
+//            buttonSwitch.gameObject.SetActive(true);
+//            buttonCheck.gameObject.SetActive(true);
+//            buttonCheckText.text = "Check Summary";
+//            buttonCheckTextShadow.text = buttonCheckText.text;
+//            pokemonSelectedPokemon.SetActive(true);
+//            pokemonMoves.SetActive(true);
+//            updateMovesPosition(5);
+//        }
+//    }
 
 //    private void updatePokemonStatsDisplay(int position)
 //    {
@@ -1374,1459 +1374,1459 @@ public class BattleHandler : MonoBehaviour
 //        }
 //    }
 
-    private void updateMovesetDisplay(string[] moveset, int[] PP, int[] maxPP)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            if (moveset[i] != null)
-            {
-                PokemonData.Type type = MoveDatabase.getMove(moveset[i]).getType();
-
-                if (type == PokemonData.Type.BUG)
-                {
-                    buttonMoveCover[i].color = new Color(0.47f, 0.57f, 0.06f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.DARK)
-                {
-                    buttonMoveCover[i].color = new Color(0.32f, 0.28f, 0.24f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.DRAGON)
-                {
-                    buttonMoveCover[i].color = new Color(0.32f, 0.25f, 1f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.ELECTRIC)
-                {
-                    buttonMoveCover[i].color = new Color(0.64f, 0.52f, 0.04f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.FAIRY)
-                {
-                    buttonMoveCover[i].color = new Color(0.7f, 0.33f, 0.6f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.FIGHTING)
-                {
-                    buttonMoveCover[i].color = new Color(0.75f, 0.19f, 0.15f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.FIRE)
-                {
-                    buttonMoveCover[i].color = new Color(0.94f, 0.5f, 0.19f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.FLYING)
-                {
-                    buttonMoveCover[i].color = new Color(0.5f, 0.43f, 0.72f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.GHOST)
-                {
-                    buttonMoveCover[i].color = new Color(0.4f, 0.32f, 0.55f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.GRASS)
-                {
-                    buttonMoveCover[i].color = new Color(0.34f, 0.5f, 0.25f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.GROUND)
-                {
-                    buttonMoveCover[i].color = new Color(0.53f, 0.4f, 0.19f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.ICE)
-                {
-                    buttonMoveCover[i].color = new Color(0.4f, 0.6f, 0.6f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.NORMAL)
-                {
-                    buttonMoveCover[i].color = new Color(0.5f, 0.5f, 0.35f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.POISON)
-                {
-                    buttonMoveCover[i].color = new Color(0.63f, 0.25f, 0.63f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.PSYCHIC)
-                {
-                    buttonMoveCover[i].color = new Color(0.75f, 0.25f, 0.4f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.ROCK)
-                {
-                    buttonMoveCover[i].color = new Color(0.48f, 0.35f, 0.14f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.STEEL)
-                {
-                    buttonMoveCover[i].color = new Color(0.6f, 0.6f, 0.67f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-                else if (type == PokemonData.Type.WATER)
-                {
-                    buttonMoveCover[i].color = new Color(0.25f, 0.42f, 0.75f, 1);
-                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
-                }
-
-                buttonMoveName[i].text = moveset[i];
-                buttonMoveNameShadow[i].text = buttonMoveName[i].text;
-                buttonMovePP[i].text = PP[i] + "/" + maxPP[i];
-                buttonMovePPShadow[i].text = buttonMovePP[i].text;
-            }
-            else
-            {
-                buttonMoveCover[i].color = new Color(0.5f, 0.5f, 0.5f, 1);
-                buttonMoveType[i].sprite = Resources.Load<Sprite>("null");
-                buttonMoveName[i].text = "";
-                buttonMoveNameShadow[i].text = buttonMoveName[i].text;
-                buttonMovePP[i].text = "";
-                buttonMovePPShadow[i].text = buttonMovePP[i].text;
-            }
-        }
-    }
-
-    /// Updates the Item List to show the correct 8 items from the page
-    private void updateItemListDisplay()
-    {
-        if (itemListPageCount < 1)
-        {
-            itemListPageCount = 1;
-        }
-        itemListPageNumber.text = (itemListPagePosition + 1) + "/" + itemListPageCount;
-        itemListPageNumberShadow.text = itemListPageNumber.text;
-
-        if (itemListPagePosition > 0)
-        {
-            itemListArrowPrev.SetActive(true);
-        }
-        else
-        {
-            itemListArrowPrev.SetActive(false);
-        }
-
-        if (itemListPagePosition + 1 < itemListPageCount)
-        {
-            itemListArrowNext.SetActive(true);
-        }
-        else
-        {
-            itemListArrowNext.SetActive(false);
-        }
-
-        string[] itemListPageString = new string[8];
-        for (int i = 0; i < 8; i++)
-        {
-            if (i + (itemListPagePosition * 8) < itemListString.Length)
-            {
-                itemListPageString[i] = itemListString[i + (itemListPagePosition * 8)];
-            }
-        }
-
-        for (int i = 0; i < 8; i++)
-        {
-            if (itemListPageString[i] != null)
-            {
-                buttonItemList[i].gameObject.SetActive(true);
-                itemListIcon[i].sprite = Resources.Load<Sprite>("Items/" + itemListPageString[i]);
-                itemListName[i].text = itemListPageString[i];
-                itemListNameShadow[i].text = itemListName[i].text;
-                itemListQuantity[i].text = "" + SaveData.currentSave.Bag.getQuantity(itemListPageString[i]);
-                itemListQuantityShadow[i].text = itemListQuantity[i].text;
-            }
-            else
-            {
-                buttonItemList[i].gameObject.SetActive(false);
-            }
-        }
-    }
-
-    /// updates the pokemon slots to show the correct pokemon in the player's party
-    private void updatePokemonSlotsDisplay()
-    {
-        for (int i = 0; i < 6; i++)
-        {
-            Pokemon selectedPokemon = SaveData.currentSave.PC.boxes[0][i];
-            if (selectedPokemon == null)
-            {
-                buttonPokemonSlot[i].gameObject.SetActive(false);
-            }
-            else
-            {
-                buttonPokemonSlot[i].gameObject.SetActive(true);
-                if (i == 0)
-                {
-                    if (i == pokePartyPosition)
-                    {
-                        if (selectedPokemon.getStatus() != Pokemon.Status.FAINTED)
-                        {
-                            buttonPokemonSlot[i].sprite = buttonPokemonRoundSelTex;
-                        }
-                        else
-                        {
-                            buttonPokemonSlot[i].sprite = buttonPokemonRoundFntSelTex;
-                        }
-                    }
-                    else
-                    {
-                        if (selectedPokemon.getStatus() != Pokemon.Status.FAINTED)
-                        {
-                            buttonPokemonSlot[i].sprite = buttonPokemonRoundTex;
-                        }
-                        else
-                        {
-                            buttonPokemonSlot[i].sprite = buttonPokemonRoundFntTex;
-                        }
-                    }
-                }
-                else
-                {
-                    if (i == pokePartyPosition)
-                    {
-                        if (selectedPokemon.getStatus() != Pokemon.Status.FAINTED)
-                        {
-                            buttonPokemonSlot[i].sprite = buttonPokemonSelTex;
-                        }
-                        else
-                        {
-                            buttonPokemonSlot[i].sprite = buttonPokemonFntSelTex;
-                        }
-                    }
-                    else
-                    {
-                        if (selectedPokemon.getStatus() != Pokemon.Status.FAINTED)
-                        {
-                            buttonPokemonSlot[i].sprite = buttonPokemonTex;
-                        }
-                        else
-                        {
-                            buttonPokemonSlot[i].sprite = buttonPokemonFntTex;
-                        }
-                    }
-                }
-                pokemonIconAnim[i] = selectedPokemon.GetIcons_();
-                pokemonSlotIcon[i].sprite = pokemonIconAnim[i][0];
-                pokemonSlotName[i].text = selectedPokemon.getName();
-                pokemonSlotNameShadow[i].text = pokemonSlotName[i].text;
-                if (selectedPokemon.getGender() == Pokemon.Gender.FEMALE)
-                {
-                    pokemonSlotGender[i].text = "♀";
-                    pokemonSlotGender[i].color = new Color(1, 0.2f, 0.2f, 1);
-                }
-                else if (selectedPokemon.getGender() == Pokemon.Gender.MALE)
-                {
-                    pokemonSlotGender[i].text = "♂";
-                    pokemonSlotGender[i].color = new Color(0.2f, 0.4f, 1, 1);
-                }
-                else
-                {
-                    pokemonSlotGender[i].text = null;
-                }
-                pokemonSlotGenderShadow[i].text = pokemonSlotGender[i].text;
-                pokemonSlotHPBar[i].rectTransform.sizeDelta =
-                    new Vector2(
-                        Mathf.FloorToInt(48f *
-                                         ((float) selectedPokemon.getCurrentHP() / (float) selectedPokemon.getHP())), 4);
-
-                setHPBarColor(pokemonSlotHPBar[i], 48f);
-
-                pokemonSlotLevel[i].text = "" + selectedPokemon.getLevel();
-                pokemonSlotLevelShadow[i].text = pokemonSlotLevel[i].text;
-                pokemonSlotCurrentHP[i].text = "" + selectedPokemon.getCurrentHP();
-                pokemonSlotCurrentHPShadow[i].text = pokemonSlotCurrentHP[i].text;
-                pokemonSlotMaxHP[i].text = "" + selectedPokemon.getHP();
-                pokemonSlotMaxHPShadow[i].text = pokemonSlotMaxHP[i].text;
-                if (selectedPokemon.getStatus() != Pokemon.Status.NONE)
-                {
-                    pokemonSlotStatus[i].sprite =
-                        Resources.Load<Sprite>("PCSprites/status" + selectedPokemon.getStatus().ToString());
-                }
-                else
-                {
-                    pokemonSlotStatus[i].sprite = Resources.Load<Sprite>("null");
-                }
-                pokemonSlotItem[i].enabled = !string.IsNullOrEmpty(selectedPokemon.getHeldItem());
-            }
-        }
-    }
-
-    private void updatePokemonSummaryDisplay(Pokemon selectedPokemon)
-    {
-        pokemonSelectedIcon.sprite = selectedPokemon.GetIcons_()[0];
-        pokemonSelectedName.text = selectedPokemon.getName();
-        pokemonSelectedNameShadow.text = pokemonSelectedName.text;
-        if (selectedPokemon.getGender() == Pokemon.Gender.FEMALE)
-        {
-            pokemonSelectedGender.text = "♀";
-            pokemonSelectedGender.color = new Color(1, 0.2f, 0.2f, 1);
-        }
-        else if (selectedPokemon.getGender() == Pokemon.Gender.MALE)
-        {
-            pokemonSelectedGender.text = "♂";
-            pokemonSelectedGender.color = new Color(0.2f, 0.4f, 1, 1);
-        }
-        else
-        {
-            pokemonSelectedGender.text = null;
-        }
-        pokemonSelectedGenderShadow.text = pokemonSelectedGender.text;
-        pokemonSelectedLevel.text = "" + selectedPokemon.getLevel();
-        pokemonSelectedLevelShadow.text = pokemonSelectedLevel.text;
-        if (selectedPokemon.getStatus() != Pokemon.Status.NONE)
-        {
-            pokemonSelectedStatus.sprite =
-                Resources.Load<Sprite>("PCSprites/status" + selectedPokemon.getStatus().ToString());
-        }
-        else
-        {
-            pokemonSelectedStatus.sprite = Resources.Load<Sprite>("null");
-        }
-        pokemonSelectedType1.sprite = Resources.Load<Sprite>("null");
-        pokemonSelectedType2.sprite = Resources.Load<Sprite>("null");
-        PokemonData.Type type1 = PokemonDatabase.getPokemon(selectedPokemon.getID()).getType1();
-        PokemonData.Type type2 = PokemonDatabase.getPokemon(selectedPokemon.getID()).getType2();
-        if (type1 != PokemonData.Type.NONE)
-        {
-            pokemonSelectedType1.sprite = Resources.Load<Sprite>("PCSprites/type" + type1.ToString());
-        }
-        if (type2 != PokemonData.Type.NONE)
-        {
-            pokemonSelectedType2.sprite = Resources.Load<Sprite>("PCSprites/type" + type2.ToString());
-        }
-
-        //Summary
-        float expCurrentLevel =
-            PokemonDatabase.getLevelExp(PokemonDatabase.getPokemon(selectedPokemon.getID()).getLevelingRate(),
-                selectedPokemon.getLevel());
-        float expNextlevel =
-            PokemonDatabase.getLevelExp(PokemonDatabase.getPokemon(selectedPokemon.getID()).getLevelingRate(),
-                selectedPokemon.getLevel() + 1);
-        float expAlong = selectedPokemon.getExp() - expCurrentLevel;
-        float expDistance = expAlong / (expNextlevel - expCurrentLevel);
-        pokemonSummaryNextLevelEXP.text = "" + (expNextlevel - selectedPokemon.getExp());
-        pokemonSummaryNextLevelEXPShadow.text = pokemonSummaryNextLevelEXP.text;
-        pokemonSummaryEXPBar.rectTransform.sizeDelta = new Vector2(Mathf.Floor(expDistance * 64), 3f);
-        pokemonSummaryItemIcon.sprite = Resources.Load<Sprite>("null");
-        pokemonSummaryItemName.text = "No held item.";
-        if (!string.IsNullOrEmpty(selectedPokemon.getHeldItem()))
-        {
-            pokemonSummaryItemIcon.sprite = Resources.Load<Sprite>("Items/" + selectedPokemon.getHeldItem());
-            pokemonSummaryItemName.text = selectedPokemon.getHeldItem();
-        }
-
-        pokemonSummaryItemNameShadow.text = pokemonSummaryItemName.text;
-        //Stats
-        float currentHP = selectedPokemon.getCurrentHP();
-        float maxHP = selectedPokemon.getHP();
-        pokemonSummaryHP.text = currentHP + "/" + maxHP;
-        pokemonSummaryHPShadow.text = pokemonSummaryHP.text;
-        pokemonSummaryHPBar.rectTransform.sizeDelta = new Vector2(Mathf.Floor((1 - (maxHP - currentHP) / maxHP) * 48f),
-            4f);
-
-        setHPBarColor(pokemonSummaryHPBar, 48f);
-
-        float[] natureMod = new float[]
-        {
-            NatureDatabase.getNature(selectedPokemon.getNature()).getATK(),
-            NatureDatabase.getNature(selectedPokemon.getNature()).getDEF(),
-            NatureDatabase.getNature(selectedPokemon.getNature()).getSPA(),
-            NatureDatabase.getNature(selectedPokemon.getNature()).getSPD(),
-            NatureDatabase.getNature(selectedPokemon.getNature()).getSPE()
-        };
-        pokemonSummaryStats.text =
-            selectedPokemon.getATK() + "\n" +
-            selectedPokemon.getDEF() + "\n" +
-            selectedPokemon.getSPA() + "\n" +
-            selectedPokemon.getSPD() + "\n" +
-            selectedPokemon.getSPE();
-        pokemonSummaryStatsShadow.text = pokemonSummaryStats.text;
-
-        string[] statsLines = new string[] {"Attack", "Defence", "Sp. Atk", "Sp. Def", "Speed"};
-        pokemonSummaryStatsTextShadow.text = "";
-        for (int i = 0; i < 5; i++)
-        {
-            if (natureMod[i] > 1)
-            {
-                pokemonSummaryStatsTextShadow.text += "<color=#A01010FF>" + statsLines[i] + "</color>\n";
-            }
-            else if (natureMod[i] < 1)
-            {
-                pokemonSummaryStatsTextShadow.text += "<color=#0030A2FF>" + statsLines[i] + "</color>\n";
-            }
-            else
-            {
-                pokemonSummaryStatsTextShadow.text += statsLines[i] + "\n";
-            }
-        }
-
-        pokemonSummaryAbilityName.text =
-            PokemonDatabase.getPokemon(selectedPokemon.getID()).getAbility(selectedPokemon.getAbility());
-        pokemonSummaryAbilityNameShadow.text = pokemonSummaryAbilityName.text;
-        //abilities not yet implemented
-        pokemonSummaryAbilityDescription.text = "";
-        pokemonSummaryAbilityDescriptionShadow.text = pokemonSummaryAbilityDescription.text;
-
-        //Moves
-        string[] moveset = selectedPokemon.getMoveset();
-        int[] maxPP = selectedPokemon.getMaxPP();
-        int[] PP = selectedPokemon.getPP();
-        for (int i = 0; i < 4; i++)
-        {
-            if (moveset[i] != null)
-            {
-                pokemonMovesName[i].text = moveset[i];
-                pokemonMovesNameShadow[i].text = pokemonMovesName[i].text;
-                pokemonMovesType[i].sprite =
-                    Resources.Load<Sprite>("PCSprites/type" + MoveDatabase.getMove(moveset[i]).getType().ToString());
-                pokemonMovesPPText[i].text = "PP";
-                pokemonMovesPPTextShadow[i].text = pokemonMovesPPText[i].text;
-                pokemonMovesPP[i].text = PP[i] + "/" + maxPP[i];
-                pokemonMovesPPShadow[i].text = pokemonMovesPP[i].text;
-            }
-            else
-            {
-                pokemonMovesName[i].text = null;
-                pokemonMovesNameShadow[i].text = pokemonMovesName[i].text;
-                pokemonMovesType[i].sprite = Resources.Load<Sprite>("null");
-                pokemonMovesPPText[i].text = null;
-                pokemonMovesPPTextShadow[i].text = pokemonMovesPPText[i].text;
-                pokemonMovesPP[i].text = null;
-                pokemonMovesPPShadow[i].text = pokemonMovesPP[i].text;
-            }
-        }
-    }
-
-    private void updateSelectedTask(int newPosition)
-    {
-        taskPosition = newPosition;
-
-        buttonBag.sprite = (taskPosition == 0 || taskPosition == 3) ? buttonBagSelTex : buttonBagTex;
-        buttonFight.sprite = (taskPosition == 1) ? buttonFightSelTex : buttonFightTex;
-        buttonPoke.sprite = (taskPosition == 2 || taskPosition == 5) ? buttonPokeSelTex : buttonPokeTex;
-        buttonRun.sprite = (taskPosition == 4) ? buttonRunSelTex : buttonRunTex;
-    }
-
-    private void updateSelectedMove(int newPosition)
-    {
-        movePosition = newPosition;
-
-        if (movePosition == 0)
-        {
-            buttonMegaEvolution.sprite = buttonMegaActiveSelTex;
-        }
-        else
-        {
-            buttonMegaEvolution.sprite = (canMegaEvolve) ? buttonMegaActiveTex : buttonMegaTex;
-        }
-
-        buttonMove[0].sprite = (movePosition == 1) ? buttonMoveBackgroundSelTex : buttonMoveBackgroundTex;
-        buttonMove[1].sprite = (movePosition == 2) ? buttonMoveBackgroundSelTex : buttonMoveBackgroundTex;
-        buttonMoveReturn.sprite = (movePosition == 3) ? buttonReturnSelTex : buttonReturnTex;
-        buttonMove[2].sprite = (movePosition == 4) ? buttonMoveBackgroundSelTex : buttonMoveBackgroundTex;
-        buttonMove[3].sprite = (movePosition == 5) ? buttonMoveBackgroundSelTex : buttonMoveBackgroundTex;
-    }
-
-    private void updateSelectedBagCategory(int newPosition)
-    {
-        bagCategoryPosition = newPosition;
-
-        for (int i = 0; i < 6; i++)
-        {
-            if (i != bagCategoryPosition)
-            {
-                //deselect
-                if (i == 4)
-                {
-                    buttonBackBag.sprite = buttonBackBagTex;
-                }
-                else if (i < 4)
-                {
-                    buttonItemCategory[i].sprite = buttonBagItemCategoryTex;
-                }
-                else
-                {
-                    buttonItemLastUsed.sprite = buttonBlueTex;
-                }
-            }
-            else
-            {
-                //select
-                if (i == 4)
-                {
-                    buttonBackBag.sprite = buttonBackBagSelTex;
-                }
-                else if (i < 4)
-                {
-                    buttonItemCategory[i].sprite = buttonBagItemCategorySelTex;
-                }
-                else
-                {
-                    buttonItemLastUsed.sprite = buttonBlueSelTex;
-                }
-            }
-        }
-    }
-
-    private int updateSelectedItemListSlot(int currentPosition, int modifier)
-    {
-        int newPosition = currentPosition + modifier;
-
-        //adjust for empty slots
-        if (newPosition < 8)
-        {
-            if (!buttonItemList[newPosition].gameObject.activeSelf)
-            {
-                bool spaceFound = false;
-                int checkPosition = currentPosition;
-                //keep going back by modifier until avaiable position found
-                while (!spaceFound)
-                {
-                    checkPosition += modifier;
-                    if (checkPosition < 0)
-                    {
-                        if (buttonItemList[0].gameObject.activeSelf)
-                        {
-                            newPosition = 0; //move to first button
-                        }
-                        else
-                        {
-                            newPosition = 8; //move to back button
-                        }
-                        spaceFound = true;
-                    }
-                    else if (checkPosition > 7)
-                    {
-                        newPosition = 8; //set position to Back button
-                        spaceFound = true;
-                    }
-                    else if (buttonItemList[checkPosition].gameObject.activeSelf)
-                    {
-                        newPosition = checkPosition; //adjust the position
-                        spaceFound = true;
-                    }
-                    if (modifier == 0)
-                    {
-                        modifier = 1; //prevent infinite loops in case the modifier is set to never increment
-                    }
-                }
-            }
-        }
-        else
-        {
-            newPosition = 8;
-        }
-
-        for (int i = 0; i < 8; i++)
-        {
-            if (i == newPosition)
-            {
-                buttonItemList[i].sprite = buttonBagItemListSelTex;
-                buttonItemList[i].rectTransform.SetSiblingIndex(7);
-            }
-            else
-            {
-                buttonItemList[i].sprite = buttonBagItemListTex;
-            }
-        }
-        if (newPosition == 8)
-        {
-            buttonBackBag.sprite = buttonBackBagSelTex;
-        }
-        else
-        {
-            buttonBackBag.sprite = buttonBackBagTex;
-        }
-
-        if (newPosition + (itemListPagePosition * 8) < itemListString.Length)
-        {
-            itemListDescription.text =
-                ItemDatabase.getItem(itemListString[newPosition + (itemListPagePosition * 8)]).getDescription();
-        }
-        else
-        {
-            itemListDescription.text = "";
-        }
-        itemListDescriptionShadow.text = itemListDescription.text;
-
-        return newPosition;
-    }
-
-    private void updateSelectedPokemonSlot(int newPosition)
-    {
-        updateSelectedPokemonSlot(newPosition, true);
-    }
-
-    private void updateSelectedPokemonSlot(int newPosition, bool backSelectable)
-    {
-        int maxPosition = 5;
-        if (backSelectable)
-        {
-            maxPosition = 6;
-        }
-        if (newPosition < 6)
-        {
-            if (SaveData.currentSave.PC.boxes[0][newPosition] == null)
-            {
-                int checkPosition = pokePartyPosition;
-                bool spaceFound = false;
-                if (newPosition < pokePartyPosition)
-                {
-                    //keep going back 1 until avaiable position found
-                    while (!spaceFound)
-                    {
-                        checkPosition -= 1;
-                        if (checkPosition < 0)
-                        {
-                            newPosition = pokePartyPosition; //don't move the position
-                            spaceFound = true;
-                        }
-                        else if (SaveData.currentSave.PC.boxes[0][checkPosition] != null)
-                        {
-                            newPosition = checkPosition; //adjust the position
-                            spaceFound = true;
-                        }
-                    }
-                }
-                else
-                {
-                    //keep going forward 1
-                    while (!spaceFound)
-                    {
-                        checkPosition += 1;
-                        if (checkPosition > 5)
-                        {
-                            if (backSelectable)
-                            {
-                                newPosition = 6;
-                            } //set position to Back button
-                            else
-                            {
-                                newPosition = 5;
-                                while (SaveData.currentSave.PC.boxes[0][newPosition] == null && newPosition > 0)
-                                {
-                                    newPosition -= 1;
-                                }
-                            }
-                            spaceFound = true;
-                        }
-                        else if (SaveData.currentSave.PC.boxes[0][checkPosition] != null)
-                        {
-                            newPosition = checkPosition; //adjust the position
-                            spaceFound = true;
-                        }
-                    }
-                }
-            }
-        }
-        else
-        {
-            newPosition = maxPosition;
-            if (newPosition < 6)
-            {
-                if (SaveData.currentSave.PC.boxes[0][newPosition] == null)
-                {
-                    int checkPosition = pokePartyPosition;
-                    bool spaceFound = false;
-                    if (newPosition < pokePartyPosition)
-                    {
-                        //keep going back 1 until avaiable position found
-                        while (!spaceFound)
-                        {
-                            checkPosition -= 1;
-                            if (checkPosition < 0)
-                            {
-                                newPosition = pokePartyPosition; //don't move the position
-                                spaceFound = true;
-                            }
-                            else if (SaveData.currentSave.PC.boxes[0][checkPosition] != null)
-                            {
-                                newPosition = checkPosition; //adjust the position
-                                spaceFound = true;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        pokePartyPosition = newPosition;
-
-        for (int i = 0; i < 7; i++)
-        {
-            if (i != pokePartyPosition)
-            {
-                //unhighlight
-                if (i == 0)
-                {
-                    if (SaveData.currentSave.PC.boxes[0][i] != null)
-                    {
-                        buttonPokemonSlot[i].sprite = (SaveData.currentSave.PC.boxes[0][i].getStatus() !=
-                                                       Pokemon.Status.FAINTED)
-                            ? buttonPokemonRoundTex
-                            : buttonPokemonRoundFntTex;
-                    }
-                }
-                else if (i < 6)
-                {
-                    if (SaveData.currentSave.PC.boxes[0][i] != null)
-                    {
-                        buttonPokemonSlot[i].sprite = (SaveData.currentSave.PC.boxes[0][i].getStatus() !=
-                                                       Pokemon.Status.FAINTED)
-                            ? buttonPokemonTex
-                            : buttonPokemonFntTex;
-                    }
-                }
-                else
-                {
-                    buttonBackPoke.sprite = buttonBackPokeTex;
-                }
-            }
-            else
-            {
-                //highlight
-                if (i == 0)
-                {
-                    if (SaveData.currentSave.PC.boxes[0][i] != null)
-                    {
-                        buttonPokemonSlot[i].sprite = (SaveData.currentSave.PC.boxes[0][i].getStatus() !=
-                                                       Pokemon.Status.FAINTED)
-                            ? buttonPokemonRoundSelTex
-                            : buttonPokemonRoundFntSelTex;
-                    }
-                }
-                else if (i < 6)
-                {
-                    if (SaveData.currentSave.PC.boxes[0][i] != null)
-                    {
-                        buttonPokemonSlot[i].sprite = (SaveData.currentSave.PC.boxes[0][i].getStatus() !=
-                                                       Pokemon.Status.FAINTED)
-                            ? buttonPokemonSelTex
-                            : buttonPokemonFntSelTex;
-                    }
-                }
-                else
-                {
-                    buttonBackPoke.sprite = buttonBackPokeSelTex;
-                }
-            }
-        }
-    }
-
-    private int updateSummaryPosition(int newPosition)
-    {
-        buttonSwitch.sprite = (newPosition == 0) ? buttonBlueSelTex : buttonBlueTex;
-        buttonCheck.sprite = (newPosition == 1) ? buttonBlueSelTex : buttonBlueTex;
-        buttonBackPoke.sprite = (newPosition == 2) ? buttonBackPokeSelTex : buttonBackPokeTex;
-        return newPosition;
-    }
-
-    private int updateMovesPosition(int newPosition)
-    {
-        Vector3[] positions = new Vector3[]
-        {
-            new Vector3(-36, 51, 0), new Vector3(51, 51, 0),
-            new Vector3(-36, 19, 0), new Vector3(51, 19, 0)
-        };
-
-        buttonSwitch.sprite = buttonBlueTex;
-        buttonCheck.sprite = buttonBlueTex;
-        buttonBackPoke.sprite = buttonBackPokeTex;
-
-        if (newPosition < 4)
-        {
-            string[] moveset = SaveData.currentSave.PC.boxes[0][pokePartyPosition].getMoveset();
-            if (string.IsNullOrEmpty(moveset[newPosition]))
-            {
-                pokemonMovesSelectedCategory.sprite = Resources.Load<Sprite>("null");
-                pokemonMovesSelectedPower.text = null;
-                pokemonMovesSelectedPowerShadow.text = pokemonMovesSelectedPower.text;
-                pokemonMovesSelectedAccuracy.text = null;
-                pokemonMovesSelectedAccuracyShadow.text = pokemonMovesSelectedAccuracy.text;
-                pokemonMovesSelectedDescription.text = null;
-                pokemonMovesSelectedDescriptionShadow.text = pokemonMovesSelectedDescription.text;
-            }
-            else
-            {
-                MoveData selectedMove = MoveDatabase.getMove(moveset[newPosition]);
-                pokemonMovesSelectedCategory.sprite =
-                    Resources.Load<Sprite>("PCSprites/category" + selectedMove.getCategory().ToString());
-                pokemonMovesSelectedPower.text = "" + selectedMove.getPower();
-                if (pokemonMovesSelectedPower.text == "0")
-                {
-                    pokemonMovesSelectedPower.text = "-";
-                }
-                pokemonMovesSelectedPowerShadow.text = pokemonMovesSelectedPower.text;
-                pokemonMovesSelectedAccuracy.text = "" + Mathf.Round(selectedMove.getAccuracy() * 100f);
-                if (pokemonMovesSelectedAccuracy.text == "0")
-                {
-                    pokemonMovesSelectedAccuracy.text = "-";
-                }
-                pokemonMovesSelectedAccuracyShadow.text = pokemonMovesSelectedAccuracy.text;
-                pokemonMovesSelectedDescription.text = selectedMove.getDescription();
-                pokemonMovesSelectedDescriptionShadow.text = pokemonMovesSelectedDescription.text;
-
-                pokemonMovesSelectedMove.rectTransform.localPosition = positions[newPosition];
-                pokemonMovesSelectedMove.enabled = true;
-                if (pokemonMovesSelector.enabled)
-                {
-                    StartCoroutine(moveMoveSelector(positions[newPosition]));
-                }
-                else
-                {
-                    pokemonMovesSelector.enabled = true;
-                    pokemonMovesSelector.rectTransform.localPosition = positions[newPosition];
-                }
-            }
-        }
-        else
-        {
-            pokemonMovesSelectedCategory.sprite = Resources.Load<Sprite>("null");
-            pokemonMovesSelectedPower.text = null;
-            pokemonMovesSelectedPowerShadow.text = pokemonMovesSelectedPower.text;
-            pokemonMovesSelectedAccuracy.text = null;
-            pokemonMovesSelectedAccuracyShadow.text = pokemonMovesSelectedAccuracy.text;
-            pokemonMovesSelectedDescription.text = null;
-            pokemonMovesSelectedDescriptionShadow.text = pokemonMovesSelectedDescription.text;
-
-            pokemonMovesSelectedMove.enabled = false;
-            pokemonMovesSelector.enabled = false;
-            if (newPosition == 4)
-            {
-                buttonSwitch.sprite = buttonBlueSelTex;
-            }
-            else if (newPosition == 5)
-            {
-                buttonCheck.sprite = buttonBlueSelTex;
-            }
-            else if (newPosition == 6)
-            {
-                buttonBackPoke.sprite = buttonBackPokeSelTex;
-            }
-        }
-        return newPosition;
-    }
-
-    private IEnumerator moveMoveSelector(Vector3 destinationPosition)
-    {
-        Vector3 startPosition = pokemonMovesSelector.rectTransform.localPosition;
-
-        Vector3 distance = destinationPosition - startPosition;
-
-        float increment = 0f;
-        float speed = 0.2f;
-        while (increment < 1)
-        {
-            increment += (1f / speed) * Time.deltaTime;
-            if (increment > 1)
-            {
-                increment = 1;
-            }
-            pokemonMovesSelector.rectTransform.localPosition = startPosition + (distance * increment);
-            yield return null;
-        }
-    }
-
-
-    private void setHPBarColor(Image bar, float maxSize)
-    {
-        if (bar.rectTransform.sizeDelta.x < maxSize / 4f)
-        {
-            bar.color = new Color(0.625f, 0.125f, 0, 1);
-        }
-        else if (bar.rectTransform.sizeDelta.x < maxSize / 2f)
-        {
-            bar.color = new Color(0.687f, 0.562f, 0, 1);
-        }
-        else
-        {
-            bar.color = new Color(0.125f, 0.625f, 0, 1);
-        }
-    }
-
-    //////////////////////////////////
-
-
-    //////////////////////////////////
-    /// BATTLE DATA MANAGEMENT
-    //
-    /// Calculates the base damage of an attack (before modifiers are applied).
-    private float calculateDamage(int attackerPosition, int targetPosition, MoveData move)
-    {
-        float baseDamage = 0;
-        if (move.getCategory() == MoveData.Category.PHYSICAL)
-        {
-            baseDamage = ((2f * (float) pokemon[attackerPosition].getLevel() + 10f) / 250f) *
-                         ((float) pokemonStats[0][attackerPosition] / (float) pokemonStats[1][targetPosition]) *
-                         (float) move.getPower() + 2f;
-        }
-        else if (move.getCategory() == MoveData.Category.SPECIAL)
-        {
-            baseDamage = ((2f * (float) pokemon[attackerPosition].getLevel() + 10f) / 250f) *
-                         ((float) pokemonStats[2][attackerPosition] / (float) pokemonStats[3][targetPosition]) *
-                         (float) move.getPower() + 2f;
-        }
-
-        baseDamage *= Random.Range(0.85f, 1f);
-        return baseDamage;
-    }
-
-    /// Uses the attacker's total critical ratio to randomly determine whether a Critical Hit should happen or not
-    private bool calculateCritical(int attackerPosition, int targetPosition, MoveData move)
-    {
-        int attackerCriticalRatio = 0;
-        if (focusEnergy[attackerPosition])
-        {
-            attackerCriticalRatio += 1;
-        }
-
-        if (move.hasMoveEffect(MoveData.Effect.Critical))
-        {
-            attackerCriticalRatio += 1;
-        }
-
-        bool applyCritical = false;
-        if (move.getCategory() != MoveData.Category.STATUS)
-        {
-            if (attackerCriticalRatio == 0)
-            {
-                if (Random.value <= 0.0625)
-                {
-                    applyCritical = true;
-                }
-            }
-            else if (attackerCriticalRatio == 1)
-            {
-                if (Random.value <= 0.125)
-                {
-                    applyCritical = true;
-                }
-            }
-            else if (attackerCriticalRatio == 2)
-            {
-                if (Random.value <= 0.5)
-                {
-                    applyCritical = true;
-                }
-            }
-            else if (attackerCriticalRatio > 2)
-            {
-                applyCritical = true;
-            }
-        }
-
-        return applyCritical;
-    }
-
-
-    /// TEMPORARILY USED FOR EVERYTHING NOT COVERED BY AN EXISTING METHOD
-    private float calculateModifiedDamage(int attackerPosition, int targetPosition, MoveData move, float baseDamage,
-        bool applyCritical)
-    {
-        float modifiedDamage = baseDamage;
-
-        //apply STAB
-        if (pokemonType1[attackerPosition] == move.getType() ||
-            pokemonType2[attackerPosition] == move.getType() ||
-            pokemonType3[attackerPosition] == move.getType())
-        {
-            modifiedDamage *= 1.5f;
-        }
-
-        //apply Offence/Defence boosts 
-        if (move.getCategory() == MoveData.Category.PHYSICAL)
-        {
-            modifiedDamage *= calculateStatModifier(pokemonStatsMod[0][attackerPosition]);
-            if (!applyCritical)
-            {
-                //exclude defensive buffs in a critical hit
-                modifiedDamage /= calculateStatModifier(pokemonStatsMod[1][targetPosition]);
-            }
-        }
-        else if (move.getCategory() == MoveData.Category.SPECIAL)
-        {
-            modifiedDamage *= calculateStatModifier(pokemonStatsMod[2][attackerPosition]);
-            if (!applyCritical)
-            {
-                //exclude defensive buffs in a critical hit
-                modifiedDamage /= calculateStatModifier(pokemonStatsMod[3][targetPosition]);
-            }
-        }
-
-
-        //not yet implemented
-        //apply held item
-        //apply ability
-        //apply field advantages
-        //reflect/lightScreen
-        if (!applyCritical)
-        {
-            if (move.getCategory() == MoveData.Category.PHYSICAL)
-            {
-                if (reflectTurns[Mathf.FloorToInt((float) targetPosition / 3f)] > 0)
-                {
-                    modifiedDamage *= 0.5f;
-                }
-            }
-            else if (move.getCategory() == MoveData.Category.SPECIAL)
-            {
-                if (lightScreenTurns[Mathf.FloorToInt((float) targetPosition / 3f)] > 0)
-                {
-                    modifiedDamage *= 0.5f;
-                }
-            }
-        }
-
-        //apply multi-target debuff 
-
-        return Mathf.Floor(modifiedDamage);
-    }
-
-    private float calculateStatModifier(int modifier)
-    {
-        if (modifier > 0)
-        {
-            return ((2f + (float) modifier) / 2f);
-        }
-        else if (modifier < 0)
-        {
-            return (2f / (2f + Mathf.Abs((float) modifier)));
-        }
-        return 1f;
-    }
-
-    private float calculateAccuracyModifier(int modifier)
-    {
-        if (modifier > 0)
-        {
-            return ((3f + modifier) / 3f);
-        }
-        else if (modifier < 0)
-        {
-            return (3f / (3f + modifier));
-        }
-        return 1f;
-    }
-
-    /// returns the modifier of a type vs. type. returns as 0f-2f
-    private float getSuperEffectiveModifier(PokemonData.Type attackingType, PokemonData.Type targetType)
-    {
-        if (attackingType == PokemonData.Type.BUG)
-        {
-            if (targetType == PokemonData.Type.DARK || targetType == PokemonData.Type.GRASS ||
-                targetType == PokemonData.Type.PSYCHIC)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.FAIRY || targetType == PokemonData.Type.FIGHTING ||
-                     targetType == PokemonData.Type.FIRE || targetType == PokemonData.Type.FLYING ||
-                     targetType == PokemonData.Type.GHOST || targetType == PokemonData.Type.POISON ||
-                     targetType == PokemonData.Type.STEEL)
-            {
-                return 0.5f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.DARK)
-        {
-            if (targetType == PokemonData.Type.GHOST || targetType == PokemonData.Type.PSYCHIC)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.DARK || targetType == PokemonData.Type.FAIRY ||
-                     targetType == PokemonData.Type.FIGHTING)
-            {
-                return 0.5f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.DRAGON)
-        {
-            if (targetType == PokemonData.Type.DRAGON)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.STEEL)
-            {
-                return 0.5f;
-            }
-            else if (targetType == PokemonData.Type.FAIRY)
-            {
-                return 0f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.ELECTRIC)
-        {
-            if (targetType == PokemonData.Type.FLYING || targetType == PokemonData.Type.WATER)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.DRAGON || targetType == PokemonData.Type.ELECTRIC ||
-                     targetType == PokemonData.Type.GRASS)
-            {
-                return 0.5f;
-            }
-            else if (targetType == PokemonData.Type.GROUND)
-            {
-                return 0f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.FAIRY)
-        {
-            if (targetType == PokemonData.Type.DARK || targetType == PokemonData.Type.DRAGON ||
-                targetType == PokemonData.Type.FIGHTING)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.FIRE || targetType == PokemonData.Type.POISON ||
-                     targetType == PokemonData.Type.STEEL)
-            {
-                return 0.5f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.FIGHTING)
-        {
-            if (targetType == PokemonData.Type.DARK || targetType == PokemonData.Type.ICE ||
-                targetType == PokemonData.Type.NORMAL || targetType == PokemonData.Type.ROCK ||
-                targetType == PokemonData.Type.STEEL)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.BUG || targetType == PokemonData.Type.FAIRY ||
-                     targetType == PokemonData.Type.FLYING || targetType == PokemonData.Type.POISON ||
-                     targetType == PokemonData.Type.PSYCHIC)
-            {
-                return 0.5f;
-            }
-            else if (targetType == PokemonData.Type.GHOST)
-            {
-                return 0f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.FIRE)
-        {
-            if (targetType == PokemonData.Type.BUG || targetType == PokemonData.Type.GRASS ||
-                targetType == PokemonData.Type.ICE || targetType == PokemonData.Type.STEEL)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.DRAGON || targetType == PokemonData.Type.FIRE ||
-                     targetType == PokemonData.Type.ROCK || targetType == PokemonData.Type.WATER)
-            {
-                return 0.5f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.FLYING)
-        {
-            if (targetType == PokemonData.Type.BUG || targetType == PokemonData.Type.FIGHTING ||
-                targetType == PokemonData.Type.GRASS)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.ELECTRIC || targetType == PokemonData.Type.ROCK ||
-                     targetType == PokemonData.Type.STEEL)
-            {
-                return 0.5f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.GHOST)
-        {
-            if (targetType == PokemonData.Type.GHOST || targetType == PokemonData.Type.PSYCHIC)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.DARK)
-            {
-                return 0.5f;
-            }
-            else if (targetType == PokemonData.Type.NORMAL)
-            {
-                return 0f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.GRASS)
-        {
-            if (targetType == PokemonData.Type.GROUND || targetType == PokemonData.Type.ROCK ||
-                targetType == PokemonData.Type.WATER)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.BUG || targetType == PokemonData.Type.DRAGON ||
-                     targetType == PokemonData.Type.FIRE || targetType == PokemonData.Type.FLYING ||
-                     targetType == PokemonData.Type.GRASS || targetType == PokemonData.Type.POISON ||
-                     targetType == PokemonData.Type.STEEL)
-            {
-                return 0.5f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.GROUND)
-        {
-            if (targetType == PokemonData.Type.ELECTRIC || targetType == PokemonData.Type.FIRE ||
-                targetType == PokemonData.Type.POISON || targetType == PokemonData.Type.ROCK ||
-                targetType == PokemonData.Type.STEEL)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.BUG || targetType == PokemonData.Type.GRASS)
-            {
-                return 0.5f;
-            }
-            else if (targetType == PokemonData.Type.FLYING)
-            {
-                return 0f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.ICE)
-        {
-            if (targetType == PokemonData.Type.DRAGON || targetType == PokemonData.Type.FLYING ||
-                targetType == PokemonData.Type.GRASS || targetType == PokemonData.Type.GROUND)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.FIRE || targetType == PokemonData.Type.ICE ||
-                     targetType == PokemonData.Type.STEEL || targetType == PokemonData.Type.WATER)
-            {
-                return 0.5f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.NORMAL)
-        {
-            if (targetType == PokemonData.Type.ROCK || targetType == PokemonData.Type.STEEL)
-            {
-                return 0.5f;
-            }
-            else if (targetType == PokemonData.Type.GHOST)
-            {
-                return 0f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.POISON)
-        {
-            if (targetType == PokemonData.Type.FAIRY || targetType == PokemonData.Type.GRASS)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.POISON || targetType == PokemonData.Type.GROUND ||
-                     targetType == PokemonData.Type.ROCK || targetType == PokemonData.Type.GHOST)
-            {
-                return 0.5f;
-            }
-            else if (targetType == PokemonData.Type.STEEL)
-            {
-                return 0f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.PSYCHIC)
-        {
-            if (targetType == PokemonData.Type.FIGHTING || targetType == PokemonData.Type.POISON)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.PSYCHIC || targetType == PokemonData.Type.STEEL)
-            {
-                return 0.5f;
-            }
-            else if (targetType == PokemonData.Type.DARK)
-            {
-                return 0f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.ROCK)
-        {
-            if (targetType == PokemonData.Type.BUG || targetType == PokemonData.Type.FIRE ||
-                targetType == PokemonData.Type.FLYING || targetType == PokemonData.Type.ICE)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.FIGHTING || targetType == PokemonData.Type.GROUND ||
-                     targetType == PokemonData.Type.STEEL)
-            {
-                return 0.5f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.STEEL)
-        {
-            if (targetType == PokemonData.Type.FAIRY || targetType == PokemonData.Type.ICE ||
-                targetType == PokemonData.Type.ROCK)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.ELECTRIC || targetType == PokemonData.Type.FIRE ||
-                     targetType == PokemonData.Type.STEEL || targetType == PokemonData.Type.WATER)
-            {
-                return 0.5f;
-            }
-        }
-        else if (attackingType == PokemonData.Type.WATER)
-        {
-            if (targetType == PokemonData.Type.FIRE || targetType == PokemonData.Type.GROUND ||
-                targetType == PokemonData.Type.ROCK)
-            {
-                return 2f;
-            }
-            else if (targetType == PokemonData.Type.DRAGON || targetType == PokemonData.Type.GRASS ||
-                     targetType == PokemonData.Type.WATER)
-            {
-                return 0.5f;
-            }
-        }
-
-        return 1f;
-    }
-
-    /// Returns the Pokemon index that should move first, that hasn't moved this turn.
-    private int getHighestSpeedIndex()
-    {
-        int topSpeed = 0;
-        int topPriority = -7;
-        int topSpeedPosition = 0;
-
-        //calculate the highest speed remaining in the list, the set that speed to -1
-        for (int i = 0; i < 6; i++)
-        {
-            if (!pokemonHasMoved[i])
-            {
-                //calculate speed
-                float calculatedPokemonSpeed = 0;
-                float calculatedPokemonPriority = 0;
-                calculatedPokemonSpeed = (float) pokemonStats[4][i] * calculateStatModifier(pokemonStatsMod[4][i]);
-                if (pokemon[i] != null)
-                {
-                    if (pokemon[i].getStatus() == Pokemon.Status.PARALYZED)
-                    {
-                        calculatedPokemonSpeed /= 4f;
-                    }
-                }
-
-                //only the player gets increased priority on fleeing
-                if (command[i] == CommandType.Flee && i < 3)
-                {
-                    calculatedPokemonPriority = 6;
-                }
-                else if (command[i] == CommandType.Item)
-                {
-                    calculatedPokemonPriority = 6;
-                }
-                else if (command[i] == CommandType.Move)
-                {
-                    calculatedPokemonPriority = commandMove[i].getPriority();
-                }
-                else if (command[i] == CommandType.Switch)
-                {
-                    //6 priority for regular swapping out.
-                    calculatedPokemonPriority = 6;
-                }
-
-                //if the top speed is greater than the old, AND the priority is no lower than       OR   the priority is greater than the old
-                if ((calculatedPokemonSpeed >= topSpeed && calculatedPokemonPriority >= topPriority) ||
-                    calculatedPokemonPriority > topPriority)
-                {
-                    if (calculatedPokemonSpeed == topSpeed && calculatedPokemonPriority == topPriority)
-                    {
-                        //if the speed/priority is exactly equal to the current highest, then to randomize the order
-                        //in which speed is chosen (to break a speed tie), update the topSpeed position ONLY when a
-                        //random float value (0f-1f) is greater than 0.5f.
-                        if (Random.value > 0.5f)
-                        {
-                            topSpeedPosition = i;
-                        }
-                    }
-                    else
-                    {
-                        topSpeed = Mathf.FloorToInt(calculatedPokemonSpeed);
-                        topPriority = Mathf.FloorToInt(calculatedPokemonPriority);
-                        topSpeedPosition = i;
-                    }
-                }
-            }
-        }
-        return topSpeedPosition;
-    }
-
-    /// Switch Pokemon (not yet implemented fully)
-    private bool switchPokemon(int switchPosition, Pokemon newPokemon)
-    {
-        return switchPokemon(switchPosition, newPokemon, false, false);
-    }
-
-    /// Switch Pokemon
-    private bool switchPokemon(int switchPosition, Pokemon newPokemon, bool batonPass)
-    {
-        return switchPokemon(switchPosition, newPokemon, batonPass, false);
-    }
-
-    /// Switch Pokemon
-    private bool switchPokemon(int switchPosition, Pokemon newPokemon, bool batonPass, bool forceSwitch)
-    {
-        if (newPokemon == null)
-        {
-            return false;
-        }
-        if (newPokemon.getStatus() == Pokemon.Status.FAINTED)
-        {
-            return false;
-        }
-        // Return false if any condition is preventing the pokemon from switching out
-        if (!forceSwitch)
-        {
-            //no condition can stop a fainted pokemon from switching out
-            if (pokemon[switchPosition] != null)
-            {
-                if (pokemon[switchPosition].getStatus() != Pokemon.Status.FAINTED)
-                {
-                }
-            }
-        }
-
-        pokemon[switchPosition] = newPokemon;
-        pokemonMoveset[switchPosition] = newPokemon.getMoveset();
-
-
-        //set PokemonData
-        updatePokemonStats(switchPosition);
-        pokemonAbility[switchPosition] =
-            PokemonDatabase.getPokemon(newPokemon.getID()).getAbility(newPokemon.getAbility());
-        pokemonType1[switchPosition] = PokemonDatabase.getPokemon(newPokemon.getID()).getType1();
-        pokemonType2[switchPosition] = PokemonDatabase.getPokemon(newPokemon.getID()).getType2();
-        pokemonType3[switchPosition] = PokemonData.Type.NONE;
-
-        //reset Pokemon Effects
-        confused[switchPosition] = false;
-        infatuatedBy[switchPosition] = -1;
-        flinched[switchPosition] = false;
-        statusEffectTurns[switchPosition] = 0;
-        lockedTurns[switchPosition] = 0;
-        partTrappedTurns[switchPosition] = 0;
-        trapped[switchPosition] = false;
-        charging[switchPosition] = false;
-        recharging[switchPosition] = false;
-        protect[switchPosition] = false;
-        //specific moves
-        seededBy[switchPosition] = -1;
-        destinyBond[switchPosition] = false;
-        minimized[switchPosition] = false;
-        defenseCurled[switchPosition] = false;
-        if (!batonPass)
-        {
-            pokemonStatsMod[0][switchPosition] = 0;
-            pokemonStatsMod[1][switchPosition] = 0;
-            pokemonStatsMod[2][switchPosition] = 0;
-            pokemonStatsMod[3][switchPosition] = 0;
-            pokemonStatsMod[4][switchPosition] = 0;
-            pokemonStatsMod[5][switchPosition] = 0;
-            pokemonStatsMod[6][switchPosition] = 0;
-
-            //Pokemon Effects
-            focusEnergy[switchPosition] = false;
-        }
-        else
-        {
-        }
-
-
-        return true;
-    }
+//    private void updateMovesetDisplay(string[] moveset, int[] PP, int[] maxPP)
+//    {
+//        for (int i = 0; i < 4; i++)
+//        {
+//            if (moveset[i] != null)
+//            {
+//                PokemonData.Type type = MoveDatabase.getMove(moveset[i]).getType();
+//
+//                if (type == PokemonData.Type.BUG)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.47f, 0.57f, 0.06f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.DARK)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.32f, 0.28f, 0.24f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.DRAGON)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.32f, 0.25f, 1f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.ELECTRIC)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.64f, 0.52f, 0.04f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.FAIRY)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.7f, 0.33f, 0.6f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.FIGHTING)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.75f, 0.19f, 0.15f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.FIRE)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.94f, 0.5f, 0.19f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.FLYING)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.5f, 0.43f, 0.72f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.GHOST)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.4f, 0.32f, 0.55f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.GRASS)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.34f, 0.5f, 0.25f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.GROUND)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.53f, 0.4f, 0.19f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.ICE)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.4f, 0.6f, 0.6f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.NORMAL)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.5f, 0.5f, 0.35f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.POISON)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.63f, 0.25f, 0.63f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.PSYCHIC)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.75f, 0.25f, 0.4f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.ROCK)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.48f, 0.35f, 0.14f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.STEEL)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.6f, 0.6f, 0.67f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//                else if (type == PokemonData.Type.WATER)
+//                {
+//                    buttonMoveCover[i].color = new Color(0.25f, 0.42f, 0.75f, 1);
+//                    buttonMoveType[i].sprite = Resources.Load<Sprite>("PCSprites/type" + type.ToString());
+//                }
+//
+//                buttonMoveName[i].text = moveset[i];
+//                buttonMoveNameShadow[i].text = buttonMoveName[i].text;
+//                buttonMovePP[i].text = PP[i] + "/" + maxPP[i];
+//                buttonMovePPShadow[i].text = buttonMovePP[i].text;
+//            }
+//            else
+//            {
+//                buttonMoveCover[i].color = new Color(0.5f, 0.5f, 0.5f, 1);
+//                buttonMoveType[i].sprite = Resources.Load<Sprite>("null");
+//                buttonMoveName[i].text = "";
+//                buttonMoveNameShadow[i].text = buttonMoveName[i].text;
+//                buttonMovePP[i].text = "";
+//                buttonMovePPShadow[i].text = buttonMovePP[i].text;
+//            }
+//        }
+//    }
+//
+//    /// Updates the Item List to show the correct 8 items from the page
+//    private void updateItemListDisplay()
+//    {
+//        if (itemListPageCount < 1)
+//        {
+//            itemListPageCount = 1;
+//        }
+//        itemListPageNumber.text = (itemListPagePosition + 1) + "/" + itemListPageCount;
+//        itemListPageNumberShadow.text = itemListPageNumber.text;
+//
+//        if (itemListPagePosition > 0)
+//        {
+//            itemListArrowPrev.SetActive(true);
+//        }
+//        else
+//        {
+//            itemListArrowPrev.SetActive(false);
+//        }
+//
+//        if (itemListPagePosition + 1 < itemListPageCount)
+//        {
+//            itemListArrowNext.SetActive(true);
+//        }
+//        else
+//        {
+//            itemListArrowNext.SetActive(false);
+//        }
+//
+//        string[] itemListPageString = new string[8];
+//        for (int i = 0; i < 8; i++)
+//        {
+//            if (i + (itemListPagePosition * 8) < itemListString.Length)
+//            {
+//                itemListPageString[i] = itemListString[i + (itemListPagePosition * 8)];
+//            }
+//        }
+//
+//        for (int i = 0; i < 8; i++)
+//        {
+//            if (itemListPageString[i] != null)
+//            {
+//                buttonItemList[i].gameObject.SetActive(true);
+//                itemListIcon[i].sprite = Resources.Load<Sprite>("Items/" + itemListPageString[i]);
+//                itemListName[i].text = itemListPageString[i];
+//                itemListNameShadow[i].text = itemListName[i].text;
+//                itemListQuantity[i].text = "" + SaveData.currentSave.Bag.getQuantity(itemListPageString[i]);
+//                itemListQuantityShadow[i].text = itemListQuantity[i].text;
+//            }
+//            else
+//            {
+//                buttonItemList[i].gameObject.SetActive(false);
+//            }
+//        }
+//    }
+//
+//    /// updates the pokemon slots to show the correct pokemon in the player's party
+//    private void updatePokemonSlotsDisplay()
+//    {
+//        for (int i = 0; i < 6; i++)
+//        {
+//            Pokemon selectedPokemon = SaveData.currentSave.PC.boxes[0][i];
+//            if (selectedPokemon == null)
+//            {
+//                buttonPokemonSlot[i].gameObject.SetActive(false);
+//            }
+//            else
+//            {
+//                buttonPokemonSlot[i].gameObject.SetActive(true);
+//                if (i == 0)
+//                {
+//                    if (i == pokePartyPosition)
+//                    {
+//                        if (selectedPokemon.getStatus() != Pokemon.Status.FAINTED)
+//                        {
+//                            buttonPokemonSlot[i].sprite = buttonPokemonRoundSelTex;
+//                        }
+//                        else
+//                        {
+//                            buttonPokemonSlot[i].sprite = buttonPokemonRoundFntSelTex;
+//                        }
+//                    }
+//                    else
+//                    {
+//                        if (selectedPokemon.getStatus() != Pokemon.Status.FAINTED)
+//                        {
+//                            buttonPokemonSlot[i].sprite = buttonPokemonRoundTex;
+//                        }
+//                        else
+//                        {
+//                            buttonPokemonSlot[i].sprite = buttonPokemonRoundFntTex;
+//                        }
+//                    }
+//                }
+//                else
+//                {
+//                    if (i == pokePartyPosition)
+//                    {
+//                        if (selectedPokemon.getStatus() != Pokemon.Status.FAINTED)
+//                        {
+//                            buttonPokemonSlot[i].sprite = buttonPokemonSelTex;
+//                        }
+//                        else
+//                        {
+//                            buttonPokemonSlot[i].sprite = buttonPokemonFntSelTex;
+//                        }
+//                    }
+//                    else
+//                    {
+//                        if (selectedPokemon.getStatus() != Pokemon.Status.FAINTED)
+//                        {
+//                            buttonPokemonSlot[i].sprite = buttonPokemonTex;
+//                        }
+//                        else
+//                        {
+//                            buttonPokemonSlot[i].sprite = buttonPokemonFntTex;
+//                        }
+//                    }
+//                }
+//                pokemonIconAnim[i] = selectedPokemon.GetIcons_();
+//                pokemonSlotIcon[i].sprite = pokemonIconAnim[i][0];
+//                pokemonSlotName[i].text = selectedPokemon.getName();
+//                pokemonSlotNameShadow[i].text = pokemonSlotName[i].text;
+//                if (selectedPokemon.getGender() == Pokemon.Gender.FEMALE)
+//                {
+//                    pokemonSlotGender[i].text = "♀";
+//                    pokemonSlotGender[i].color = new Color(1, 0.2f, 0.2f, 1);
+//                }
+//                else if (selectedPokemon.getGender() == Pokemon.Gender.MALE)
+//                {
+//                    pokemonSlotGender[i].text = "♂";
+//                    pokemonSlotGender[i].color = new Color(0.2f, 0.4f, 1, 1);
+//                }
+//                else
+//                {
+//                    pokemonSlotGender[i].text = null;
+//                }
+//                pokemonSlotGenderShadow[i].text = pokemonSlotGender[i].text;
+//                pokemonSlotHPBar[i].rectTransform.sizeDelta =
+//                    new Vector2(
+//                        Mathf.FloorToInt(48f *
+//                                         ((float) selectedPokemon.getCurrentHP() / (float) selectedPokemon.getHP())), 4);
+//
+//                setHPBarColor(pokemonSlotHPBar[i], 48f);
+//
+//                pokemonSlotLevel[i].text = "" + selectedPokemon.getLevel();
+//                pokemonSlotLevelShadow[i].text = pokemonSlotLevel[i].text;
+//                pokemonSlotCurrentHP[i].text = "" + selectedPokemon.getCurrentHP();
+//                pokemonSlotCurrentHPShadow[i].text = pokemonSlotCurrentHP[i].text;
+//                pokemonSlotMaxHP[i].text = "" + selectedPokemon.getHP();
+//                pokemonSlotMaxHPShadow[i].text = pokemonSlotMaxHP[i].text;
+//                if (selectedPokemon.getStatus() != Pokemon.Status.NONE)
+//                {
+//                    pokemonSlotStatus[i].sprite =
+//                        Resources.Load<Sprite>("PCSprites/status" + selectedPokemon.getStatus().ToString());
+//                }
+//                else
+//                {
+//                    pokemonSlotStatus[i].sprite = Resources.Load<Sprite>("null");
+//                }
+//                pokemonSlotItem[i].enabled = !string.IsNullOrEmpty(selectedPokemon.getHeldItem());
+//            }
+//        }
+//    }
+//
+//    private void updatePokemonSummaryDisplay(Pokemon selectedPokemon)
+//    {
+//        pokemonSelectedIcon.sprite = selectedPokemon.GetIcons_()[0];
+//        pokemonSelectedName.text = selectedPokemon.getName();
+//        pokemonSelectedNameShadow.text = pokemonSelectedName.text;
+//        if (selectedPokemon.getGender() == Pokemon.Gender.FEMALE)
+//        {
+//            pokemonSelectedGender.text = "♀";
+//            pokemonSelectedGender.color = new Color(1, 0.2f, 0.2f, 1);
+//        }
+//        else if (selectedPokemon.getGender() == Pokemon.Gender.MALE)
+//        {
+//            pokemonSelectedGender.text = "♂";
+//            pokemonSelectedGender.color = new Color(0.2f, 0.4f, 1, 1);
+//        }
+//        else
+//        {
+//            pokemonSelectedGender.text = null;
+//        }
+//        pokemonSelectedGenderShadow.text = pokemonSelectedGender.text;
+//        pokemonSelectedLevel.text = "" + selectedPokemon.getLevel();
+//        pokemonSelectedLevelShadow.text = pokemonSelectedLevel.text;
+//        if (selectedPokemon.getStatus() != Pokemon.Status.NONE)
+//        {
+//            pokemonSelectedStatus.sprite =
+//                Resources.Load<Sprite>("PCSprites/status" + selectedPokemon.getStatus().ToString());
+//        }
+//        else
+//        {
+//            pokemonSelectedStatus.sprite = Resources.Load<Sprite>("null");
+//        }
+//        pokemonSelectedType1.sprite = Resources.Load<Sprite>("null");
+//        pokemonSelectedType2.sprite = Resources.Load<Sprite>("null");
+//        PokemonData.Type type1 = PokemonDatabase.getPokemon(selectedPokemon.getID()).getType1();
+//        PokemonData.Type type2 = PokemonDatabase.getPokemon(selectedPokemon.getID()).getType2();
+//        if (type1 != PokemonData.Type.NONE)
+//        {
+//            pokemonSelectedType1.sprite = Resources.Load<Sprite>("PCSprites/type" + type1.ToString());
+//        }
+//        if (type2 != PokemonData.Type.NONE)
+//        {
+//            pokemonSelectedType2.sprite = Resources.Load<Sprite>("PCSprites/type" + type2.ToString());
+//        }
+//
+//        //Summary
+//        float expCurrentLevel =
+//            PokemonDatabase.getLevelExp(PokemonDatabase.getPokemon(selectedPokemon.getID()).getLevelingRate(),
+//                selectedPokemon.getLevel());
+//        float expNextlevel =
+//            PokemonDatabase.getLevelExp(PokemonDatabase.getPokemon(selectedPokemon.getID()).getLevelingRate(),
+//                selectedPokemon.getLevel() + 1);
+//        float expAlong = selectedPokemon.getExp() - expCurrentLevel;
+//        float expDistance = expAlong / (expNextlevel - expCurrentLevel);
+//        pokemonSummaryNextLevelEXP.text = "" + (expNextlevel - selectedPokemon.getExp());
+//        pokemonSummaryNextLevelEXPShadow.text = pokemonSummaryNextLevelEXP.text;
+//        pokemonSummaryEXPBar.rectTransform.sizeDelta = new Vector2(Mathf.Floor(expDistance * 64), 3f);
+//        pokemonSummaryItemIcon.sprite = Resources.Load<Sprite>("null");
+//        pokemonSummaryItemName.text = "No held item.";
+//        if (!string.IsNullOrEmpty(selectedPokemon.getHeldItem()))
+//        {
+//            pokemonSummaryItemIcon.sprite = Resources.Load<Sprite>("Items/" + selectedPokemon.getHeldItem());
+//            pokemonSummaryItemName.text = selectedPokemon.getHeldItem();
+//        }
+//
+//        pokemonSummaryItemNameShadow.text = pokemonSummaryItemName.text;
+//        //Stats
+//        float currentHP = selectedPokemon.getCurrentHP();
+//        float maxHP = selectedPokemon.getHP();
+//        pokemonSummaryHP.text = currentHP + "/" + maxHP;
+//        pokemonSummaryHPShadow.text = pokemonSummaryHP.text;
+//        pokemonSummaryHPBar.rectTransform.sizeDelta = new Vector2(Mathf.Floor((1 - (maxHP - currentHP) / maxHP) * 48f),
+//            4f);
+//
+//        setHPBarColor(pokemonSummaryHPBar, 48f);
+//
+//        float[] natureMod = new float[]
+//        {
+//            NatureDatabase.getNature(selectedPokemon.getNature()).getATK(),
+//            NatureDatabase.getNature(selectedPokemon.getNature()).getDEF(),
+//            NatureDatabase.getNature(selectedPokemon.getNature()).getSPA(),
+//            NatureDatabase.getNature(selectedPokemon.getNature()).getSPD(),
+//            NatureDatabase.getNature(selectedPokemon.getNature()).getSPE()
+//        };
+//        pokemonSummaryStats.text =
+//            selectedPokemon.getATK() + "\n" +
+//            selectedPokemon.getDEF() + "\n" +
+//            selectedPokemon.getSPA() + "\n" +
+//            selectedPokemon.getSPD() + "\n" +
+//            selectedPokemon.getSPE();
+//        pokemonSummaryStatsShadow.text = pokemonSummaryStats.text;
+//
+//        string[] statsLines = new string[] {"Attack", "Defence", "Sp. Atk", "Sp. Def", "Speed"};
+//        pokemonSummaryStatsTextShadow.text = "";
+//        for (int i = 0; i < 5; i++)
+//        {
+//            if (natureMod[i] > 1)
+//            {
+//                pokemonSummaryStatsTextShadow.text += "<color=#A01010FF>" + statsLines[i] + "</color>\n";
+//            }
+//            else if (natureMod[i] < 1)
+//            {
+//                pokemonSummaryStatsTextShadow.text += "<color=#0030A2FF>" + statsLines[i] + "</color>\n";
+//            }
+//            else
+//            {
+//                pokemonSummaryStatsTextShadow.text += statsLines[i] + "\n";
+//            }
+//        }
+//
+//        pokemonSummaryAbilityName.text =
+//            PokemonDatabase.getPokemon(selectedPokemon.getID()).getAbility(selectedPokemon.getAbility());
+//        pokemonSummaryAbilityNameShadow.text = pokemonSummaryAbilityName.text;
+//        //abilities not yet implemented
+//        pokemonSummaryAbilityDescription.text = "";
+//        pokemonSummaryAbilityDescriptionShadow.text = pokemonSummaryAbilityDescription.text;
+//
+//        //Moves
+//        string[] moveset = selectedPokemon.getMoveset();
+//        int[] maxPP = selectedPokemon.getMaxPP();
+//        int[] PP = selectedPokemon.getPP();
+//        for (int i = 0; i < 4; i++)
+//        {
+//            if (moveset[i] != null)
+//            {
+//                pokemonMovesName[i].text = moveset[i];
+//                pokemonMovesNameShadow[i].text = pokemonMovesName[i].text;
+//                pokemonMovesType[i].sprite =
+//                    Resources.Load<Sprite>("PCSprites/type" + MoveDatabase.getMove(moveset[i]).getType().ToString());
+//                pokemonMovesPPText[i].text = "PP";
+//                pokemonMovesPPTextShadow[i].text = pokemonMovesPPText[i].text;
+//                pokemonMovesPP[i].text = PP[i] + "/" + maxPP[i];
+//                pokemonMovesPPShadow[i].text = pokemonMovesPP[i].text;
+//            }
+//            else
+//            {
+//                pokemonMovesName[i].text = null;
+//                pokemonMovesNameShadow[i].text = pokemonMovesName[i].text;
+//                pokemonMovesType[i].sprite = Resources.Load<Sprite>("null");
+//                pokemonMovesPPText[i].text = null;
+//                pokemonMovesPPTextShadow[i].text = pokemonMovesPPText[i].text;
+//                pokemonMovesPP[i].text = null;
+//                pokemonMovesPPShadow[i].text = pokemonMovesPP[i].text;
+//            }
+//        }
+//    }
+//
+//    private void updateSelectedTask(int newPosition)
+//    {
+//        taskPosition = newPosition;
+//
+//        buttonBag.sprite = (taskPosition == 0 || taskPosition == 3) ? buttonBagSelTex : buttonBagTex;
+//        buttonFight.sprite = (taskPosition == 1) ? buttonFightSelTex : buttonFightTex;
+//        buttonPoke.sprite = (taskPosition == 2 || taskPosition == 5) ? buttonPokeSelTex : buttonPokeTex;
+//        buttonRun.sprite = (taskPosition == 4) ? buttonRunSelTex : buttonRunTex;
+//    }
+//
+//    private void updateSelectedMove(int newPosition)
+//    {
+//        movePosition = newPosition;
+//
+//        if (movePosition == 0)
+//        {
+//            buttonMegaEvolution.sprite = buttonMegaActiveSelTex;
+//        }
+//        else
+//        {
+//            buttonMegaEvolution.sprite = (canMegaEvolve) ? buttonMegaActiveTex : buttonMegaTex;
+//        }
+//
+//        buttonMove[0].sprite = (movePosition == 1) ? buttonMoveBackgroundSelTex : buttonMoveBackgroundTex;
+//        buttonMove[1].sprite = (movePosition == 2) ? buttonMoveBackgroundSelTex : buttonMoveBackgroundTex;
+//        buttonMoveReturn.sprite = (movePosition == 3) ? buttonReturnSelTex : buttonReturnTex;
+//        buttonMove[2].sprite = (movePosition == 4) ? buttonMoveBackgroundSelTex : buttonMoveBackgroundTex;
+//        buttonMove[3].sprite = (movePosition == 5) ? buttonMoveBackgroundSelTex : buttonMoveBackgroundTex;
+//    }
+//
+//    private void updateSelectedBagCategory(int newPosition)
+//    {
+//        bagCategoryPosition = newPosition;
+//
+//        for (int i = 0; i < 6; i++)
+//        {
+//            if (i != bagCategoryPosition)
+//            {
+//                //deselect
+//                if (i == 4)
+//                {
+//                    buttonBackBag.sprite = buttonBackBagTex;
+//                }
+//                else if (i < 4)
+//                {
+//                    buttonItemCategory[i].sprite = buttonBagItemCategoryTex;
+//                }
+//                else
+//                {
+//                    buttonItemLastUsed.sprite = buttonBlueTex;
+//                }
+//            }
+//            else
+//            {
+//                //select
+//                if (i == 4)
+//                {
+//                    buttonBackBag.sprite = buttonBackBagSelTex;
+//                }
+//                else if (i < 4)
+//                {
+//                    buttonItemCategory[i].sprite = buttonBagItemCategorySelTex;
+//                }
+//                else
+//                {
+//                    buttonItemLastUsed.sprite = buttonBlueSelTex;
+//                }
+//            }
+//        }
+//    }
+//
+//    private int updateSelectedItemListSlot(int currentPosition, int modifier)
+//    {
+//        int newPosition = currentPosition + modifier;
+//
+//        //adjust for empty slots
+//        if (newPosition < 8)
+//        {
+//            if (!buttonItemList[newPosition].gameObject.activeSelf)
+//            {
+//                bool spaceFound = false;
+//                int checkPosition = currentPosition;
+//                //keep going back by modifier until avaiable position found
+//                while (!spaceFound)
+//                {
+//                    checkPosition += modifier;
+//                    if (checkPosition < 0)
+//                    {
+//                        if (buttonItemList[0].gameObject.activeSelf)
+//                        {
+//                            newPosition = 0; //move to first button
+//                        }
+//                        else
+//                        {
+//                            newPosition = 8; //move to back button
+//                        }
+//                        spaceFound = true;
+//                    }
+//                    else if (checkPosition > 7)
+//                    {
+//                        newPosition = 8; //set position to Back button
+//                        spaceFound = true;
+//                    }
+//                    else if (buttonItemList[checkPosition].gameObject.activeSelf)
+//                    {
+//                        newPosition = checkPosition; //adjust the position
+//                        spaceFound = true;
+//                    }
+//                    if (modifier == 0)
+//                    {
+//                        modifier = 1; //prevent infinite loops in case the modifier is set to never increment
+//                    }
+//                }
+//            }
+//        }
+//        else
+//        {
+//            newPosition = 8;
+//        }
+//
+//        for (int i = 0; i < 8; i++)
+//        {
+//            if (i == newPosition)
+//            {
+//                buttonItemList[i].sprite = buttonBagItemListSelTex;
+//                buttonItemList[i].rectTransform.SetSiblingIndex(7);
+//            }
+//            else
+//            {
+//                buttonItemList[i].sprite = buttonBagItemListTex;
+//            }
+//        }
+//        if (newPosition == 8)
+//        {
+//            buttonBackBag.sprite = buttonBackBagSelTex;
+//        }
+//        else
+//        {
+//            buttonBackBag.sprite = buttonBackBagTex;
+//        }
+//
+//        if (newPosition + (itemListPagePosition * 8) < itemListString.Length)
+//        {
+//            itemListDescription.text =
+//                ItemDatabase.getItem(itemListString[newPosition + (itemListPagePosition * 8)]).getDescription();
+//        }
+//        else
+//        {
+//            itemListDescription.text = "";
+//        }
+//        itemListDescriptionShadow.text = itemListDescription.text;
+//
+//        return newPosition;
+//    }
+//
+//    private void updateSelectedPokemonSlot(int newPosition)
+//    {
+//        updateSelectedPokemonSlot(newPosition, true);
+//    }
+//
+//    private void updateSelectedPokemonSlot(int newPosition, bool backSelectable)
+//    {
+//        int maxPosition = 5;
+//        if (backSelectable)
+//        {
+//            maxPosition = 6;
+//        }
+//        if (newPosition < 6)
+//        {
+//            if (SaveData.currentSave.PC.boxes[0][newPosition] == null)
+//            {
+//                int checkPosition = pokePartyPosition;
+//                bool spaceFound = false;
+//                if (newPosition < pokePartyPosition)
+//                {
+//                    //keep going back 1 until avaiable position found
+//                    while (!spaceFound)
+//                    {
+//                        checkPosition -= 1;
+//                        if (checkPosition < 0)
+//                        {
+//                            newPosition = pokePartyPosition; //don't move the position
+//                            spaceFound = true;
+//                        }
+//                        else if (SaveData.currentSave.PC.boxes[0][checkPosition] != null)
+//                        {
+//                            newPosition = checkPosition; //adjust the position
+//                            spaceFound = true;
+//                        }
+//                    }
+//                }
+//                else
+//                {
+//                    //keep going forward 1
+//                    while (!spaceFound)
+//                    {
+//                        checkPosition += 1;
+//                        if (checkPosition > 5)
+//                        {
+//                            if (backSelectable)
+//                            {
+//                                newPosition = 6;
+//                            } //set position to Back button
+//                            else
+//                            {
+//                                newPosition = 5;
+//                                while (SaveData.currentSave.PC.boxes[0][newPosition] == null && newPosition > 0)
+//                                {
+//                                    newPosition -= 1;
+//                                }
+//                            }
+//                            spaceFound = true;
+//                        }
+//                        else if (SaveData.currentSave.PC.boxes[0][checkPosition] != null)
+//                        {
+//                            newPosition = checkPosition; //adjust the position
+//                            spaceFound = true;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        else
+//        {
+//            newPosition = maxPosition;
+//            if (newPosition < 6)
+//            {
+//                if (SaveData.currentSave.PC.boxes[0][newPosition] == null)
+//                {
+//                    int checkPosition = pokePartyPosition;
+//                    bool spaceFound = false;
+//                    if (newPosition < pokePartyPosition)
+//                    {
+//                        //keep going back 1 until avaiable position found
+//                        while (!spaceFound)
+//                        {
+//                            checkPosition -= 1;
+//                            if (checkPosition < 0)
+//                            {
+//                                newPosition = pokePartyPosition; //don't move the position
+//                                spaceFound = true;
+//                            }
+//                            else if (SaveData.currentSave.PC.boxes[0][checkPosition] != null)
+//                            {
+//                                newPosition = checkPosition; //adjust the position
+//                                spaceFound = true;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        pokePartyPosition = newPosition;
+//
+//        for (int i = 0; i < 7; i++)
+//        {
+//            if (i != pokePartyPosition)
+//            {
+//                //unhighlight
+//                if (i == 0)
+//                {
+//                    if (SaveData.currentSave.PC.boxes[0][i] != null)
+//                    {
+//                        buttonPokemonSlot[i].sprite = (SaveData.currentSave.PC.boxes[0][i].getStatus() !=
+//                                                       Pokemon.Status.FAINTED)
+//                            ? buttonPokemonRoundTex
+//                            : buttonPokemonRoundFntTex;
+//                    }
+//                }
+//                else if (i < 6)
+//                {
+//                    if (SaveData.currentSave.PC.boxes[0][i] != null)
+//                    {
+//                        buttonPokemonSlot[i].sprite = (SaveData.currentSave.PC.boxes[0][i].getStatus() !=
+//                                                       Pokemon.Status.FAINTED)
+//                            ? buttonPokemonTex
+//                            : buttonPokemonFntTex;
+//                    }
+//                }
+//                else
+//                {
+//                    buttonBackPoke.sprite = buttonBackPokeTex;
+//                }
+//            }
+//            else
+//            {
+//                //highlight
+//                if (i == 0)
+//                {
+//                    if (SaveData.currentSave.PC.boxes[0][i] != null)
+//                    {
+//                        buttonPokemonSlot[i].sprite = (SaveData.currentSave.PC.boxes[0][i].getStatus() !=
+//                                                       Pokemon.Status.FAINTED)
+//                            ? buttonPokemonRoundSelTex
+//                            : buttonPokemonRoundFntSelTex;
+//                    }
+//                }
+//                else if (i < 6)
+//                {
+//                    if (SaveData.currentSave.PC.boxes[0][i] != null)
+//                    {
+//                        buttonPokemonSlot[i].sprite = (SaveData.currentSave.PC.boxes[0][i].getStatus() !=
+//                                                       Pokemon.Status.FAINTED)
+//                            ? buttonPokemonSelTex
+//                            : buttonPokemonFntSelTex;
+//                    }
+//                }
+//                else
+//                {
+//                    buttonBackPoke.sprite = buttonBackPokeSelTex;
+//                }
+//            }
+//        }
+//    }
+//
+//    private int updateSummaryPosition(int newPosition)
+//    {
+//        buttonSwitch.sprite = (newPosition == 0) ? buttonBlueSelTex : buttonBlueTex;
+//        buttonCheck.sprite = (newPosition == 1) ? buttonBlueSelTex : buttonBlueTex;
+//        buttonBackPoke.sprite = (newPosition == 2) ? buttonBackPokeSelTex : buttonBackPokeTex;
+//        return newPosition;
+//    }
+//
+//    private int updateMovesPosition(int newPosition)
+//    {
+//        Vector3[] positions = new Vector3[]
+//        {
+//            new Vector3(-36, 51, 0), new Vector3(51, 51, 0),
+//            new Vector3(-36, 19, 0), new Vector3(51, 19, 0)
+//        };
+//
+//        buttonSwitch.sprite = buttonBlueTex;
+//        buttonCheck.sprite = buttonBlueTex;
+//        buttonBackPoke.sprite = buttonBackPokeTex;
+//
+//        if (newPosition < 4)
+//        {
+//            string[] moveset = SaveData.currentSave.PC.boxes[0][pokePartyPosition].getMoveset();
+//            if (string.IsNullOrEmpty(moveset[newPosition]))
+//            {
+//                pokemonMovesSelectedCategory.sprite = Resources.Load<Sprite>("null");
+//                pokemonMovesSelectedPower.text = null;
+//                pokemonMovesSelectedPowerShadow.text = pokemonMovesSelectedPower.text;
+//                pokemonMovesSelectedAccuracy.text = null;
+//                pokemonMovesSelectedAccuracyShadow.text = pokemonMovesSelectedAccuracy.text;
+//                pokemonMovesSelectedDescription.text = null;
+//                pokemonMovesSelectedDescriptionShadow.text = pokemonMovesSelectedDescription.text;
+//            }
+//            else
+//            {
+//                MoveData selectedMove = MoveDatabase.getMove(moveset[newPosition]);
+//                pokemonMovesSelectedCategory.sprite =
+//                    Resources.Load<Sprite>("PCSprites/category" + selectedMove.getCategory().ToString());
+//                pokemonMovesSelectedPower.text = "" + selectedMove.getPower();
+//                if (pokemonMovesSelectedPower.text == "0")
+//                {
+//                    pokemonMovesSelectedPower.text = "-";
+//                }
+//                pokemonMovesSelectedPowerShadow.text = pokemonMovesSelectedPower.text;
+//                pokemonMovesSelectedAccuracy.text = "" + Mathf.Round(selectedMove.getAccuracy() * 100f);
+//                if (pokemonMovesSelectedAccuracy.text == "0")
+//                {
+//                    pokemonMovesSelectedAccuracy.text = "-";
+//                }
+//                pokemonMovesSelectedAccuracyShadow.text = pokemonMovesSelectedAccuracy.text;
+//                pokemonMovesSelectedDescription.text = selectedMove.getDescription();
+//                pokemonMovesSelectedDescriptionShadow.text = pokemonMovesSelectedDescription.text;
+//
+//                pokemonMovesSelectedMove.rectTransform.localPosition = positions[newPosition];
+//                pokemonMovesSelectedMove.enabled = true;
+//                if (pokemonMovesSelector.enabled)
+//                {
+//                    StartCoroutine(moveMoveSelector(positions[newPosition]));
+//                }
+//                else
+//                {
+//                    pokemonMovesSelector.enabled = true;
+//                    pokemonMovesSelector.rectTransform.localPosition = positions[newPosition];
+//                }
+//            }
+//        }
+//        else
+//        {
+//            pokemonMovesSelectedCategory.sprite = Resources.Load<Sprite>("null");
+//            pokemonMovesSelectedPower.text = null;
+//            pokemonMovesSelectedPowerShadow.text = pokemonMovesSelectedPower.text;
+//            pokemonMovesSelectedAccuracy.text = null;
+//            pokemonMovesSelectedAccuracyShadow.text = pokemonMovesSelectedAccuracy.text;
+//            pokemonMovesSelectedDescription.text = null;
+//            pokemonMovesSelectedDescriptionShadow.text = pokemonMovesSelectedDescription.text;
+//
+//            pokemonMovesSelectedMove.enabled = false;
+//            pokemonMovesSelector.enabled = false;
+//            if (newPosition == 4)
+//            {
+//                buttonSwitch.sprite = buttonBlueSelTex;
+//            }
+//            else if (newPosition == 5)
+//            {
+//                buttonCheck.sprite = buttonBlueSelTex;
+//            }
+//            else if (newPosition == 6)
+//            {
+//                buttonBackPoke.sprite = buttonBackPokeSelTex;
+//            }
+//        }
+//        return newPosition;
+//    }
+//
+//    private IEnumerator moveMoveSelector(Vector3 destinationPosition)
+//    {
+//        Vector3 startPosition = pokemonMovesSelector.rectTransform.localPosition;
+//
+//        Vector3 distance = destinationPosition - startPosition;
+//
+//        float increment = 0f;
+//        float speed = 0.2f;
+//        while (increment < 1)
+//        {
+//            increment += (1f / speed) * Time.deltaTime;
+//            if (increment > 1)
+//            {
+//                increment = 1;
+//            }
+//            pokemonMovesSelector.rectTransform.localPosition = startPosition + (distance * increment);
+//            yield return null;
+//        }
+//    }
+//
+//
+//    private void setHPBarColor(Image bar, float maxSize)
+//    {
+//        if (bar.rectTransform.sizeDelta.x < maxSize / 4f)
+//        {
+//            bar.color = new Color(0.625f, 0.125f, 0, 1);
+//        }
+//        else if (bar.rectTransform.sizeDelta.x < maxSize / 2f)
+//        {
+//            bar.color = new Color(0.687f, 0.562f, 0, 1);
+//        }
+//        else
+//        {
+//            bar.color = new Color(0.125f, 0.625f, 0, 1);
+//        }
+//    }
+//
+//    //////////////////////////////////
+//
+//
+//    //////////////////////////////////
+//    /// BATTLE DATA MANAGEMENT
+//    //
+//    /// Calculates the base damage of an attack (before modifiers are applied).
+//    private float calculateDamage(int attackerPosition, int targetPosition, MoveData move)
+//    {
+//        float baseDamage = 0;
+//        if (move.getCategory() == MoveData.Category.PHYSICAL)
+//        {
+//            baseDamage = ((2f * (float) pokemon[attackerPosition].getLevel() + 10f) / 250f) *
+//                         ((float) pokemonStats[0][attackerPosition] / (float) pokemonStats[1][targetPosition]) *
+//                         (float) move.getPower() + 2f;
+//        }
+//        else if (move.getCategory() == MoveData.Category.SPECIAL)
+//        {
+//            baseDamage = ((2f * (float) pokemon[attackerPosition].getLevel() + 10f) / 250f) *
+//                         ((float) pokemonStats[2][attackerPosition] / (float) pokemonStats[3][targetPosition]) *
+//                         (float) move.getPower() + 2f;
+//        }
+//
+//        baseDamage *= Random.Range(0.85f, 1f);
+//        return baseDamage;
+//    }
+//
+//    /// Uses the attacker's total critical ratio to randomly determine whether a Critical Hit should happen or not
+//    private bool calculateCritical(int attackerPosition, int targetPosition, MoveData move)
+//    {
+//        int attackerCriticalRatio = 0;
+//        if (focusEnergy[attackerPosition])
+//        {
+//            attackerCriticalRatio += 1;
+//        }
+//
+//        if (move.hasMoveEffect(MoveData.Effect.Critical))
+//        {
+//            attackerCriticalRatio += 1;
+//        }
+//
+//        bool applyCritical = false;
+//        if (move.getCategory() != MoveData.Category.STATUS)
+//        {
+//            if (attackerCriticalRatio == 0)
+//            {
+//                if (Random.value <= 0.0625)
+//                {
+//                    applyCritical = true;
+//                }
+//            }
+//            else if (attackerCriticalRatio == 1)
+//            {
+//                if (Random.value <= 0.125)
+//                {
+//                    applyCritical = true;
+//                }
+//            }
+//            else if (attackerCriticalRatio == 2)
+//            {
+//                if (Random.value <= 0.5)
+//                {
+//                    applyCritical = true;
+//                }
+//            }
+//            else if (attackerCriticalRatio > 2)
+//            {
+//                applyCritical = true;
+//            }
+//        }
+//
+//        return applyCritical;
+//    }
+//
+//
+//    /// TEMPORARILY USED FOR EVERYTHING NOT COVERED BY AN EXISTING METHOD
+//    private float calculateModifiedDamage(int attackerPosition, int targetPosition, MoveData move, float baseDamage,
+//        bool applyCritical)
+//    {
+//        float modifiedDamage = baseDamage;
+//
+//        //apply STAB
+//        if (pokemonType1[attackerPosition] == move.getType() ||
+//            pokemonType2[attackerPosition] == move.getType() ||
+//            pokemonType3[attackerPosition] == move.getType())
+//        {
+//            modifiedDamage *= 1.5f;
+//        }
+//
+//        //apply Offence/Defence boosts 
+//        if (move.getCategory() == MoveData.Category.PHYSICAL)
+//        {
+//            modifiedDamage *= calculateStatModifier(pokemonStatsMod[0][attackerPosition]);
+//            if (!applyCritical)
+//            {
+//                //exclude defensive buffs in a critical hit
+//                modifiedDamage /= calculateStatModifier(pokemonStatsMod[1][targetPosition]);
+//            }
+//        }
+//        else if (move.getCategory() == MoveData.Category.SPECIAL)
+//        {
+//            modifiedDamage *= calculateStatModifier(pokemonStatsMod[2][attackerPosition]);
+//            if (!applyCritical)
+//            {
+//                //exclude defensive buffs in a critical hit
+//                modifiedDamage /= calculateStatModifier(pokemonStatsMod[3][targetPosition]);
+//            }
+//        }
+//
+//
+//        //not yet implemented
+//        //apply held item
+//        //apply ability
+//        //apply field advantages
+//        //reflect/lightScreen
+//        if (!applyCritical)
+//        {
+//            if (move.getCategory() == MoveData.Category.PHYSICAL)
+//            {
+//                if (reflectTurns[Mathf.FloorToInt((float) targetPosition / 3f)] > 0)
+//                {
+//                    modifiedDamage *= 0.5f;
+//                }
+//            }
+//            else if (move.getCategory() == MoveData.Category.SPECIAL)
+//            {
+//                if (lightScreenTurns[Mathf.FloorToInt((float) targetPosition / 3f)] > 0)
+//                {
+//                    modifiedDamage *= 0.5f;
+//                }
+//            }
+//        }
+//
+//        //apply multi-target debuff 
+//
+//        return Mathf.Floor(modifiedDamage);
+//    }
+//
+//    private float calculateStatModifier(int modifier)
+//    {
+//        if (modifier > 0)
+//        {
+//            return ((2f + (float) modifier) / 2f);
+//        }
+//        else if (modifier < 0)
+//        {
+//            return (2f / (2f + Mathf.Abs((float) modifier)));
+//        }
+//        return 1f;
+//    }
+//
+//    private float calculateAccuracyModifier(int modifier)
+//    {
+//        if (modifier > 0)
+//        {
+//            return ((3f + modifier) / 3f);
+//        }
+//        else if (modifier < 0)
+//        {
+//            return (3f / (3f + modifier));
+//        }
+//        return 1f;
+//    }
+//
+//    /// returns the modifier of a type vs. type. returns as 0f-2f
+//    private float getSuperEffectiveModifier(PokemonData.Type attackingType, PokemonData.Type targetType)
+//    {
+//        if (attackingType == PokemonData.Type.BUG)
+//        {
+//            if (targetType == PokemonData.Type.DARK || targetType == PokemonData.Type.GRASS ||
+//                targetType == PokemonData.Type.PSYCHIC)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.FAIRY || targetType == PokemonData.Type.FIGHTING ||
+//                     targetType == PokemonData.Type.FIRE || targetType == PokemonData.Type.FLYING ||
+//                     targetType == PokemonData.Type.GHOST || targetType == PokemonData.Type.POISON ||
+//                     targetType == PokemonData.Type.STEEL)
+//            {
+//                return 0.5f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.DARK)
+//        {
+//            if (targetType == PokemonData.Type.GHOST || targetType == PokemonData.Type.PSYCHIC)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.DARK || targetType == PokemonData.Type.FAIRY ||
+//                     targetType == PokemonData.Type.FIGHTING)
+//            {
+//                return 0.5f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.DRAGON)
+//        {
+//            if (targetType == PokemonData.Type.DRAGON)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.STEEL)
+//            {
+//                return 0.5f;
+//            }
+//            else if (targetType == PokemonData.Type.FAIRY)
+//            {
+//                return 0f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.ELECTRIC)
+//        {
+//            if (targetType == PokemonData.Type.FLYING || targetType == PokemonData.Type.WATER)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.DRAGON || targetType == PokemonData.Type.ELECTRIC ||
+//                     targetType == PokemonData.Type.GRASS)
+//            {
+//                return 0.5f;
+//            }
+//            else if (targetType == PokemonData.Type.GROUND)
+//            {
+//                return 0f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.FAIRY)
+//        {
+//            if (targetType == PokemonData.Type.DARK || targetType == PokemonData.Type.DRAGON ||
+//                targetType == PokemonData.Type.FIGHTING)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.FIRE || targetType == PokemonData.Type.POISON ||
+//                     targetType == PokemonData.Type.STEEL)
+//            {
+//                return 0.5f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.FIGHTING)
+//        {
+//            if (targetType == PokemonData.Type.DARK || targetType == PokemonData.Type.ICE ||
+//                targetType == PokemonData.Type.NORMAL || targetType == PokemonData.Type.ROCK ||
+//                targetType == PokemonData.Type.STEEL)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.BUG || targetType == PokemonData.Type.FAIRY ||
+//                     targetType == PokemonData.Type.FLYING || targetType == PokemonData.Type.POISON ||
+//                     targetType == PokemonData.Type.PSYCHIC)
+//            {
+//                return 0.5f;
+//            }
+//            else if (targetType == PokemonData.Type.GHOST)
+//            {
+//                return 0f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.FIRE)
+//        {
+//            if (targetType == PokemonData.Type.BUG || targetType == PokemonData.Type.GRASS ||
+//                targetType == PokemonData.Type.ICE || targetType == PokemonData.Type.STEEL)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.DRAGON || targetType == PokemonData.Type.FIRE ||
+//                     targetType == PokemonData.Type.ROCK || targetType == PokemonData.Type.WATER)
+//            {
+//                return 0.5f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.FLYING)
+//        {
+//            if (targetType == PokemonData.Type.BUG || targetType == PokemonData.Type.FIGHTING ||
+//                targetType == PokemonData.Type.GRASS)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.ELECTRIC || targetType == PokemonData.Type.ROCK ||
+//                     targetType == PokemonData.Type.STEEL)
+//            {
+//                return 0.5f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.GHOST)
+//        {
+//            if (targetType == PokemonData.Type.GHOST || targetType == PokemonData.Type.PSYCHIC)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.DARK)
+//            {
+//                return 0.5f;
+//            }
+//            else if (targetType == PokemonData.Type.NORMAL)
+//            {
+//                return 0f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.GRASS)
+//        {
+//            if (targetType == PokemonData.Type.GROUND || targetType == PokemonData.Type.ROCK ||
+//                targetType == PokemonData.Type.WATER)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.BUG || targetType == PokemonData.Type.DRAGON ||
+//                     targetType == PokemonData.Type.FIRE || targetType == PokemonData.Type.FLYING ||
+//                     targetType == PokemonData.Type.GRASS || targetType == PokemonData.Type.POISON ||
+//                     targetType == PokemonData.Type.STEEL)
+//            {
+//                return 0.5f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.GROUND)
+//        {
+//            if (targetType == PokemonData.Type.ELECTRIC || targetType == PokemonData.Type.FIRE ||
+//                targetType == PokemonData.Type.POISON || targetType == PokemonData.Type.ROCK ||
+//                targetType == PokemonData.Type.STEEL)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.BUG || targetType == PokemonData.Type.GRASS)
+//            {
+//                return 0.5f;
+//            }
+//            else if (targetType == PokemonData.Type.FLYING)
+//            {
+//                return 0f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.ICE)
+//        {
+//            if (targetType == PokemonData.Type.DRAGON || targetType == PokemonData.Type.FLYING ||
+//                targetType == PokemonData.Type.GRASS || targetType == PokemonData.Type.GROUND)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.FIRE || targetType == PokemonData.Type.ICE ||
+//                     targetType == PokemonData.Type.STEEL || targetType == PokemonData.Type.WATER)
+//            {
+//                return 0.5f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.NORMAL)
+//        {
+//            if (targetType == PokemonData.Type.ROCK || targetType == PokemonData.Type.STEEL)
+//            {
+//                return 0.5f;
+//            }
+//            else if (targetType == PokemonData.Type.GHOST)
+//            {
+//                return 0f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.POISON)
+//        {
+//            if (targetType == PokemonData.Type.FAIRY || targetType == PokemonData.Type.GRASS)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.POISON || targetType == PokemonData.Type.GROUND ||
+//                     targetType == PokemonData.Type.ROCK || targetType == PokemonData.Type.GHOST)
+//            {
+//                return 0.5f;
+//            }
+//            else if (targetType == PokemonData.Type.STEEL)
+//            {
+//                return 0f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.PSYCHIC)
+//        {
+//            if (targetType == PokemonData.Type.FIGHTING || targetType == PokemonData.Type.POISON)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.PSYCHIC || targetType == PokemonData.Type.STEEL)
+//            {
+//                return 0.5f;
+//            }
+//            else if (targetType == PokemonData.Type.DARK)
+//            {
+//                return 0f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.ROCK)
+//        {
+//            if (targetType == PokemonData.Type.BUG || targetType == PokemonData.Type.FIRE ||
+//                targetType == PokemonData.Type.FLYING || targetType == PokemonData.Type.ICE)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.FIGHTING || targetType == PokemonData.Type.GROUND ||
+//                     targetType == PokemonData.Type.STEEL)
+//            {
+//                return 0.5f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.STEEL)
+//        {
+//            if (targetType == PokemonData.Type.FAIRY || targetType == PokemonData.Type.ICE ||
+//                targetType == PokemonData.Type.ROCK)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.ELECTRIC || targetType == PokemonData.Type.FIRE ||
+//                     targetType == PokemonData.Type.STEEL || targetType == PokemonData.Type.WATER)
+//            {
+//                return 0.5f;
+//            }
+//        }
+//        else if (attackingType == PokemonData.Type.WATER)
+//        {
+//            if (targetType == PokemonData.Type.FIRE || targetType == PokemonData.Type.GROUND ||
+//                targetType == PokemonData.Type.ROCK)
+//            {
+//                return 2f;
+//            }
+//            else if (targetType == PokemonData.Type.DRAGON || targetType == PokemonData.Type.GRASS ||
+//                     targetType == PokemonData.Type.WATER)
+//            {
+//                return 0.5f;
+//            }
+//        }
+//
+//        return 1f;
+//    }
+//
+//    /// Returns the Pokemon index that should move first, that hasn't moved this turn.
+//    private int getHighestSpeedIndex()
+//    {
+//        int topSpeed = 0;
+//        int topPriority = -7;
+//        int topSpeedPosition = 0;
+//
+//        //calculate the highest speed remaining in the list, the set that speed to -1
+//        for (int i = 0; i < 6; i++)
+//        {
+//            if (!pokemonHasMoved[i])
+//            {
+//                //calculate speed
+//                float calculatedPokemonSpeed = 0;
+//                float calculatedPokemonPriority = 0;
+//                calculatedPokemonSpeed = (float) pokemonStats[4][i] * calculateStatModifier(pokemonStatsMod[4][i]);
+//                if (pokemon[i] != null)
+//                {
+//                    if (pokemon[i].getStatus() == Pokemon.Status.PARALYZED)
+//                    {
+//                        calculatedPokemonSpeed /= 4f;
+//                    }
+//                }
+//
+//                //only the player gets increased priority on fleeing
+//                if (command[i] == CommandType.Flee && i < 3)
+//                {
+//                    calculatedPokemonPriority = 6;
+//                }
+//                else if (command[i] == CommandType.Item)
+//                {
+//                    calculatedPokemonPriority = 6;
+//                }
+//                else if (command[i] == CommandType.Move)
+//                {
+//                    calculatedPokemonPriority = commandMove[i].getPriority();
+//                }
+//                else if (command[i] == CommandType.Switch)
+//                {
+//                    //6 priority for regular swapping out.
+//                    calculatedPokemonPriority = 6;
+//                }
+//
+//                //if the top speed is greater than the old, AND the priority is no lower than       OR   the priority is greater than the old
+//                if ((calculatedPokemonSpeed >= topSpeed && calculatedPokemonPriority >= topPriority) ||
+//                    calculatedPokemonPriority > topPriority)
+//                {
+//                    if (calculatedPokemonSpeed == topSpeed && calculatedPokemonPriority == topPriority)
+//                    {
+//                        //if the speed/priority is exactly equal to the current highest, then to randomize the order
+//                        //in which speed is chosen (to break a speed tie), update the topSpeed position ONLY when a
+//                        //random float value (0f-1f) is greater than 0.5f.
+//                        if (Random.value > 0.5f)
+//                        {
+//                            topSpeedPosition = i;
+//                        }
+//                    }
+//                    else
+//                    {
+//                        topSpeed = Mathf.FloorToInt(calculatedPokemonSpeed);
+//                        topPriority = Mathf.FloorToInt(calculatedPokemonPriority);
+//                        topSpeedPosition = i;
+//                    }
+//                }
+//            }
+//        }
+//        return topSpeedPosition;
+//    }
+
+//    /// Switch Pokemon (not yet implemented fully)
+//    private bool switchPokemon(int switchPosition, Pokemon newPokemon)
+//    {
+//        return switchPokemon(switchPosition, newPokemon, false, false);
+//    }
+//
+//    /// Switch Pokemon
+//    private bool switchPokemon(int switchPosition, Pokemon newPokemon, bool batonPass)
+//    {
+//        return switchPokemon(switchPosition, newPokemon, batonPass, false);
+//    }
+//
+//    /// Switch Pokemon
+//    private bool switchPokemon(int switchPosition, Pokemon newPokemon, bool batonPass, bool forceSwitch)
+//    {
+//        if (newPokemon == null)
+//        {
+//            return false;
+//        }
+//        if (newPokemon.getStatus() == Pokemon.Status.FAINTED)
+//        {
+//            return false;
+//        }
+//        // Return false if any condition is preventing the pokemon from switching out
+//        if (!forceSwitch)
+//        {
+//            //no condition can stop a fainted pokemon from switching out
+//            if (pokemon[switchPosition] != null)
+//            {
+//                if (pokemon[switchPosition].getStatus() != Pokemon.Status.FAINTED)
+//                {
+//                }
+//            }
+//        }
+//
+//        pokemon[switchPosition] = newPokemon;
+//        pokemonMoveset[switchPosition] = newPokemon.getMoveset();
+//
+//
+//        //set PokemonData
+//        updatePokemonStats(switchPosition);
+//        pokemonAbility[switchPosition] =
+//            PokemonDatabase.getPokemon(newPokemon.getID()).getAbility(newPokemon.getAbility());
+//        pokemonType1[switchPosition] = PokemonDatabase.getPokemon(newPokemon.getID()).getType1();
+//        pokemonType2[switchPosition] = PokemonDatabase.getPokemon(newPokemon.getID()).getType2();
+//        pokemonType3[switchPosition] = PokemonData.Type.NONE;
+//
+//        //reset Pokemon Effects
+//        confused[switchPosition] = false;
+//        infatuatedBy[switchPosition] = -1;
+//        flinched[switchPosition] = false;
+//        statusEffectTurns[switchPosition] = 0;
+//        lockedTurns[switchPosition] = 0;
+//        partTrappedTurns[switchPosition] = 0;
+//        trapped[switchPosition] = false;
+//        charging[switchPosition] = false;
+//        recharging[switchPosition] = false;
+//        protect[switchPosition] = false;
+//        //specific moves
+//        seededBy[switchPosition] = -1;
+//        destinyBond[switchPosition] = false;
+//        minimized[switchPosition] = false;
+//        defenseCurled[switchPosition] = false;
+//        if (!batonPass)
+//        {
+//            pokemonStatsMod[0][switchPosition] = 0;
+//            pokemonStatsMod[1][switchPosition] = 0;
+//            pokemonStatsMod[2][switchPosition] = 0;
+//            pokemonStatsMod[3][switchPosition] = 0;
+//            pokemonStatsMod[4][switchPosition] = 0;
+//            pokemonStatsMod[5][switchPosition] = 0;
+//            pokemonStatsMod[6][switchPosition] = 0;
+//
+//            //Pokemon Effects
+//            focusEnergy[switchPosition] = false;
+//        }
+//        else
+//        {
+//        }
+//
+//
+//        return true;
+//    }
 
 //    private IEnumerator addExp(int position, int exp)
 //    {
@@ -2894,418 +2894,418 @@ public class BattleHandler : MonoBehaviour
 //        }
 //    }
 
-    private IEnumerator LearnMove(Pokemon selectedPokemon, string move)
-    {
-        int chosenIndex = 1;
-        if (chosenIndex == 1)
-        {
-            bool learning = true;
-            while (learning)
-            {
-                //Moveset is full
-                if (selectedPokemon.getMoveCount() == 4)
-                {
-                    yield return
-                        StartCoroutine(
-                            drawTextAndWait(selectedPokemon.getName() + " wants to learn the \nmove " + move + "."));
-                    yield return
-                        StartCoroutine(
-                            drawTextAndWait("However, " + selectedPokemon.getName() + " already \nknows four moves."));
-                    yield return
-                        StartCoroutine(drawTextAndWait("Should a move be deleted and \nreplaced with " + move + "?",
-                            0.1f));
-
-                    yield return StartCoroutine(Dialog.DrawChoiceBox());
-                    chosenIndex = Dialog.chosenIndex;
-                    Dialog.UndrawChoiceBox();
-                    if (chosenIndex == 1)
-                    {
-                        yield return StartCoroutine(drawTextAndWait("Which move should \nbe forgotten?"));
-
-                        yield return StartCoroutine(ScreenFade.main.Fade(false, ScreenFade.defaultSpeed));
-
-                        //Set SceneSummary to be active so that it appears
-                        Scene.main.Summary.gameObject.SetActive(true);
-                        StartCoroutine(Scene.main.Summary.control(selectedPokemon, move));
-                        //Start an empty loop that will only stop when SceneSummary is no longer active (is closed)
-                        while (Scene.main.Summary.gameObject.activeSelf)
-                        {
-                            yield return null;
-                        }
-
-                        string replacedMove = Scene.main.Summary.replacedMove;
-                        yield return StartCoroutine(ScreenFade.main.Fade(true, ScreenFade.defaultSpeed));
-
-                        if (!string.IsNullOrEmpty(replacedMove))
-                        {
-                            Dialog.DrawDialogBox();
-                            yield return StartCoroutine(Dialog.DrawTextSilent("1, "));
-                            yield return new WaitForSeconds(0.4f);
-                            yield return StartCoroutine(Dialog.DrawTextSilent("2, "));
-                            yield return new WaitForSeconds(0.4f);
-                            yield return StartCoroutine(Dialog.DrawTextSilent("and... "));
-                            yield return new WaitForSeconds(0.4f);
-                            yield return StartCoroutine(Dialog.DrawTextSilent("... "));
-                            yield return new WaitForSeconds(0.4f);
-                            yield return StartCoroutine(Dialog.DrawTextSilent("... "));
-                            yield return new WaitForSeconds(0.4f);
-                            SfxHandler.Play(pokeballBounceClip);
-                            yield return StartCoroutine(Dialog.DrawTextSilent("Poof!"));
-                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                            {
-                                yield return null;
-                            }
-
-                            yield return
-                                StartCoroutine(
-                                    drawTextAndWait(selectedPokemon.getName() + " forgot how to \nuse " + replacedMove +
-                                                    "."));
-                            yield return StartCoroutine(drawTextAndWait("And..."));
-
-                            Dialog.DrawDialogBox();
-                            AudioClip mfx = Resources.Load<AudioClip>("Audio/mfx/GetAverage");
-                            BgmHandler.main.PlayMFX(mfx);
-                            StartCoroutine(Dialog.DrawTextSilent(selectedPokemon.getName() + " learned \n" + move + "!"));
-                            yield return new WaitForSeconds(mfx.length);
-                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                            {
-                                yield return null;
-                            }
-                            Dialog.UndrawDialogBox();
-                            learning = false;
-                        }
-                        else
-                        {
-                            //give up?
-                            chosenIndex = 0;
-                        }
-                    }
-                    if (chosenIndex == 0)
-                    {
-                        //NOT ELSE because this may need to run after (chosenIndex == 1) runs
-                        yield return
-                            StartCoroutine(drawTextAndWait("Give up on learning the move \n" + move + "?", 0.1f));
-
-                        yield return StartCoroutine(Dialog.DrawChoiceBox());
-                        chosenIndex = Dialog.chosenIndex;
-                        Dialog.UndrawChoiceBox();
-                        if (chosenIndex == 1)
-                        {
-                            learning = false;
-                            chosenIndex = 0;
-                        }
-                    }
-                }
-                //Moveset is not full, can fit the new move easily
-                else
-                {
-                    selectedPokemon.addMove(move);
-
-                    Dialog.DrawDialogBox();
-                    AudioClip mfx = Resources.Load<AudioClip>("Audio/mfx/GetAverage");
-                    BgmHandler.main.PlayMFX(mfx);
-                    StartCoroutine(Dialog.DrawTextSilent(selectedPokemon.getName() + " learned \n" + move + "!"));
-                    yield return new WaitForSeconds(mfx.length);
-                    while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                    {
-                        yield return null;
-                    }
-                    Dialog.UndrawDialogBox();
-                    learning = false;
-                }
-            }
-        }
-        if (chosenIndex == 0)
-        {
-            //NOT ELSE because this may need to run after (chosenIndex == 1) runs
-            //cancel learning loop
-            yield return StartCoroutine(drawTextAndWait(selectedPokemon.getName() + " did not learn \n" + move + "."));
-        }
-    }
-
-
-    private void updatePokemonStats(int position)
-    {
-        //set PokemonData
-        pokemonStats[0][position] = pokemon[position].getATK();
-        pokemonStats[1][position] = pokemon[position].getDEF();
-        pokemonStats[2][position] = pokemon[position].getSPA();
-        pokemonStats[3][position] = pokemon[position].getSPD();
-        pokemonStats[4][position] = pokemon[position].getSPE();
-    }
-
-
-    /// Apply the Move Effect to the target pokemon if possible (with animation)
-    private IEnumerator applyEffect(int attackerPosition, int targetPosition, MoveData.Effect effect, float parameter)
-    {
-        yield return StartCoroutine(applyEffect(attackerPosition, targetPosition, effect, parameter, true));
-    }
-
-    /// Apply the Move Effect to the target pokemon if possible
-    private IEnumerator applyEffect(int attackerPosition, int targetPosition, MoveData.Effect effect, float parameter,
-        bool animate)
-    {
-        //most effects won't happen if a target has fainted.
-        if (pokemon[targetPosition] != null)
-        {
-            if (pokemon[targetPosition].getStatus() != Pokemon.Status.FAINTED)
-            {
-                if (effect == MoveData.Effect.ATK)
-                {
-                    yield return StartCoroutine(ModifyStat(targetPosition, 0, parameter, animate));
-                }
-                else if (effect == MoveData.Effect.DEF)
-                {
-                    yield return StartCoroutine(ModifyStat(targetPosition, 1, parameter, animate));
-                }
-                else if (effect == MoveData.Effect.SPA)
-                {
-                    yield return StartCoroutine(ModifyStat(targetPosition, 2, parameter, animate));
-                }
-                else if (effect == MoveData.Effect.SPD)
-                {
-                    yield return StartCoroutine(ModifyStat(targetPosition, 3, parameter, animate));
-                }
-                else if (effect == MoveData.Effect.SPE)
-                {
-                    yield return StartCoroutine(ModifyStat(targetPosition, 4, parameter, animate));
-                }
-                else if (effect == MoveData.Effect.ACC)
-                {
-                    yield return StartCoroutine(ModifyStat(targetPosition, 5, parameter, animate));
-                }
-                else if (effect == MoveData.Effect.EVA)
-                {
-                    yield return StartCoroutine(ModifyStat(targetPosition, 6, parameter, animate));
-                }
-                else if (effect == MoveData.Effect.Burn)
-                {
-                    if (Random.value <= parameter)
-                    {
-                        if (pokemon[targetPosition].setStatus(Pokemon.Status.BURNED))
-                        {
-                            yield return
-                                StartCoroutine(
-                                    drawTextAndWait(
-                                        generatePreString(targetPosition) + pokemon[targetPosition].getName() +
-                                        " was burned!", 2.4f));
-                        }
-                    }
-                }
-                else if (effect == MoveData.Effect.Freeze)
-                {
-                    if (Random.value <= parameter)
-                    {
-                        if (pokemon[targetPosition].setStatus(Pokemon.Status.FROZEN))
-                        {
-                            yield return
-                                StartCoroutine(
-                                    drawTextAndWait(
-                                        generatePreString(targetPosition) + pokemon[targetPosition].getName() +
-                                        " was frozen solid!", 2.4f));
-                        }
-                    }
-                }
-                else if (effect == MoveData.Effect.Paralyze)
-                {
-                    if (Random.value <= parameter)
-                    {
-                        if (pokemon[targetPosition].setStatus(Pokemon.Status.PARALYZED))
-                        {
-                            yield return
-                                StartCoroutine(
-                                    drawTextAndWait(
-                                        generatePreString(targetPosition) + pokemon[targetPosition].getName() +
-                                        " was paralyzed! \\nIt may be unable to move!", 2.4f));
-                        }
-                    }
-                }
-                else if (effect == MoveData.Effect.Poison)
-                {
-                    if (Random.value <= parameter)
-                    {
-                        if (pokemon[targetPosition].setStatus(Pokemon.Status.POISONED))
-                        {
-                            yield return
-                                StartCoroutine(
-                                    drawTextAndWait(
-                                        generatePreString(targetPosition) + pokemon[targetPosition].getName() +
-                                        " was poisoned!", 2.4f));
-                        }
-                    }
-                }
-                else if (effect == MoveData.Effect.Toxic)
-                {
-                    if (Random.value <= parameter)
-                    {
-                        if (pokemon[targetPosition].setStatus(Pokemon.Status.POISONED))
-                        {
-                            yield return
-                                StartCoroutine(
-                                    drawTextAndWait(
-                                        generatePreString(targetPosition) + pokemon[targetPosition].getName() +
-                                        " was badly posioned!", 2.4f));
-                        }
-                    }
-                }
-                else if (effect == MoveData.Effect.Sleep)
-                {
-                    if (Random.value <= parameter)
-                    {
-                        if (pokemon[targetPosition].setStatus(Pokemon.Status.ASLEEP))
-                        {
-                            yield return
-                                StartCoroutine(
-                                    drawTextAndWait(
-                                        generatePreString(targetPosition) + pokemon[targetPosition].getName() +
-                                        " fell asleep!", 2.4f));
-                        }
-                    }
-                }
-            }
-        }
-        //effects that happen regardless of target fainting or not
-        if (effect == MoveData.Effect.ATKself)
-        {
-            yield return StartCoroutine(ModifyStat(attackerPosition, 0, parameter, animate));
-        }
-        else if (effect == MoveData.Effect.DEFself)
-        {
-            yield return StartCoroutine(ModifyStat(attackerPosition, 1, parameter, animate));
-        }
-        else if (effect == MoveData.Effect.SPAself)
-        {
-            yield return StartCoroutine(ModifyStat(attackerPosition, 2, parameter, animate));
-        }
-        else if (effect == MoveData.Effect.SPDself)
-        {
-            yield return StartCoroutine(ModifyStat(attackerPosition, 3, parameter, animate));
-        }
-        else if (effect == MoveData.Effect.SPEself)
-        {
-            yield return StartCoroutine(ModifyStat(attackerPosition, 4, parameter, animate));
-        }
-        else if (effect == MoveData.Effect.ACCself)
-        {
-            yield return StartCoroutine(ModifyStat(attackerPosition, 5, parameter, animate));
-        }
-        else if (effect == MoveData.Effect.EVAself)
-        {
-            yield return StartCoroutine(ModifyStat(attackerPosition, 6, parameter, animate));
-        }
-    }
-
-    private IEnumerator ModifyStat(int targetPosition, int statIndex, float param, bool animate)
-    {
-        int parameter = Mathf.FloorToInt(param);
-
-        string[] statName = new string[]
-        {
-            "Attack", "Defense", "Special Attack", "Special Defense", "Speed", "Accuracy", "Evasion"
-        };
-
-        bool canModify = true;
-        if (pokemonStatsMod[statIndex][targetPosition] >= 6 && parameter > 0)
-        {
-            //can't go higher
-            yield return
-                StartCoroutine(
-                    drawTextAndWait(
-                        generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
-                        statName[statIndex] + " \\nwon't go any higher!", 2.4f));
-            canModify = false;
-        }
-        else if (pokemonStatsMod[statIndex][targetPosition] <= -6 && parameter < 0)
-        {
-            //can't go lower
-            yield return
-                StartCoroutine(
-                    drawTextAndWait(
-                        generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
-                        statName[statIndex] + " won't go any lower!", 2.4f));
-            canModify = false;
-        }
-
-        if (canModify)
-        {
-            pokemonStatsMod[statIndex][targetPosition] += parameter;
-            if (pokemonStatsMod[statIndex][targetPosition] > 6)
-            {
-                pokemonStatsMod[statIndex][targetPosition] = 6;
-            }
-            else if (pokemonStatsMod[statIndex][targetPosition] < -6)
-            {
-                pokemonStatsMod[statIndex][targetPosition] = -6;
-            }
-
-            if (animate)
-            {
-                //multiple pokemon not yet implemented
-                RawImage overlay = (targetPosition < 3) ? player1Overlay : opponent1Overlay;
-                if (parameter > 0)
-                {
-                    SfxHandler.Play(statUpClip);
-                    StartCoroutine(animateOverlayer(overlay, overlayStatUpTex, -1, 0, 1.2f, 0.3f));
-                }
-                else if (parameter < 0)
-                {
-                    SfxHandler.Play(statDownClip);
-                    StartCoroutine(animateOverlayer(overlay, overlayStatDownTex, 1, 0, 1.2f, 0.3f));
-                }
-
-                yield return new WaitForSeconds(statUpClip.length + 0.2f);
-            }
-
-            if (parameter == 1)
-            {
-                yield return
-                    StartCoroutine(
-                        drawTextAndWait(
-                            generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
-                            statName[statIndex] + " \\nrose!", 2.4f));
-            }
-            else if (parameter == -1)
-            {
-                yield return
-                    StartCoroutine(
-                        drawTextAndWait(
-                            generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
-                            statName[statIndex] + " \\nfell!", 2.4f));
-            }
-            else if (parameter == 2)
-            {
-                yield return
-                    StartCoroutine(
-                        drawTextAndWait(
-                            generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
-                            statName[statIndex] + " \\nrose sharply!", 2.4f));
-            }
-            else if (parameter == -2)
-            {
-                yield return
-                    StartCoroutine(
-                        drawTextAndWait(
-                            generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
-                            statName[statIndex] + " \\nharshly fell!", 2.4f));
-            }
-            else if (parameter >= 3)
-            {
-                yield return
-                    StartCoroutine(
-                        drawTextAndWait(
-                            generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
-                            statName[statIndex] + " nrose drastically!", 2.4f));
-            }
-            else if (parameter <= -3)
-            {
-                yield return
-                    StartCoroutine(
-                        drawTextAndWait(
-                            generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
-                            statName[statIndex] + " \\nseverely fell!", 2.4f));
-            }
-        }
-    }
+//    private IEnumerator LearnMove(Pokemon selectedPokemon, string move)
+//    {
+//        int chosenIndex = 1;
+//        if (chosenIndex == 1)
+//        {
+//            bool learning = true;
+//            while (learning)
+//            {
+//                //Moveset is full
+//                if (selectedPokemon.getMoveCount() == 4)
+//                {
+//                    yield return
+//                        StartCoroutine(
+//                            drawTextAndWait(selectedPokemon.getName() + " wants to learn the \nmove " + move + "."));
+//                    yield return
+//                        StartCoroutine(
+//                            drawTextAndWait("However, " + selectedPokemon.getName() + " already \nknows four moves."));
+//                    yield return
+//                        StartCoroutine(drawTextAndWait("Should a move be deleted and \nreplaced with " + move + "?",
+//                            0.1f));
+//
+//                    yield return StartCoroutine(Dialog.DrawChoiceBox());
+//                    chosenIndex = Dialog.chosenIndex;
+//                    Dialog.UndrawChoiceBox();
+//                    if (chosenIndex == 1)
+//                    {
+//                        yield return StartCoroutine(drawTextAndWait("Which move should \nbe forgotten?"));
+//
+//                        yield return StartCoroutine(ScreenFade.main.Fade(false, ScreenFade.defaultSpeed));
+//
+//                        //Set SceneSummary to be active so that it appears
+//                        Scene.main.Summary.gameObject.SetActive(true);
+//                        StartCoroutine(Scene.main.Summary.control(selectedPokemon, move));
+//                        //Start an empty loop that will only stop when SceneSummary is no longer active (is closed)
+//                        while (Scene.main.Summary.gameObject.activeSelf)
+//                        {
+//                            yield return null;
+//                        }
+//
+//                        string replacedMove = Scene.main.Summary.replacedMove;
+//                        yield return StartCoroutine(ScreenFade.main.Fade(true, ScreenFade.defaultSpeed));
+//
+//                        if (!string.IsNullOrEmpty(replacedMove))
+//                        {
+//                            Dialog.DrawDialogBox();
+//                            yield return StartCoroutine(Dialog.DrawTextSilent("1, "));
+//                            yield return new WaitForSeconds(0.4f);
+//                            yield return StartCoroutine(Dialog.DrawTextSilent("2, "));
+//                            yield return new WaitForSeconds(0.4f);
+//                            yield return StartCoroutine(Dialog.DrawTextSilent("and... "));
+//                            yield return new WaitForSeconds(0.4f);
+//                            yield return StartCoroutine(Dialog.DrawTextSilent("... "));
+//                            yield return new WaitForSeconds(0.4f);
+//                            yield return StartCoroutine(Dialog.DrawTextSilent("... "));
+//                            yield return new WaitForSeconds(0.4f);
+//                            SfxHandler.Play(pokeballBounceClip);
+//                            yield return StartCoroutine(Dialog.DrawTextSilent("Poof!"));
+//                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+//                            {
+//                                yield return null;
+//                            }
+//
+//                            yield return
+//                                StartCoroutine(
+//                                    drawTextAndWait(selectedPokemon.getName() + " forgot how to \nuse " + replacedMove +
+//                                                    "."));
+//                            yield return StartCoroutine(drawTextAndWait("And..."));
+//
+//                            Dialog.DrawDialogBox();
+//                            AudioClip mfx = Resources.Load<AudioClip>("Audio/mfx/GetAverage");
+//                            BgmHandler.main.PlayMFX(mfx);
+//                            StartCoroutine(Dialog.DrawTextSilent(selectedPokemon.getName() + " learned \n" + move + "!"));
+//                            yield return new WaitForSeconds(mfx.length);
+//                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+//                            {
+//                                yield return null;
+//                            }
+//                            Dialog.UndrawDialogBox();
+//                            learning = false;
+//                        }
+//                        else
+//                        {
+//                            //give up?
+//                            chosenIndex = 0;
+//                        }
+//                    }
+//                    if (chosenIndex == 0)
+//                    {
+//                        //NOT ELSE because this may need to run after (chosenIndex == 1) runs
+//                        yield return
+//                            StartCoroutine(drawTextAndWait("Give up on learning the move \n" + move + "?", 0.1f));
+//
+//                        yield return StartCoroutine(Dialog.DrawChoiceBox());
+//                        chosenIndex = Dialog.chosenIndex;
+//                        Dialog.UndrawChoiceBox();
+//                        if (chosenIndex == 1)
+//                        {
+//                            learning = false;
+//                            chosenIndex = 0;
+//                        }
+//                    }
+//                }
+//                //Moveset is not full, can fit the new move easily
+//                else
+//                {
+//                    selectedPokemon.addMove(move);
+//
+//                    Dialog.DrawDialogBox();
+//                    AudioClip mfx = Resources.Load<AudioClip>("Audio/mfx/GetAverage");
+//                    BgmHandler.main.PlayMFX(mfx);
+//                    StartCoroutine(Dialog.DrawTextSilent(selectedPokemon.getName() + " learned \n" + move + "!"));
+//                    yield return new WaitForSeconds(mfx.length);
+//                    while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+//                    {
+//                        yield return null;
+//                    }
+//                    Dialog.UndrawDialogBox();
+//                    learning = false;
+//                }
+//            }
+//        }
+//        if (chosenIndex == 0)
+//        {
+//            //NOT ELSE because this may need to run after (chosenIndex == 1) runs
+//            //cancel learning loop
+//            yield return StartCoroutine(drawTextAndWait(selectedPokemon.getName() + " did not learn \n" + move + "."));
+//        }
+//    }
+//
+//
+//    private void updatePokemonStats(int position)
+//    {
+//        //set PokemonData
+//        pokemonStats[0][position] = pokemon[position].getATK();
+//        pokemonStats[1][position] = pokemon[position].getDEF();
+//        pokemonStats[2][position] = pokemon[position].getSPA();
+//        pokemonStats[3][position] = pokemon[position].getSPD();
+//        pokemonStats[4][position] = pokemon[position].getSPE();
+//    }
+//
+//
+//    /// Apply the Move Effect to the target pokemon if possible (with animation)
+//    private IEnumerator applyEffect(int attackerPosition, int targetPosition, MoveData.Effect effect, float parameter)
+//    {
+//        yield return StartCoroutine(applyEffect(attackerPosition, targetPosition, effect, parameter, true));
+//    }
+//
+//    /// Apply the Move Effect to the target pokemon if possible
+//    private IEnumerator applyEffect(int attackerPosition, int targetPosition, MoveData.Effect effect, float parameter,
+//        bool animate)
+//    {
+//        //most effects won't happen if a target has fainted.
+//        if (pokemon[targetPosition] != null)
+//        {
+//            if (pokemon[targetPosition].getStatus() != Pokemon.Status.FAINTED)
+//            {
+//                if (effect == MoveData.Effect.ATK)
+//                {
+//                    yield return StartCoroutine(ModifyStat(targetPosition, 0, parameter, animate));
+//                }
+//                else if (effect == MoveData.Effect.DEF)
+//                {
+//                    yield return StartCoroutine(ModifyStat(targetPosition, 1, parameter, animate));
+//                }
+//                else if (effect == MoveData.Effect.SPA)
+//                {
+//                    yield return StartCoroutine(ModifyStat(targetPosition, 2, parameter, animate));
+//                }
+//                else if (effect == MoveData.Effect.SPD)
+//                {
+//                    yield return StartCoroutine(ModifyStat(targetPosition, 3, parameter, animate));
+//                }
+//                else if (effect == MoveData.Effect.SPE)
+//                {
+//                    yield return StartCoroutine(ModifyStat(targetPosition, 4, parameter, animate));
+//                }
+//                else if (effect == MoveData.Effect.ACC)
+//                {
+//                    yield return StartCoroutine(ModifyStat(targetPosition, 5, parameter, animate));
+//                }
+//                else if (effect == MoveData.Effect.EVA)
+//                {
+//                    yield return StartCoroutine(ModifyStat(targetPosition, 6, parameter, animate));
+//                }
+//                else if (effect == MoveData.Effect.Burn)
+//                {
+//                    if (Random.value <= parameter)
+//                    {
+//                        if (pokemon[targetPosition].setStatus(Pokemon.Status.BURNED))
+//                        {
+//                            yield return
+//                                StartCoroutine(
+//                                    drawTextAndWait(
+//                                        generatePreString(targetPosition) + pokemon[targetPosition].getName() +
+//                                        " was burned!", 2.4f));
+//                        }
+//                    }
+//                }
+//                else if (effect == MoveData.Effect.Freeze)
+//                {
+//                    if (Random.value <= parameter)
+//                    {
+//                        if (pokemon[targetPosition].setStatus(Pokemon.Status.FROZEN))
+//                        {
+//                            yield return
+//                                StartCoroutine(
+//                                    drawTextAndWait(
+//                                        generatePreString(targetPosition) + pokemon[targetPosition].getName() +
+//                                        " was frozen solid!", 2.4f));
+//                        }
+//                    }
+//                }
+//                else if (effect == MoveData.Effect.Paralyze)
+//                {
+//                    if (Random.value <= parameter)
+//                    {
+//                        if (pokemon[targetPosition].setStatus(Pokemon.Status.PARALYZED))
+//                        {
+//                            yield return
+//                                StartCoroutine(
+//                                    drawTextAndWait(
+//                                        generatePreString(targetPosition) + pokemon[targetPosition].getName() +
+//                                        " was paralyzed! \\nIt may be unable to move!", 2.4f));
+//                        }
+//                    }
+//                }
+//                else if (effect == MoveData.Effect.Poison)
+//                {
+//                    if (Random.value <= parameter)
+//                    {
+//                        if (pokemon[targetPosition].setStatus(Pokemon.Status.POISONED))
+//                        {
+//                            yield return
+//                                StartCoroutine(
+//                                    drawTextAndWait(
+//                                        generatePreString(targetPosition) + pokemon[targetPosition].getName() +
+//                                        " was poisoned!", 2.4f));
+//                        }
+//                    }
+//                }
+//                else if (effect == MoveData.Effect.Toxic)
+//                {
+//                    if (Random.value <= parameter)
+//                    {
+//                        if (pokemon[targetPosition].setStatus(Pokemon.Status.POISONED))
+//                        {
+//                            yield return
+//                                StartCoroutine(
+//                                    drawTextAndWait(
+//                                        generatePreString(targetPosition) + pokemon[targetPosition].getName() +
+//                                        " was badly posioned!", 2.4f));
+//                        }
+//                    }
+//                }
+//                else if (effect == MoveData.Effect.Sleep)
+//                {
+//                    if (Random.value <= parameter)
+//                    {
+//                        if (pokemon[targetPosition].setStatus(Pokemon.Status.ASLEEP))
+//                        {
+//                            yield return
+//                                StartCoroutine(
+//                                    drawTextAndWait(
+//                                        generatePreString(targetPosition) + pokemon[targetPosition].getName() +
+//                                        " fell asleep!", 2.4f));
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        //effects that happen regardless of target fainting or not
+//        if (effect == MoveData.Effect.ATKself)
+//        {
+//            yield return StartCoroutine(ModifyStat(attackerPosition, 0, parameter, animate));
+//        }
+//        else if (effect == MoveData.Effect.DEFself)
+//        {
+//            yield return StartCoroutine(ModifyStat(attackerPosition, 1, parameter, animate));
+//        }
+//        else if (effect == MoveData.Effect.SPAself)
+//        {
+//            yield return StartCoroutine(ModifyStat(attackerPosition, 2, parameter, animate));
+//        }
+//        else if (effect == MoveData.Effect.SPDself)
+//        {
+//            yield return StartCoroutine(ModifyStat(attackerPosition, 3, parameter, animate));
+//        }
+//        else if (effect == MoveData.Effect.SPEself)
+//        {
+//            yield return StartCoroutine(ModifyStat(attackerPosition, 4, parameter, animate));
+//        }
+//        else if (effect == MoveData.Effect.ACCself)
+//        {
+//            yield return StartCoroutine(ModifyStat(attackerPosition, 5, parameter, animate));
+//        }
+//        else if (effect == MoveData.Effect.EVAself)
+//        {
+//            yield return StartCoroutine(ModifyStat(attackerPosition, 6, parameter, animate));
+//        }
+//    }
+//
+//    private IEnumerator ModifyStat(int targetPosition, int statIndex, float param, bool animate)
+//    {
+//        int parameter = Mathf.FloorToInt(param);
+//
+//        string[] statName = new string[]
+//        {
+//            "Attack", "Defense", "Special Attack", "Special Defense", "Speed", "Accuracy", "Evasion"
+//        };
+//
+//        bool canModify = true;
+//        if (pokemonStatsMod[statIndex][targetPosition] >= 6 && parameter > 0)
+//        {
+//            //can't go higher
+//            yield return
+//                StartCoroutine(
+//                    drawTextAndWait(
+//                        generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
+//                        statName[statIndex] + " \\nwon't go any higher!", 2.4f));
+//            canModify = false;
+//        }
+//        else if (pokemonStatsMod[statIndex][targetPosition] <= -6 && parameter < 0)
+//        {
+//            //can't go lower
+//            yield return
+//                StartCoroutine(
+//                    drawTextAndWait(
+//                        generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
+//                        statName[statIndex] + " won't go any lower!", 2.4f));
+//            canModify = false;
+//        }
+//
+//        if (canModify)
+//        {
+//            pokemonStatsMod[statIndex][targetPosition] += parameter;
+//            if (pokemonStatsMod[statIndex][targetPosition] > 6)
+//            {
+//                pokemonStatsMod[statIndex][targetPosition] = 6;
+//            }
+//            else if (pokemonStatsMod[statIndex][targetPosition] < -6)
+//            {
+//                pokemonStatsMod[statIndex][targetPosition] = -6;
+//            }
+//
+//            if (animate)
+//            {
+//                //multiple pokemon not yet implemented
+//                RawImage overlay = (targetPosition < 3) ? player1Overlay : opponent1Overlay;
+//                if (parameter > 0)
+//                {
+//                    SfxHandler.Play(statUpClip);
+//                    StartCoroutine(animateOverlayer(overlay, overlayStatUpTex, -1, 0, 1.2f, 0.3f));
+//                }
+//                else if (parameter < 0)
+//                {
+//                    SfxHandler.Play(statDownClip);
+//                    StartCoroutine(animateOverlayer(overlay, overlayStatDownTex, 1, 0, 1.2f, 0.3f));
+//                }
+//
+//                yield return new WaitForSeconds(statUpClip.length + 0.2f);
+//            }
+//
+//            if (parameter == 1)
+//            {
+//                yield return
+//                    StartCoroutine(
+//                        drawTextAndWait(
+//                            generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
+//                            statName[statIndex] + " \\nrose!", 2.4f));
+//            }
+//            else if (parameter == -1)
+//            {
+//                yield return
+//                    StartCoroutine(
+//                        drawTextAndWait(
+//                            generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
+//                            statName[statIndex] + " \\nfell!", 2.4f));
+//            }
+//            else if (parameter == 2)
+//            {
+//                yield return
+//                    StartCoroutine(
+//                        drawTextAndWait(
+//                            generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
+//                            statName[statIndex] + " \\nrose sharply!", 2.4f));
+//            }
+//            else if (parameter == -2)
+//            {
+//                yield return
+//                    StartCoroutine(
+//                        drawTextAndWait(
+//                            generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
+//                            statName[statIndex] + " \\nharshly fell!", 2.4f));
+//            }
+//            else if (parameter >= 3)
+//            {
+//                yield return
+//                    StartCoroutine(
+//                        drawTextAndWait(
+//                            generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
+//                            statName[statIndex] + " nrose drastically!", 2.4f));
+//            }
+//            else if (parameter <= -3)
+//            {
+//                yield return
+//                    StartCoroutine(
+//                        drawTextAndWait(
+//                            generatePreString(targetPosition) + pokemon[targetPosition].getName() + "'s " +
+//                            statName[statIndex] + " \\nseverely fell!", 2.4f));
+//            }
+//        }
+//    }
 
 
     //////////////////////////////////
@@ -3480,27 +3480,27 @@ public class BattleHandler : MonoBehaviour
         }
     }
 
-    private string generatePreString(int pokemonPosition)
-    {
-        string preString = "";
-        if (pokemonPosition > 2)
-        {
-            preString = (trainerBattle) ? "The foe's " : "The wild ";
-        }
-        return preString;
-    }
-
-
-    private float PlayCry(Pokemon pokemon)
-    {
-        SfxHandler.Play(pokemon.GetCry(), pokemon.GetCryPitch());
-        return pokemon.GetCry().length / pokemon.GetCryPitch();
-    }
-
-    private IEnumerator PlayCryAndWait(Pokemon pokemon)
-    {
-        yield return new WaitForSeconds(PlayCry(pokemon));
-    }
+//    private string generatePreString(int pokemonPosition)
+//    {
+//        string preString = "";
+//        if (pokemonPosition > 2)
+//        {
+//            preString = (trainerBattle) ? "The foe's " : "The wild ";
+//        }
+//        return preString;
+//    }
+//
+//
+//    private float PlayCry(Pokemon pokemon)
+//    {
+//        SfxHandler.Play(pokemon.GetCry(), pokemon.GetCryPitch());
+//        return pokemon.GetCry().length / pokemon.GetCryPitch();
+//    }
+//
+//    private IEnumerator PlayCryAndWait(Pokemon pokemon)
+//    {
+//        yield return new WaitForSeconds(PlayCry(pokemon));
+//    }
 
 
     /// Basic Wild Battle
@@ -3575,38 +3575,38 @@ public class BattleHandler : MonoBehaviour
         itemListPagePosition = 0;
         itemListPageCount = 0;
 
-        updateCurrentTask(-1);
-        updateSelectedTask(1);
-        updateSelectedMove(1);
+//        updateCurrentTask(-1);
+//        updateSelectedTask(1);
+//        updateSelectedMove(1);
 
 
         bool running = true;
         bool runState = true;
 
-        for (int i = 0; i < 6; i++)
-        {
-            if (SaveData.currentSave.PC.boxes[0][i] != null)
-            {
-                if (SaveData.currentSave.PC.boxes[0][i].getStatus() != Pokemon.Status.FAINTED)
-                {
-                    switchPokemon(0, SaveData.currentSave.PC.boxes[0][i], false, true);
-                    i = 6;
-                }
-            }
-        }
-        switchPokemon(3, opponentParty[0], false, true);
+//        for (int i = 0; i < 6; i++)
+//        {
+//            if (SaveData.currentSave.PC.boxes[0][i] != null)
+//            {
+//                if (SaveData.currentSave.PC.boxes[0][i].getStatus() != Pokemon.Status.FAINTED)
+//                {
+//                    switchPokemon(0, SaveData.currentSave.PC.boxes[0][i], false, true);
+//                    i = 6;
+//                }
+//            }
+//        }
+//        switchPokemon(3, opponentParty[0], false, true);
 
 
-        player1Animation = pokemon[0].GetBackAnim_();
-        opponent1Animation = pokemon[3].GetFrontAnim_();
+//        player1Animation = pokemon[0].GetBackAnim_();
+//        opponent1Animation = pokemon[3].GetFrontAnim_();
 
 //        updatePokemonStatsDisplay(0);
 //        updatePokemonStatsDisplay(3);
 
-        if (pokemon[0] != null)
-        {
-            updateMovesetDisplay(pokemonMoveset[0], pokemon[0].getPP(), pokemon[0].getMaxPP());
-        }
+//        if (pokemon[0] != null)
+//        {
+//            updateMovesetDisplay(pokemonMoveset[0], pokemon[0].getPP(), pokemon[0].getMaxPP());
+//        }
 
         //Animate the Pokemon being released into battle
         player1.transform.parent.parent.gameObject.SetActive(false);
@@ -3615,14 +3615,14 @@ public class BattleHandler : MonoBehaviour
         opponent1Overlay.gameObject.SetActive(false);
 
 
-        animateOpponent1 = StartCoroutine(animatePokemon(opponent1, opponent1Animation));
-        animatePlayer1 = StartCoroutine(animatePokemon(player1, player1Animation));
+//        animateOpponent1 = StartCoroutine(animatePokemon(opponent1, opponent1Animation));
+//        animatePlayer1 = StartCoroutine(animatePokemon(player1, player1Animation));
 
 //        pokemonStatsDisplay[0].gameObject.SetActive(false);
 //        pokemonStatsDisplay[3].gameObject.SetActive(false);
 
-        hidePartyBar(true);
-        hidePartyBar(false);
+//        hidePartyBar(true);
+//        hidePartyBar(false);
 
 //		Debug.Log(pokemon[0].getName()+": HP: "+pokemon[0].getHP()+"ATK: "+pokemon[0].getATK()+"DEF: "+pokemon[0].getDEF()+"SPA: "+pokemon[0].getSPA()+"SPD: "+pokemon[0].getSPD()+"SPE:"+pokemon[0].getSPE());
 //		Debug.Log(pokemon[3].getName()+": HP: "+pokemon[3].getHP()+"ATK: "+pokemon[3].getATK()+"DEF: "+pokemon[3].getDEF()+"SPA: "+pokemon[3].getSPA()+"SPD: "+pokemon[3].getSPD()+"SPE:"+pokemon[3].getSPE());
@@ -3664,33 +3664,33 @@ public class BattleHandler : MonoBehaviour
 //            yield return new WaitForSeconds(0.9f);
 //            Dialog.UndrawDialogBox();
         }
-        else
-        {
-//            player1.transform.parent.parent.gameObject.SetActive(false);
-//            opponent1.transform.parent.parent.gameObject.SetActive(false);
-//
-//            StartCoroutine(ScreenFade.main.Fade(true, ScreenFade.slowedSpeed));
-//            StartCoroutine(slidePokemon(opponentBase, opponent1, true, false, new Vector3(92, 0, 0)));
-//            yield return StartCoroutine(slidePokemon(playerBase, player1, false, true, new Vector3(-80, -64, 0)));
-//            Dialog.DrawDialogBox();
-//            StartCoroutine(Dialog.DrawTextSilent("A wild " + pokemon[3].getName() + " appeared!"));
-//            PlayCry(pokemon[3]);
-////            yield return StartCoroutine(slidePokemonStats(3, false));
-//            yield return new WaitForSeconds(1.2f);
-//
-//            Dialog.DrawDialogBox();
-//            StartCoroutine(Dialog.DrawTextSilent("Go " + pokemon[0].getName() + "!"));
-//            StartCoroutine(animatePlayerThrow(playerTrainerSprite1, playerTrainer1Animation, true));
-//            yield return new WaitForSeconds(0.2f);
-//            StartCoroutine(slideTrainer(playerBase, playerTrainerSprite1, false, true));
-//            yield return new WaitForSeconds(0.5f);
-//            yield return StartCoroutine(releasePokemon(player1));
-//            PlayCry(pokemon[0]);
-//            yield return new WaitForSeconds(0.3f);
-////            yield return StartCoroutine(slidePokemonStats(0, false));
-//            yield return new WaitForSeconds(0.9f);
-//            Dialog.UndrawDialogBox();
-        }
+//        else
+//        {
+////            player1.transform.parent.parent.gameObject.SetActive(false);
+////            opponent1.transform.parent.parent.gameObject.SetActive(false);
+////
+////            StartCoroutine(ScreenFade.main.Fade(true, ScreenFade.slowedSpeed));
+////            StartCoroutine(slidePokemon(opponentBase, opponent1, true, false, new Vector3(92, 0, 0)));
+////            yield return StartCoroutine(slidePokemon(playerBase, player1, false, true, new Vector3(-80, -64, 0)));
+////            Dialog.DrawDialogBox();
+////            StartCoroutine(Dialog.DrawTextSilent("A wild " + pokemon[3].getName() + " appeared!"));
+////            PlayCry(pokemon[3]);
+//////            yield return StartCoroutine(slidePokemonStats(3, false));
+////            yield return new WaitForSeconds(1.2f);
+////
+////            Dialog.DrawDialogBox();
+////            StartCoroutine(Dialog.DrawTextSilent("Go " + pokemon[0].getName() + "!"));
+////            StartCoroutine(animatePlayerThrow(playerTrainerSprite1, playerTrainer1Animation, true));
+////            yield return new WaitForSeconds(0.2f);
+////            StartCoroutine(slideTrainer(playerBase, playerTrainerSprite1, false, true));
+////            yield return new WaitForSeconds(0.5f);
+////            yield return StartCoroutine(releasePokemon(player1));
+////            PlayCry(pokemon[0]);
+////            yield return new WaitForSeconds(0.3f);
+//////            yield return StartCoroutine(slidePokemonStats(0, false));
+////            yield return new WaitForSeconds(0.9f);
+////            Dialog.UndrawDialogBox();
+//        }
         //
 
 

@@ -235,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 namez += PokemonDatabase.getPokemon(encounterList[i].ID).getName() + ", ";
             }
-            Debug.Log("Wild Pokemon for map \"" + accessedMapSettings.mapName + "\": " + namez);
+            Debug.Log("Map \"" + accessedMapSettings.mapName + "\": " + namez);
         }
         //
 
