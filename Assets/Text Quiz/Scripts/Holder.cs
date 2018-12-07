@@ -8,4 +8,5 @@ public class Holder : MonoBehaviour {
 	void Awake(){
 		DontDestroyOnLoad (transform.gameObject);
 	}
+
 }

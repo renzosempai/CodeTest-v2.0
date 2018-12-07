@@ -32,6 +32,7 @@ public class SettingsHandler : MonoBehaviour
         fullscreenShadow,
         fullscreenHighlight;
 
+
     private bool running;
     private int selectedOption;
 
@@ -106,6 +107,7 @@ public class SettingsHandler : MonoBehaviour
     {
         updateResolutions();
         gameObject.SetActive(false);
+
     }
 
     public void drawDialogBox()

@@ -21,7 +21,9 @@ public class SelectFemale : MonoBehaviour {
 	}
 	public void CharSelected(){
 		if (firstF == 1) {
-			SceneManager.LoadScene ("Level1Indoors");
+			SceneManager.LoadScene ("FemaleLevel2");
+			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis++;
+
 		} else if (secondF == 1) {
 			SceneManager.LoadScene ("Level1");
 		} else if (thirdF == 1) {
@@ -31,5 +33,7 @@ public class SelectFemale : MonoBehaviour {
 		} else if (fifthF == 1) {
 //			SceneManager.LoadScene (" ");
 		}
+
+//		GameObject.Find ("Player").GetComponent<PlayerMovement> ().spriteSheet = Resources.LoadAll<Sprite>("PlayerSprites/");
 	}
 }

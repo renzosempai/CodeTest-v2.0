@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 mountPosition;
 
     private string animationName;
-    private Sprite[] spriteSheet;
+    public Sprite[] spriteSheet;
     private Sprite[] mountSpriteSheet;
 
     private int frame;
@@ -447,7 +447,7 @@ public class PlayerMovement : MonoBehaviour
     public void updateDirection(int dir)
     {
         direction = dir;
-        pawnSprite.sprite = spriteSheet[direction * frames + frame];
+		pawnSprite.sprite = spriteSheet[direction * frames + frame];
         pawnReflectionSprite.sprite = pawnSprite.sprite;
         //pawnReflectionSprite.SetTextureOffset("_MainTex", GetUVSpriteMap(direction*frames+frame));
         if (mount.enabled)
@@ -464,7 +464,7 @@ public class PlayerMovement : MonoBehaviour
     private void updateMount(bool enabled, string spriteName)
     {
         mount.enabled = enabled;
-        mountSpriteSheet = Resources.LoadAll<Sprite>("PlayerSprites/" + spriteName);
+//        mountSpriteSheet = Resources.LoadAll<Sprite>("FemaleSprites/" + spriteName);
         mount.sprite = mountSpriteSheet[direction];
     }
 
@@ -514,7 +514,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     frame -= 1;
                 }
-                pawnSprite.sprite = spriteSheet[direction * frames + frame];
+				pawnSprite.sprite = spriteSheet[direction * frames + frame];
                 pawnReflectionSprite.sprite = pawnSprite.sprite;
                 //pawnReflectionSprite.SetTextureOffset("_MainTex", GetUVSpriteMap(direction*frames+frame));
                 yield return new WaitForSeconds(secPerFrame / 4f);
