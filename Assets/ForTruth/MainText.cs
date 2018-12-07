@@ -11,6 +11,9 @@ public class MainText : MonoBehaviour {
 
 	public List<string> TheAnswer;
 
+	public GameObject Disable1;
+	public GameObject Disable2;
+
 	public Transform resultObj;
 
 	public static string selectedAnswer;
@@ -45,6 +48,8 @@ public class MainText : MonoBehaviour {
 				resultObj.GetComponent<Text> ().text = "Correct, click Done to continue";
 
 				btn2.SetActive (true);
+				Disable1.SetActive (false);
+				Disable2.SetActive (false);
 			}
 			if (correctAnswer [randQuestion] != selectedAnswer) {
 

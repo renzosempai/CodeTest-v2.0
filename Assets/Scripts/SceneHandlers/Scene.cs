@@ -15,6 +15,7 @@ public class Scene : MonoBehaviour
     public SummaryHandler Summary;
     public TrainerHandler Trainer;
     public TypingHandler Typing;
+	public HelpMenu Help;
 
 
     void Awake()
@@ -34,5 +35,6 @@ public class Scene : MonoBehaviour
         Summary.gameObject.SetActive(true);
         Trainer.gameObject.SetActive(true);
         Typing.gameObject.SetActive(true);
+		Help.gameObject.SetActive (true);
     }
 }

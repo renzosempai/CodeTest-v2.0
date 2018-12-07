@@ -40,6 +40,8 @@ public class PauseHandler : MonoBehaviour
 
     private bool running;
 
+
+
     void Awake()
     {
         Dialog = GameObject.Find("GUI").GetComponent<DialogBoxHandler>();
@@ -201,6 +203,7 @@ public class PauseHandler : MonoBehaviour
         if (selectedIcon == 1)
         {
            targetIcon = iconTrainer;
+
           //  setSelectedText(SaveData.currentSave.playerName);
 			setSelectedText("Help");
 
@@ -411,12 +414,12 @@ public class PauseHandler : MonoBehaviour
                 }
                 else if (Input.GetButton("Select"))
                 {
-//                    if (selectedIcon == 1)
-//                    {
-//                        //Pokedex
-//                        Debug.Log("Pokédex not yet implemented");
+                    if (selectedIcon == 1)
+                    {
+                        //Pokedex
+
 //                        yield return new WaitForSeconds(0.2f);
-//                    }
+                    }
 //                    else if (selectedIcon == 2)
 //                    {
 //                        //Party
@@ -451,17 +454,18 @@ public class PauseHandler : MonoBehaviour
 //                    }
                     if (selectedIcon == 1)
                     {
+						
                         //TrainerCard
 //                        SfxHandler.Play(selectClip);
-//                        //StartCoroutine(fadeIcons(0.4f));
-//                        //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
-//                        yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
-//                        hideIcons();
-//
-//                        yield return StartCoroutine(runSceneUntilDeactivated(Scene.main.Trainer.gameObject));
-//
-//                        unhideIcons();
-//                        //StartCoroutine(unfadeIcons(0.4f));
+                        StartCoroutine(fadeIcons(0.4f));
+//                        yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
+                        yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+                        hideIcons();
+
+						yield return StartCoroutine(runSceneUntilDeactivated(Scene.main.Help.gameObject));
+
+                        unhideIcons();
+                        StartCoroutine(unfadeIcons(0.4f));
               
                         yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
 	
@@ -570,7 +574,7 @@ public class PauseHandler : MonoBehaviour
     private IEnumerator runSceneUntilDeactivated(GameObject sceneInterface)
     {
         sceneInterface.SetActive(true);
-        sceneInterface.SendMessage("control");
+//        sceneInterface.SendMessage("control");
         while (sceneInterface.activeSelf)
         {
             yield return null;
