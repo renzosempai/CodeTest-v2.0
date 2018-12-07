@@ -23,6 +23,8 @@ public class SelectFemale : MonoBehaviour {
 		if (firstF == 1) {
 			SceneManager.LoadScene ("FemaleLevel2");
 			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis++;
+			GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().playerTrainer1Animation =
+				Resources.LoadAll<Sprite> ("PlayerSprites/");
 
 		} else if (secondF == 1) {
 			SceneManager.LoadScene ("Level1");

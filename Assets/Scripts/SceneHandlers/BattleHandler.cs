@@ -294,8 +294,8 @@ public class BattleHandler : MonoBehaviour
     //DEBUG
     public bool canMegaEvolve = false;
 
-    private Sprite[] playerTrainer1Animation;
-    private Image playerTrainerSprite1;
+    public Sprite[] playerTrainer1Animation;
+    public Image playerTrainerSprite1;
     private Sprite[] trainer1Animation;
     private Image trainerSprite1;
 
@@ -3548,7 +3548,7 @@ public class BattleHandler : MonoBehaviour
         }
         playerTrainer1Animation =
             Resources.LoadAll<Sprite>("PlayerSprites/" + SaveData.currentSave.getPlayerSpritePrefix() + "back");
-        playerTrainerSprite1.sprite = playerTrainer1Animation[0];
+//		playerTrainer1Animation [0] = playerTrainerSprite1.sprite;
         //Note: the player animation should NEVER have no sprites 
         if (trainer1Animation.Length > 0)
         {
