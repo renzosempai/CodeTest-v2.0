@@ -5,15 +5,13 @@ using UnityEngine.UI;
 
 public class MultipleChoiceHolder : MonoBehaviour {
 
-	List<string> questions = new List<string>() {"1 + 1 = ?"};
-	List<string> correctAnswer = new List<string>() {"1"};
+	List<string> questions = new List<string>() {" "};
+	List<string> correctAnswer = new List<string>() {" "};
 
 
 //	public Text textquest;
-
-	public RectTransform resultsObj;
-
-
+	public List<string> ChosenAnswer;
+	public RectTransform resultsObj;																																																																										
 	public GameObject btn;
 
 //	public enum TheAnswer{
@@ -22,9 +20,12 @@ public class MultipleChoiceHolder : MonoBehaviour {
 //		Choice3,
 //		Choice4
 //	}
-//	public GameObject Disable;
+	public GameObject Disable1;
+	public GameObject Disable2;
+	public GameObject Disable3;
+	public GameObject Disable4;
 
-	public static string selectedAnswer;
+	public static string selectedAnswer;																																																																									
 
 	public static string choiceSelected="n";
 
@@ -34,9 +35,11 @@ public class MultipleChoiceHolder : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+								
 		DontDestroyOnLoad (resultsObj);
 		DontDestroyOnLoad (btn);
+
+		correctAnswer = ChosenAnswer;
 	}
 
 	// Update is called once per frame
@@ -46,7 +49,7 @@ public class MultipleChoiceHolder : MonoBehaviour {
 		}
 
 		if  (randQuestion > -1) {
-			GetComponent<Text> ().text = questions [randQuestion];
+//			GetComponent<Text> ().text = questions [randQuestion];
 		}
 			//Debug.Log (questions [randQuestion]);
 			if (choiceSelected == "y") {
@@ -56,6 +59,10 @@ public class MultipleChoiceHolder : MonoBehaviour {
 
 					resultsObj.GetComponent<Text> ().text = "Correct, click Done to continue";
 					btn.SetActive (true);
+				Disable1.SetActive (false);
+				Disable2.SetActive (false);
+				Disable3.SetActive (false);
+				Disable4.SetActive (false);
 
 				}
 			if (correctAnswer[randQuestion] != selectedAnswer) {

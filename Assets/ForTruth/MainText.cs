@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class MainText : MonoBehaviour {
 
 	List<string> questions = new List<string> () { " " };
-	List<string> correctAnswer = new List<string>() {"FalseButton"};
+	List<string> correctAnswer = new List<string>() {" "};
+	public GameObject CallTrueORFalse;
 
-
+	public List<string> TheAnswer;
 
 	public Transform resultObj;
 
@@ -23,7 +24,7 @@ public class MainText : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		correctAnswer = TheAnswer;
 	}
 
 	// Update is called once per frame
@@ -33,7 +34,7 @@ public class MainText : MonoBehaviour {
 		}
 
 		if  (randQuestion > -1) {
-			GetComponent<Text> ().text = questions [randQuestion];
+//			GetComponent<Text> ().text = questions [randQuestion];
 		}
 		//Debug.Log (questions [randQuestion]);
 		if (choiceSelected == "y") {
@@ -42,7 +43,6 @@ public class MainText : MonoBehaviour {
 			if (correctAnswer [randQuestion] == selectedAnswer) {
 
 				resultObj.GetComponent<Text> ().text = "Correct, click Done to continue";
-
 
 				btn2.SetActive (true);
 			}
@@ -66,6 +66,7 @@ public class MainText : MonoBehaviour {
 	IEnumerator BacktoWorld(){
 		yield return new WaitForSeconds(0.4f);
 		StartCoroutine(ScreenFade.main.Fade(true, 2f));
+		CallTrueORFalse.SetActive (false);
 		Scene.main.Battle.gameObject.SetActive(false);
 	}
 
