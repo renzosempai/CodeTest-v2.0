@@ -1,16 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HelpMenu : MonoBehaviour {
-	public GameObject HelpPls;
+
+	private bool running;
+
+	private GUITexture HelpDesign;
+
+
 	// Use this for initialization
 	void Start () {
-		HelpPls.SetActive (true);
+		gameObject.SetActive (true);
+
+		HelpDesign = transform.Find ("HelpMenuDesign").GetComponent<GUITexture>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
 		
+
+	public IEnumerator control(){
+		//sceneTransition.FadeIn();
+		StartCoroutine (ScreenFade.main.Fade (true, ScreenFade.defaultSpeed));
+		running = true;
+
+
+		while (running) {
+
+			if (Input.GetButton ("Back")) {
+				//yield return new WaitForSeconds(sceneTransition.FadeOut());
+				yield return StartCoroutine (ScreenFade.main.Fade (false, ScreenFade.defaultSpeed));
+				running = false;
+			}
+			yield return null;
+			this.gameObject.SetActive (false);
+		}
 	}
 }
