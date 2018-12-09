@@ -32,13 +32,16 @@ public class MultipleChoiceHolder : MonoBehaviour {
 	public static int randQuestion = -1;
 
 	public GameObject CallMultipleChoice;
+	public GameObject btnHint;
+	public GameObject HintText;
 
 	// Use this for initialization
 	void Start () {
 								
 		DontDestroyOnLoad (resultsObj);
 		DontDestroyOnLoad (btn);
-
+		DontDestroyOnLoad (btnHint);
+		DontDestroyOnLoad (HintText);
 		correctAnswer = ChosenAnswer;
 	}
 
@@ -69,12 +72,15 @@ public class MultipleChoiceHolder : MonoBehaviour {
 			if (correctAnswer[randQuestion] != selectedAnswer) {
 
 					resultsObj.GetComponent<Text> ().text = "Wrong Answer";
+				btnHint.SetActive (true);
 //				StartCoroutine(Wait());
 
 				}
 			}
 		}
-
+	public void Hinter(){
+		HintText.SetActive (true);
+	}
 	public void Done(){
 		BgmHandler.main.ResumeMain(1.4f);
 		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = 0;
