@@ -456,18 +456,27 @@ public class PauseHandler : MonoBehaviour
                     {
 						
                         //TrainerCard
-                        SfxHandler.Play(selectClip);
-//                        StartCoroutine(fadeIcons(0.4f));
-////                        yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
+//                        SfxHandler.Play(selectClip);
+////                        StartCoroutine(fadeIcons(0.4f));
+//////                        yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
                         yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
                         hideIcons();
-//
-						yield return StartCoroutine(runSceneUntilDeactivated(Scene.main.Help.gameObject));
-//
+////
+			
+					Scene.main.Help.gameObject.SetActive (true);
+
                         unhideIcons();
 //                        StartCoroutine(unfadeIcons(0.4f));
               
-                        yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
+						yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
+
+						if(Input.GetButton("Space")){
+
+						yield return StartCoroutine(runSceneUntilDeactivated(Scene.main.Help.gameObject));
+						}
+
+
+						yield return new WaitForSeconds(.2f);
 	
                     }
                     else if (selectedIcon == 2)

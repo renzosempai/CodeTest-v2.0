@@ -35,6 +35,6 @@ public class Scene : MonoBehaviour
         Summary.gameObject.SetActive(true);
         Trainer.gameObject.SetActive(true);
         Typing.gameObject.SetActive(true);
-		Help.gameObject.SetActive (true);
+		Help.gameObject.SetActive (false);
     }
 }

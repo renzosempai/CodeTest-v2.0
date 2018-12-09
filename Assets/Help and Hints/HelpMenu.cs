@@ -7,14 +7,11 @@ public class HelpMenu : MonoBehaviour {
 
 	private bool running;
 
-	private GUITexture HelpDesign;
-
-
 	// Use this for initialization
 	void Start () {
-		gameObject.SetActive (true);
 
-		HelpDesign = transform.Find ("HelpMenuDesign").GetComponent<GUITexture>();
+
+
 	}
 		
 
@@ -26,13 +23,15 @@ public class HelpMenu : MonoBehaviour {
 
 		while (running) {
 
-			if (Input.GetButton ("Back")) {
+			if (Input.GetButton("Back")) {
 				//yield return new WaitForSeconds(sceneTransition.FadeOut());
 				yield return StartCoroutine (ScreenFade.main.Fade (false, ScreenFade.defaultSpeed));
 				running = false;
+
 			}
 			yield return null;
 			this.gameObject.SetActive (false);
 		}
-	}
+
+}
 }
