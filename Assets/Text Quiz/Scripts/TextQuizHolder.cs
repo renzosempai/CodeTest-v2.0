@@ -25,7 +25,7 @@ public class TextQuizHolder : MonoBehaviour {
 	[SerializeField]
 	public Text thistext;
 
-	public string Question;
+//	public string Question;
 
 
 	public string Answer;
@@ -59,7 +59,7 @@ public class TextQuizHolder : MonoBehaviour {
 
 	void Awake(){
 		sagot = Answer;
-		text.GetComponent<Text> ().text = Question;
+//		text.GetComponent<Text> ().text = Question;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = false;
 			
 	}
@@ -76,10 +76,12 @@ public class TextQuizHolder : MonoBehaviour {
 			thistext.text = "Correct Answer: " + guess + ", Please click Done to continue";
 			wrong.SetActive (false);
 			btnDone.SetActive (true);
+			Debug.Log ("Correct");
 			//			counter++;
 
 		} else if (guess != sagot){
 			wrong.SetActive (true);
+			Debug.Log ("wrong");
 		}
 
 	}
