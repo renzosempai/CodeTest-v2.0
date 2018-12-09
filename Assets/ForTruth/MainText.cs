@@ -24,10 +24,13 @@ public class MainText : MonoBehaviour {
 
 	public GameObject btn2;
 
-
+	public GameObject btnHint;
+	public GameObject HintText;
 	// Use this for initialization
 	void Start () {
 		correctAnswer = TheAnswer;
+		DontDestroyOnLoad (btnHint);
+		DontDestroyOnLoad (HintText);
 	}
 
 	// Update is called once per frame
@@ -51,15 +54,19 @@ public class MainText : MonoBehaviour {
 				btn2.SetActive (true);
 				Disable1.SetActive (false);
 				Disable2.SetActive (false);
+				btnHint.SetActive (false);
 			}
 			if (correctAnswer [randQuestion] != selectedAnswer) {
 
 				resultObj.GetComponent<Text> ().text = "Wrong Answer";
-
+				btnHint.SetActive (true);
 
 
 			}
 		}
+	}
+	public void Hinter(){
+		HintText.SetActive (true);
 	}
 	public void Done(){
 		BgmHandler.main.ResumeMain(1.4f);

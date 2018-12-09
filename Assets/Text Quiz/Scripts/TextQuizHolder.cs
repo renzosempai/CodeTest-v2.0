@@ -25,6 +25,8 @@ public class TextQuizHolder : MonoBehaviour {
 	[SerializeField]
 	public Text thistext;
 
+	public GameObject btnHint;
+	public GameObject HintText;
 //	public string Question;
 
 
@@ -43,6 +45,8 @@ public class TextQuizHolder : MonoBehaviour {
 		DontDestroyOnLoad (input);
 		DontDestroyOnLoad (text);
 		DontDestroyOnLoad (thistext);
+		DontDestroyOnLoad (btnHint);
+		DontDestroyOnLoad (HintText);
 	}
 
 	void LockInput(InputField input)
@@ -81,9 +85,13 @@ public class TextQuizHolder : MonoBehaviour {
 
 		} else if (guess != sagot){
 			wrong.SetActive (true);
+			btnHint.SetActive (true);
 			Debug.Log ("wrong");
 		}
 
+	}
+	public void Hinter(){
+		HintText.SetActive (true);
 	}
 
 	public void Done(){
