@@ -25,11 +25,15 @@ public class InteractTrainer : MonoBehaviour
 	public enum Exercise
 	{
 		MultipleChoice,
+		MultipleChoice1,
+		MultipleChoice2,
 		TextQuiz,
 		TrueorFalse
 	}
 
 	public GameObject MultipleChoice;
+	public GameObject MultipleChoice1;
+	public GameObject MultipleChoice2;
 	public GameObject TextQuiz;
 	public GameObject TrueorFalse;
 
@@ -613,22 +617,33 @@ public class InteractTrainer : MonoBehaviour
                     }
                     Dialog.undrawDialogBox();
 
-					//exercises to set active condition
-					if (exercise == Exercise.MultipleChoice) {
-						StartCoroutine (DelayMultipleChoice ());
-					} 
-					else {
-						if (exercise == Exercise.TextQuiz) {
-							StartCoroutine (DelayTextQuiz ());
-						} 
-						else {
-							if (exercise == Exercise.TrueorFalse) {
-								StartCoroutine (DelayTrueORFalse ());
-							} 
-						}
-					}
+
                 }
 					
+				//exercises to set active condition
+				if (exercise == Exercise.MultipleChoice) {
+					StartCoroutine (DelayMultipleChoice ());
+				} 
+				else {
+					if (exercise == Exercise.TextQuiz) {
+						StartCoroutine (DelayTextQuiz ());
+					} 
+					else {
+						if (exercise == Exercise.TrueorFalse) {
+							StartCoroutine (DelayTrueORFalse ());
+						} 
+						else {
+							if (exercise == Exercise.MultipleChoice1) {
+								StartCoroutine (DelayMultipleChoice1 ());
+							} 
+							else {
+								if (exercise == Exercise.MultipleChoice2) {
+									StartCoroutine (DelayMultipleChoice2 ());
+								} 
+							}
+						}
+					}
+				}
 
                 //custom cutouts not yet implemented
                 StartCoroutine(ScreenFade.main.FadeCutout(false, ScreenFade.slowedSpeed, null));
@@ -701,6 +716,16 @@ public class InteractTrainer : MonoBehaviour
 	IEnumerator DelayMultipleChoice(){
 		yield return new WaitForSeconds(0.9f);
 		MultipleChoice.SetActive (true);
+	}
+
+	IEnumerator DelayMultipleChoice1(){
+		yield return new WaitForSeconds(0.9f);
+		MultipleChoice1.SetActive (true);
+	}
+
+	IEnumerator DelayMultipleChoice2(){
+		yield return new WaitForSeconds(0.9f);
+		MultipleChoice2.SetActive (true);
 	}
 
 	IEnumerator DelayTextQuiz(){
