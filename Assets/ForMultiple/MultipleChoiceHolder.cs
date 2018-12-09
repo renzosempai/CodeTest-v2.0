@@ -67,6 +67,7 @@ public class MultipleChoiceHolder : MonoBehaviour {
 				Disable2.SetActive (false);
 				Disable3.SetActive (false);
 				Disable4.SetActive (false);
+				btnHint.SetActive (false);
 
 				}
 			if (correctAnswer[randQuestion] != selectedAnswer) {
