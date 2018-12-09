@@ -461,22 +461,18 @@ public class PauseHandler : MonoBehaviour
 //////                        yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
                         yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
                         hideIcons();
-////
 			
-					Scene.main.Help.gameObject.SetActive (true);
-
-                        unhideIcons();
-//                        StartCoroutine(unfadeIcons(0.4f));
-              
-						yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
+						Scene.main.Help.gameObject.SetActive (true);
 
 						if(Input.GetButton("Space")){
 
 						yield return StartCoroutine(runSceneUntilDeactivated(Scene.main.Help.gameObject));
 						}
 
+						unhideIcons();
+						//StartCoroutine(unfadeIcons(0.4f));
 
-						yield return new WaitForSeconds(.2f);
+						yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
 	
                     }
                     else if (selectedIcon == 2)

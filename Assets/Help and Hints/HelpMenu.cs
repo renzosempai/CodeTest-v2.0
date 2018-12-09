@@ -7,6 +7,8 @@ public class HelpMenu : MonoBehaviour {
 
 	private bool running;
 
+	public GameObject DisableHelpMenu;
+
 	// Use this for initialization
 	void Start () {
 
@@ -25,9 +27,9 @@ public class HelpMenu : MonoBehaviour {
 
 			if (Input.GetButton("Back")) {
 				//yield return new WaitForSeconds(sceneTransition.FadeOut());
-				yield return StartCoroutine (ScreenFade.main.Fade (false, ScreenFade.defaultSpeed));
-				running = false;
-
+//				yield return StartCoroutine (ScreenFade.main.Fade (false, ScreenFade.defaultSpeed));
+//				running = false;
+				DisableHelpMenu.SetActive(false);
 			}
 			yield return null;
 			this.gameObject.SetActive (false);

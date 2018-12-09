@@ -27,6 +27,12 @@ public class InteractTrainer : MonoBehaviour
 		MultipleChoice,
 		MultipleChoice1,
 		MultipleChoice2,
+		MultipleChoice3,
+		MultipleChoice4,
+		MultipleChoice5,
+		MultipleChoice6,
+		MultipleChoice7,
+		MultipleChoice8,
 		TextQuiz,
 		TrueorFalse
 	}
@@ -34,6 +40,12 @@ public class InteractTrainer : MonoBehaviour
 	public GameObject MultipleChoice;
 	public GameObject MultipleChoice1;
 	public GameObject MultipleChoice2;
+	public GameObject MultipleChoice3;
+	public GameObject MultipleChoice4;
+	public GameObject MultipleChoice5;
+	public GameObject MultipleChoice6;
+	public GameObject MultipleChoice7;
+	public GameObject MultipleChoice8;
 	public GameObject TextQuiz;
 	public GameObject TrueorFalse;
 
@@ -640,6 +652,37 @@ public class InteractTrainer : MonoBehaviour
 								if (exercise == Exercise.MultipleChoice2) {
 									StartCoroutine (DelayMultipleChoice2 ());
 								} 
+								else {
+									if (exercise == Exercise.MultipleChoice3) {
+										StartCoroutine (DelayMultipleChoice3 ());
+									} 
+									else {
+										if (exercise == Exercise.MultipleChoice4) {
+											StartCoroutine (DelayMultipleChoice4 ());
+										} 
+										else {
+											if (exercise == Exercise.MultipleChoice5) {
+												StartCoroutine (DelayMultipleChoice5 ());
+											} 
+											else {
+												if (exercise == Exercise.MultipleChoice6) {
+													StartCoroutine (DelayMultipleChoice6 ());
+												} 
+												else {
+													if (exercise == Exercise.MultipleChoice7) {
+														StartCoroutine (DelayMultipleChoice7 ());
+													} 
+													else {
+														if (exercise == Exercise.MultipleChoice8) {
+															StartCoroutine (DelayMultipleChoice8 ());
+														} 
+
+													}
+												}
+											}
+										}
+									}
+								}
 							}
 						}
 					}
@@ -726,6 +769,36 @@ public class InteractTrainer : MonoBehaviour
 	IEnumerator DelayMultipleChoice2(){
 		yield return new WaitForSeconds(0.9f);
 		MultipleChoice2.SetActive (true);
+	}
+
+	IEnumerator DelayMultipleChoice3(){
+		yield return new WaitForSeconds(0.9f);
+		MultipleChoice3.SetActive (true);
+	}
+
+	IEnumerator DelayMultipleChoice4(){
+		yield return new WaitForSeconds(0.9f);
+		MultipleChoice4.SetActive (true);
+	}
+
+	IEnumerator DelayMultipleChoice5(){
+		yield return new WaitForSeconds(0.9f);
+		MultipleChoice5.SetActive (true);
+	}
+
+	IEnumerator DelayMultipleChoice6(){
+		yield return new WaitForSeconds(0.9f);
+		MultipleChoice6.SetActive (true);
+	}
+
+	IEnumerator DelayMultipleChoice7(){
+		yield return new WaitForSeconds(0.9f);
+		MultipleChoice7.SetActive (true);
+	}
+
+	IEnumerator DelayMultipleChoice8(){
+		yield return new WaitForSeconds(0.9f);
+		MultipleChoice8.SetActive (true);
 	}
 
 	IEnumerator DelayTextQuiz(){
