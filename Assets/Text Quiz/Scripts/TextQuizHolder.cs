@@ -60,6 +60,7 @@ public class TextQuizHolder : MonoBehaviour {
 	void Awake(){
 		sagot = Answer;
 		text.GetComponent<Text> ().text = Question;
+		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = false;
 			
 	}
 

@@ -32,6 +32,7 @@ public class MainText : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = false;
 		if (randQuestion == -1) {
 			randQuestion = Random.Range (0, 2);
 		}
