@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MainText : MonoBehaviour {
 
-	List<string> questions = new List<string> () { " " };
+	List<string> questions = new List<string> () {" "};
 	List<string> correctAnswer = new List<string>() {" "};
 	public GameObject CallTrueORFalse;
 
