@@ -55,6 +55,7 @@ public class MainText : MonoBehaviour {
 				Disable1.SetActive (false);
 				Disable2.SetActive (false);
 				btnHint.SetActive (false);
+				HintText.SetActive (false);
 			}
 			if (correctAnswer [randQuestion] != selectedAnswer) {
 

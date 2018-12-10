@@ -80,6 +80,8 @@ public class TextQuizHolder : MonoBehaviour {
 			thistext.text = "Correct Answer: " + guess + ", Please click Done to continue";
 			wrong.SetActive (false);
 			btnDone.SetActive (true);
+			btnHint.SetActive (false);
+			HintText.SetActive (false);
 			Debug.Log ("Correct");
 			//			counter++;
 

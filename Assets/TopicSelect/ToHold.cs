@@ -14,5 +14,6 @@ public class ToHold : MonoBehaviour {
 		if (countthis == 1) {
 			GameObject.Find ("Player").GetComponent<PlayerMovement> ().spriteSheet = Resources.LoadAll<Sprite> ("FemaleSprites/");
 		}
+	
 	}
 }

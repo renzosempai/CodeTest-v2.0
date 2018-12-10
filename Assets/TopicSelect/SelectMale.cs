@@ -21,12 +21,12 @@ public class SelectMale : MonoBehaviour {
 	public void CharSelected(){
 
 		if (firstM == 1) {
-			SceneManager.LoadScene ("Level1");
+			SceneManager.LoadScene ("Level3");
 		} else if (secondM == 1) {
-			SceneManager.LoadScene ("Level1Indoors"); 
+			SceneManager.LoadScene ("Level2"); 
 
 		} else if (thirdM == 1) {
-			SceneManager.LoadScene ("Level1Indoors");
+			SceneManager.LoadScene ("Level4");
 		} else if (fourthM == 1) {
 //			SceneManager.LoadScene (" ");
 		} else if (fifthM == 1) {
