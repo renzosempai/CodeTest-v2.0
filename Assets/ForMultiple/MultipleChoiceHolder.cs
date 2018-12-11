@@ -73,7 +73,7 @@ public class MultipleChoiceHolder : MonoBehaviour {
 				}
 			if (correctAnswer[randQuestion] != selectedAnswer) {
 
-					resultsObj.GetComponent<Text> ().text = "Wrong";
+					resultsObj.GetComponent<Text> ().text = "Wrong Answer";
 					btnHint.SetActive (true);
 	//				StartCoroutine(Wait());
 
