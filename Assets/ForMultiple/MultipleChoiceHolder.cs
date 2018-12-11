@@ -73,16 +73,18 @@ public class MultipleChoiceHolder : MonoBehaviour {
 				}
 			if (correctAnswer[randQuestion] != selectedAnswer) {
 
-					resultsObj.GetComponent<Text> ().text = "Wrong Answer";
+					resultsObj.GetComponent<Text> ().text = "Wrong";
 					btnHint.SetActive (true);
 	//				StartCoroutine(Wait());
 
 				}
 			}
 		}
+
 	public void Hinter(){
 		HintText.SetActive (true);
 	}
+
 	public void Done(){
 		BgmHandler.main.ResumeMain(1.4f);
 		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = 0;
