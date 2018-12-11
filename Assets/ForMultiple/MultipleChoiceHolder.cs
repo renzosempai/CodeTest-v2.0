@@ -63,19 +63,19 @@ public class MultipleChoiceHolder : MonoBehaviour {
 
 					resultsObj.GetComponent<Text> ().text = "Correct, click Done to continue";
 					btn.SetActive (true);
-				Disable1.SetActive (false);
-				Disable2.SetActive (false);
-				Disable3.SetActive (false);
-				Disable4.SetActive (false);
-				btnHint.SetActive (false);
-				HintText.SetActive (false);
+					Disable1.SetActive (false);
+					Disable2.SetActive (false);
+					Disable3.SetActive (false);
+					Disable4.SetActive (false);
+					btnHint.SetActive (false);
+					HintText.SetActive (false);
 
 				}
 			if (correctAnswer[randQuestion] != selectedAnswer) {
 
 					resultsObj.GetComponent<Text> ().text = "Wrong Answer";
-				btnHint.SetActive (true);
-//				StartCoroutine(Wait());
+					btnHint.SetActive (true);
+	//				StartCoroutine(Wait());
 
 				}
 			}
