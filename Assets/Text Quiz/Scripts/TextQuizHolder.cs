@@ -89,6 +89,7 @@ public class TextQuizHolder : MonoBehaviour {
 			wrong.SetActive (true);
 			btnHint.SetActive (true);
 			Debug.Log ("wrong");
+			GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
 		}
 
 	}

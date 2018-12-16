@@ -75,6 +75,7 @@ public class MultipleChoiceHolder : MonoBehaviour {
 
 					resultsObj.GetComponent<Text> ().text = "Wrong Answer";
 					btnHint.SetActive (true);
+				GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
 	//				StartCoroutine(Wait());
 
 				}
@@ -83,6 +84,7 @@ public class MultipleChoiceHolder : MonoBehaviour {
 
 	public void Hinter(){
 		HintText.SetActive (true);
+		Debug.Log ("clicked");
 	}
 
 	public void Done(){

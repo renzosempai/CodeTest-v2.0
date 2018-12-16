@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PauseHandler : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class PauseHandler : MonoBehaviour
     private RotatableGUIItem targetIcon;
 
     private bool running;
-
+	//public GameObject activebomb;
 
 
     void Awake()
@@ -70,6 +71,7 @@ public class PauseHandler : MonoBehaviour
 
     void Start()
     {
+		//DontDestroyOnLoad (activebomb);
         pauseTop.pixelInset = new Rect(0, 192, pauseTop.pixelInset.width, pauseTop.pixelInset.height);
         pauseBottom.pixelInset = new Rect(0, -96, pauseBottom.pixelInset.width, pauseBottom.pixelInset.height);
 
@@ -86,6 +88,7 @@ public class PauseHandler : MonoBehaviour
 
         saveDataDisplay.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
+
     }
 
     private void setSelectedText(string text)
@@ -488,7 +491,7 @@ public class PauseHandler : MonoBehaviour
 //                    //        if (SaveData.currentSave.gymsBeaten[i])
 //                     //       {
 //                     //           badgeTotal += 1;
-//						yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+						yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
 //                            }
 //                        }
 //                        string playerTime = "" + SaveData.currentSave.playerMinutes;
@@ -539,10 +542,14 @@ public class PauseHandler : MonoBehaviour
 //                        iconPokedex.hide = false;
 //                        saveDataDisplay.gameObject.SetActive(false);
 //                        yield return new WaitForSeconds(0.2f);
-
+				//		activebomb.SetActive(true);
+						SceneManager.LoadScene ("startup");
 						yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
 						yield return new WaitForSeconds(0.2f);
-						Application.Quit ();
+
+
+
+						//Application.Quit ();
                     }
                     else if (selectedIcon == 3)
                     {

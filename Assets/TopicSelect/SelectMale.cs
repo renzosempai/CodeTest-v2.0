@@ -9,9 +9,10 @@ public class SelectMale : MonoBehaviour {
 	public int thirdM;
 	public int fourthM;
 	public int fifthM;
+
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
 	// Update is called once per frame
@@ -22,11 +23,14 @@ public class SelectMale : MonoBehaviour {
 
 		if (firstM == 1) {
 			SceneManager.LoadScene ("Level3");
+
 		} else if (secondM == 1) {
 			SceneManager.LoadScene ("Level2"); 
 
+
 		} else if (thirdM == 1) {
 			SceneManager.LoadScene ("Level4");
+
 		} else if (fourthM == 1) {
 //			SceneManager.LoadScene (" ");
 		} else if (fifthM == 1) {
