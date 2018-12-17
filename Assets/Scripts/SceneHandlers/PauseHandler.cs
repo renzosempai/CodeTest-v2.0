@@ -14,14 +14,14 @@ public class PauseHandler : MonoBehaviour
 //    public Texture2D iconPartyTex;
 //    public Texture2D iconBagTex;
     public Texture2D iconHelpTex;
-    public Texture2D iconSaveTex;
+    public Texture2D iconQuitTex;
     public Texture2D iconSettingsTex;
 
 //    private RotatableGUIItem iconPokedex;
 //    private RotatableGUIItem iconParty;
 //    private RotatableGUIItem iconBag;
     private RotatableGUIItem iconHelp;
-    private RotatableGUIItem iconSave;
+    private RotatableGUIItem iconQuit;
     private RotatableGUIItem iconSettings;
 
     private GUITexture saveDataDisplay;
@@ -58,8 +58,8 @@ public class PauseHandler : MonoBehaviour
 //        iconPokedex = transform.Find("IconPokedex").GetComponent<RotatableGUIItem>();
 //        iconParty = transform.Find("IconParty").GetComponent<RotatableGUIItem>();
 //        iconBag = transform.Find("IconBag").GetComponent<RotatableGUIItem>();
-        iconHelp = transform.Find("IconTrainer").GetComponent<RotatableGUIItem>();
-        iconSave = transform.Find("IconSave").GetComponent<RotatableGUIItem>();
+        iconHelp = transform.Find("IconHelp").GetComponent<RotatableGUIItem>();
+		iconQuit = transform.Find("IconQuit").GetComponent<RotatableGUIItem>();
         iconSettings = transform.Find("IconSettings").GetComponent<RotatableGUIItem>();
 
         saveDataDisplay = transform.Find("SaveDataDisplay").GetComponent<GUITexture>();
@@ -81,7 +81,7 @@ public class PauseHandler : MonoBehaviour
 //        iconParty.transform.position = new Vector3(iconParty.transform.position.x, -0.0833f, 1);
 //        iconBag.transform.position = new Vector3(iconBag.transform.position.x, -0.0833f, 1);
         iconHelp.transform.position = new Vector3(iconHelp.transform.position.x, 1.0833f, 1);
-        iconSave.transform.position = new Vector3(iconSave.transform.position.x, 1.0833f, 1);
+		iconQuit.transform.position = new Vector3(iconQuit.transform.position.x, 1.0833f, 1);
         iconSettings.transform.position = new Vector3(iconSettings.transform.position.x, 1.0833f, 1);
 
         selectedIcon = 0;
@@ -118,7 +118,7 @@ public class PauseHandler : MonoBehaviour
 //            iconBag.transform.position = new Vector3(iconBag.transform.position.x, -0.0833f + (increment * 0.4167f), 1);
             iconHelp.transform.position = new Vector3(iconHelp.transform.position.x,
                 1.0833f - (increment * 0.5f), 1);
-            iconSave.transform.position = new Vector3(iconSave.transform.position.x, 1.0833f - (increment * 0.5f), 1);
+            iconQuit.transform.position = new Vector3(iconQuit.transform.position.x, 1.0833f - (increment * 0.5f), 1);
             iconSettings.transform.position = new Vector3(iconSettings.transform.position.x,
                 1.0833f - (increment * 0.5f), 1);
             yield return null;
@@ -147,7 +147,7 @@ public class PauseHandler : MonoBehaviour
 //            iconBag.transform.position = new Vector3(iconBag.transform.position.x, 0.3333f - (increment * 0.4167f), 1);
             iconHelp.transform.position = new Vector3(iconHelp.transform.position.x,
                 0.6667f + (increment * 0.4167f), 1);
-            iconSave.transform.position = new Vector3(iconSave.transform.position.x, 0.6667f + (increment * 0.4167f), 1);
+            iconQuit.transform.position = new Vector3(iconQuit.transform.position.x, 0.6667f + (increment * 0.4167f), 1);
             iconSettings.transform.position = new Vector3(iconSettings.transform.position.x,
                 0.6667f + (increment * 0.4167f), 1);
             yield return null;
@@ -213,9 +213,9 @@ public class PauseHandler : MonoBehaviour
         }
         else if (selectedIcon == 2)
         {
-            targetIcon = iconSave;
+            targetIcon = iconQuit;
         //   setSelectedText("Save Game");
-			setSelectedText("Quit Game");
+			setSelectedText("Quit to Main Menu");
 
         }
         else if (selectedIcon == 3)
@@ -233,14 +233,14 @@ public class PauseHandler : MonoBehaviour
 //        iconParty.angle = 0;
 //        iconBag.angle = 0;
         iconHelp.angle = 0;
-        iconSave.angle = 0;
+        iconQuit.angle = 0;
         iconSettings.angle = 0;
 
 //        iconPokedex.size = new Vector2(32, 32);
 //        iconParty.size = new Vector2(32, 32);
 //        iconBag.size = new Vector2(32, 32);
         iconHelp.size = new Vector2(32, 32);
-        iconSave.size = new Vector2(32, 32);
+        iconQuit.size = new Vector2(32, 32);
         iconSettings.size = new Vector2(32, 32);
 
         if (targetIcon != null)
@@ -281,7 +281,7 @@ public class PauseHandler : MonoBehaviour
 //        iconParty.hide = true;
 //        iconBag.hide = true;
         iconHelp.hide = true;
-        iconSave.hide = true;
+        iconQuit.hide = true;
         iconSettings.hide = true;
     }
 
@@ -291,7 +291,7 @@ public class PauseHandler : MonoBehaviour
 //        iconParty.hide = false;
 //        iconBag.hide = false;
         iconHelp.hide = false;
-        iconSave.hide = false;
+        iconQuit.hide = false;
         iconSettings.hide = false;
     }
 
@@ -309,7 +309,7 @@ public class PauseHandler : MonoBehaviour
 //            iconParty.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
 //            iconBag.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
             iconHelp.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
-            iconSave.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
+            iconQuit.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
             iconSettings.color = new Color(1f - increment, 1f - increment, 1f - increment, 1f);
             yield return null;
         }
@@ -329,7 +329,7 @@ public class PauseHandler : MonoBehaviour
 //            iconParty.color = new Color(increment, increment, increment, 1f);
 //            iconBag.color = new Color(increment, increment, increment, 1f);
             iconHelp.color = new Color(increment, increment, increment, 1f);
-            iconSave.color = new Color(increment, increment, increment, 1f);
+            iconQuit.color = new Color(increment, increment, increment, 1f);
             iconSettings.color = new Color(increment, increment, increment, 1f);
             yield return null;
         }
@@ -491,7 +491,7 @@ public class PauseHandler : MonoBehaviour
 //                    //        if (SaveData.currentSave.gymsBeaten[i])
 //                     //       {
 //                     //           badgeTotal += 1;
-						yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+//						yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
 //                            }
 //                        }
 //                        string playerTime = "" + SaveData.currentSave.playerMinutes;
@@ -543,13 +543,20 @@ public class PauseHandler : MonoBehaviour
 //                        saveDataDisplay.gameObject.SetActive(false);
 //                        yield return new WaitForSeconds(0.2f);
 				//		activebomb.SetActive(true);
-						SceneManager.LoadScene ("startup");
+
+						SfxHandler.Play(selectClip);
+//						StartCoroutine(fadeIcons(0.4f));
+
+						hideIcons ();
+						yield return new WaitForSeconds(0.4f);
+						yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+						Scene.main.Pause.gameObject.SetActive (false);
+
+						if (Scene.main.Pause.gameObject == false) {
+							SceneManager.LoadScene ("startup");
+						}
+							
 						yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
-						yield return new WaitForSeconds(0.2f);
-
-
-
-						//Application.Quit ();
                     }
                     else if (selectedIcon == 3)
                     {

@@ -1,12 +1,11 @@
 fileFormatVersion: 2
 guid: b57cabefee5d40f469356facfdbae9df
-timeCreated: 1526371195
-licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - iconTrainerTex: {fileID: 2800000, guid: 031a1adcdce1b544aa8101c359f40d03, type: 3}
-  - iconSaveTex: {fileID: 2800000, guid: 271163c15e02cd145b1a175f6ceba347, type: 3}
+  - iconHelpTex: {fileID: 2800000, guid: 031a1adcdce1b544aa8101c359f40d03, type: 3}
+  - iconQuitTex: {fileID: 2800000, guid: 271163c15e02cd145b1a175f6ceba347, type: 3}
   - iconSettingsTex: {fileID: 2800000, guid: 850d537b18622cf44a1d43e74cfb2445, type: 3}
   - selectClip: {instanceID: 0}
   - openClip: {instanceID: 0}
