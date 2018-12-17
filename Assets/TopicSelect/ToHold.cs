@@ -6,17 +6,20 @@ public class ToHold : MonoBehaviour {
 	static ToHold instance;
 	// Use this for initialization
 	public int countthis;
+	public GameObject tracker;
 	// Update is called once per frame
 	void Start(){
-		Destroyer.disabler (false);
+		tracker.SetActive (false);
 	}
 	void Awake() {
+		DontDestroyOnLoad (tracker);
 		DontDestroyOnLoad (transform.gameObject);
 	}
 	void Update(){
 		if (countthis > 0) {
 			GameObject.Find ("Player").GetComponent<PlayerMovement> ().spriteSheet = Resources.LoadAll<Sprite> ("FemaleSprites/");
 		}
+	
 		if (instance == null) {    
 			instance = this; // In first scene, make us the singleton.
 			DontDestroyOnLoad (gameObject);

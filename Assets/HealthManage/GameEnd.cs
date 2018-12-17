@@ -8,10 +8,12 @@ public class GameEnd : MonoBehaviour {
 	public GameObject btnExit;
 	public GameObject GameEnder;
 
+
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad (btnAgain);
 		DontDestroyOnLoad (btnExit);
+
 
 
 	}
@@ -21,7 +23,10 @@ public class GameEnd : MonoBehaviour {
 
 	}
 	public void Restart(){
+
+
 		SceneManager.LoadScene ("startup");
+
 		GameEnder.SetActive (false);
 
 	}
