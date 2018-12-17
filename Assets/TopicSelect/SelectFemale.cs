@@ -9,11 +9,14 @@ public class SelectFemale : MonoBehaviour {
 	public int thirdF;
 	public int fourthF;
 	public int fifthF;
+	public GameObject bgmactivator;
 
 
 	// Use this for initialization
 	void Start () {
-
+		Destroy (GameObject.Find ("BombDestroyer"));
+		DontDestroyOnLoad (bgmactivator);
+		bgmactivator.SetActive (true);
 		
 	}
 	
@@ -24,20 +27,20 @@ public class SelectFemale : MonoBehaviour {
 	public void CharSelected(){
 		if (firstF == 1) {
 			SceneManager.LoadScene ("FemaleLevel3");
-			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis++;
+			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=1;
 			GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().playerTrainer1Animation =
 				Resources.LoadAll<Sprite> ("PlayerSprites/");
 	
 
 		} else if (secondF == 1) {
 			SceneManager.LoadScene ("FemaleLevel2");
-			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis++;
+			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=1;
 			GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().playerTrainer1Animation =
 				Resources.LoadAll<Sprite> ("PlayerSprites/");
 
 		} else if (thirdF == 1) {
 			SceneManager.LoadScene ("FemaleLevel4");
-			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis++;
+			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=1;
 			GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().playerTrainer1Animation =
 				Resources.LoadAll<Sprite> ("PlayerSprites/");
 

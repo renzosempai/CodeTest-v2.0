@@ -1,22 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 	public class Destroyer : MonoBehaviour
 	{
 		static Destroyer instance;
 	public GameObject disabler;
-	public GameObject disabler1;
 
-		void Start()
-	{
+
+
+		void Start(){
 		DontDestroyOnLoad (this);
 		DontDestroyOnLoad (disabler);
-		DontDestroyOnLoad (disabler1);
 
 		disabler.SetActive (false);
-		disabler1.SetActive (false);
+
 		if (instance == null) {    
 			instance = this; // In first scene, make us the singleton.
 			DontDestroyOnLoad (gameObject);

@@ -22,13 +22,16 @@ public class SelectMale : MonoBehaviour {
 	public void CharSelected(){
 
 		if (firstM == 1) {
+			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=0;
 			SceneManager.LoadScene ("Level3");
 
 		} else if (secondM == 1) {
+			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=0;
 			SceneManager.LoadScene ("Level2"); 
 
 
 		} else if (thirdM == 1) {
+			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=0;
 			SceneManager.LoadScene ("Level4");
 
 		} else if (fourthM == 1) {

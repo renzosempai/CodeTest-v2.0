@@ -13,6 +13,7 @@ public class GameEnd : MonoBehaviour {
 		DontDestroyOnLoad (btnAgain);
 		DontDestroyOnLoad (btnExit);
 
+
 	}
 	
 	// Update is called once per frame

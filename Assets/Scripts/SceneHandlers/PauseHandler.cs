@@ -40,7 +40,8 @@ public class PauseHandler : MonoBehaviour
     private RotatableGUIItem targetIcon;
 
     private bool running;
-	//public GameObject activebomb;
+
+	public GameObject activebomb;
 
 
     void Awake()
@@ -542,10 +543,18 @@ public class PauseHandler : MonoBehaviour
 //                        iconPokedex.hide = false;
 //                        saveDataDisplay.gameObject.SetActive(false);
 //                        yield return new WaitForSeconds(0.2f);
-				//		activebomb.SetActive(true);
-						SceneManager.LoadScene ("startup");
+
 						yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
 						yield return new WaitForSeconds(0.2f);
+						activebomb.SetActive(true);
+						SceneManager.LoadScene ("startup");
+
+
+
+
+					
+
+
 
 
 

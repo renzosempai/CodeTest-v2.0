@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class BgmHandler : MonoBehaviour
 {
     public static BgmHandler main;
@@ -33,6 +34,7 @@ public class BgmHandler : MonoBehaviour
 
     void Awake()
     {
+		
         if (main == null)
         {
             main = this;
