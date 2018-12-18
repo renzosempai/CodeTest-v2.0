@@ -28,16 +28,17 @@ public class MainText : MonoBehaviour {
 	public GameObject HintText;
 	// Use this for initialization
 	void Start () {
-		correctAnswer = TheAnswer;
+		
 		DontDestroyOnLoad (btnHint);
 		DontDestroyOnLoad (HintText);
+		correctAnswer = TheAnswer;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = false;
 		if (randQuestion == -1) {
-			randQuestion = Random.Range (0, 2);
+			randQuestion = Random.Range (0, 1);
 		}
 
 		if  (randQuestion > -1) {
@@ -61,6 +62,7 @@ public class MainText : MonoBehaviour {
 
 				resultObj.GetComponent<Text> ().text = "Wrong Answer";
 				btnHint.SetActive (true);
+				GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
 
 
 			}

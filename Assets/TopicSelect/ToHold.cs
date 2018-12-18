@@ -6,13 +6,13 @@ public class ToHold : MonoBehaviour {
 	static ToHold instance;
 	// Use this for initialization
 	public int countthis;
-	public GameObject tracker;
+
 	// Update is called once per frame
 	void Start(){
-		tracker.SetActive (false);
+
 	}
 	void Awake() {
-		DontDestroyOnLoad (tracker);
+		
 		DontDestroyOnLoad (transform.gameObject);
 	}
 	void Update(){

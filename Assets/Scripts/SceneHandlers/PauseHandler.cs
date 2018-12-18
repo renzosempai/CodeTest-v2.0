@@ -40,7 +40,7 @@ public class PauseHandler : MonoBehaviour
 	private RotatableGUIItem targetIcon;
 
 	private bool running;
-	public GameObject activebomb;
+//	public GameObject activebomb;
 
 
 	void Awake()
@@ -71,7 +71,7 @@ public class PauseHandler : MonoBehaviour
 
 	void Start()
 	{
-		activebomb.SetActive (false);
+		
 		//DontDestroyOnLoad (activebomb);
 		pauseTop.pixelInset = new Rect(0, 192, pauseTop.pixelInset.width, pauseTop.pixelInset.height);
 		pauseBottom.pixelInset = new Rect(0, -96, pauseBottom.pixelInset.width, pauseBottom.pixelInset.height);
@@ -546,7 +546,8 @@ public class PauseHandler : MonoBehaviour
 //		activebomb.SetActive(true);
 						yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
 						yield return new WaitForSeconds(0.2f);
-						activebomb.SetActive(true);
+			//			activebomb.SetActive(true);
+						GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
 						SceneManager.LoadScene ("startup");
 
 

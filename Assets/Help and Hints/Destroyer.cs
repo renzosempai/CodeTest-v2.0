@@ -6,23 +6,30 @@ using UnityEngine.SceneManagement;
 
 	public class Destroyer : MonoBehaviour
 	{
-		//static Destroyer instance;
+		static Destroyer instance;
 	public GameObject disabler;
+	public int checker;
 
 
-void Start(){
+void Update(){
 		DontDestroyOnLoad (this);
 		DontDestroyOnLoad (disabler);
 
-		disabler.SetActive (false);
 
-//		if (instance == null) {    
-//			instance = this; // In first scene, make us the singleton.
-//			DontDestroyOnLoad (gameObject);
-//		} else if (instance != this) {
-//			Destroy (gameObject); // On reload, singleton already set, so destroy duplicate.}
-//		
-//		} 
+
+		if (checker % 2 != 0)
+			disabler.SetActive (false);
+//		else
+	
+
+
+		if (instance == null) {    
+			instance = this; // In first scene, make us the singleton.
+			DontDestroyOnLoad (gameObject);
+		} else if (instance != this) {
+			Destroy (gameObject); // On reload, singleton already set, so destroy duplicate.}
+		
+		} 
 
 	}
 	}

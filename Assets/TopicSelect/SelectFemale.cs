@@ -9,21 +9,18 @@ public class SelectFemale : MonoBehaviour {
 	public int thirdF;
 	public int fourthF;
 	public int fifthF;
-	public GameObject bgmactivator;
 
 
 	// Use this for initialization
 	void Start () {
-		Destroy (GameObject.Find ("BombDestroyer"));
-		DontDestroyOnLoad (bgmactivator);
-		bgmactivator.SetActive (true);
+		GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-	}
+	}	
 	public void CharSelected(){
 		if (firstF == 1) {
 			SceneManager.LoadScene ("FemaleLevel3");
