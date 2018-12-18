@@ -216,7 +216,7 @@ public class PauseHandler : MonoBehaviour
 		{
 			targetIcon = iconSave;
 			//   setSelectedText("Save Game");
-			setSelectedText("Quit Game");
+			setSelectedText("Exit to Main Menu");
 
 		}
 		else if (selectedIcon == 3)

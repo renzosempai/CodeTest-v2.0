@@ -12,7 +12,7 @@ public class SelectMale : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
+		
 	}
 	
 	// Update is called once per frame
@@ -20,6 +20,7 @@ public class SelectMale : MonoBehaviour {
 		
 	}
 	public void CharSelected(){
+		GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
 
 		if (firstM == 1) {
 			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=0;

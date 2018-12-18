@@ -13,7 +13,7 @@ public class SelectFemale : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
+		
 		
 	}
 	
@@ -22,6 +22,7 @@ public class SelectFemale : MonoBehaviour {
 		
 	}	
 	public void CharSelected(){
+		GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
 		if (firstF == 1) {
 			SceneManager.LoadScene ("FemaleLevel3");
 			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=1;

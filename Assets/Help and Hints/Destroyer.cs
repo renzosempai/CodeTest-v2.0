@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 	{
 		static Destroyer instance;
 	public GameObject disabler;
+	public GameObject disabler1;
 	public int checker;
 
 
@@ -17,11 +18,15 @@ void Update(){
 
 
 
-		if (checker % 2 != 0)
+		if (checker % 2 != 0) {
 			disabler.SetActive (false);
-//		else
-	
+			disabler1.SetActive (false);
+		}
+		else 
+			disabler1.SetActive(true);
 
+	
+		
 
 		if (instance == null) {    
 			instance = this; // In first scene, make us the singleton.
