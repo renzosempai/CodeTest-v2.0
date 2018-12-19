@@ -493,6 +493,7 @@ public class PauseHandler : MonoBehaviour
 						//                     //       {
 						//                     //           badgeTotal += 1;
 						yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+						yield return new WaitForSeconds(1f);
 						//                            }
 						//                        }
 						//                        string playerTime = "" + SaveData.currentSave.playerMinutes;
@@ -544,11 +545,10 @@ public class PauseHandler : MonoBehaviour
 //                        saveDataDisplay.gameObject.SetActive(false);
 //                        yield return new WaitForSeconds(0.2f);
 //		activebomb.SetActive(true);
-						yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
-						yield return new WaitForSeconds(0.2f);
-			//			activebomb.SetActive(true);
 						GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
 						SceneManager.LoadScene ("startup");
+						yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
+			//			activebomb.SetActive(true);
 
 
 
