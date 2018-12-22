@@ -14,6 +14,7 @@ public class MainMenuHandler : MonoBehaviour
     private GameObject continueButton;
 	private GameObject SelectTopicMenu;
 	private GameObject SelectTopicHolder;
+	//public int counter;
 
     private GUITexture[] button = new GUITexture[4];
     private GUITexture[] buttonHighlight = new GUITexture[4];
@@ -238,6 +239,10 @@ public class MainMenuHandler : MonoBehaviour
 ////                    GlobalVariables.global.playerDirection = 2;
 ////                    GlobalVariables.global.fadeIn = true;
 					SceneManager.LoadScene("TopicSelect");
+//					if (counter == 0) {
+//						GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
+//						counter++;
+//					}
                 }
                 else if (selectedButton == 2)
                 {

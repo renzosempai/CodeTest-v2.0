@@ -88,6 +88,7 @@ public class MultipleChoiceHolder : MonoBehaviour {
 	}
 
 	public void Done(){
+		GameObject.Find ("HealthBars").GetComponent<HealthManager> ().trackcount--;
 		BgmHandler.main.ResumeMain(1.4f);
 		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = 0;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = true;

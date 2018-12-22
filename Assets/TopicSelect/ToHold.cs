@@ -6,16 +6,22 @@ public class ToHold : MonoBehaviour {
 	static ToHold instance;
 	// Use this for initialization
 	public int countthis;
+	public static int counter;
 
 	// Update is called once per frame
 	void Start(){
+		counter++;
+		if (counter == 1) {
+			GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
 
+		}
 	}
 	void Awake() {
 		
 		DontDestroyOnLoad (transform.gameObject);
 	}
 	void Update(){
+		
 		if (countthis > 0) {
 			GameObject.Find ("Player").GetComponent<PlayerMovement> ().spriteSheet = Resources.LoadAll<Sprite> ("FemaleSprites/");
 		}
