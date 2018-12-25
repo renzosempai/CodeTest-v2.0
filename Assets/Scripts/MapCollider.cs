@@ -3,8 +3,6 @@ using System.Collections;
 
 public class MapCollider : MonoBehaviour
 {
-    //Collision Map String provided by DeKay's Collision Map Compiler for Pokémon Essentials
-    //See TOOLS folder for details
 
     public string shorthandCollisionMap;
     public int width;
