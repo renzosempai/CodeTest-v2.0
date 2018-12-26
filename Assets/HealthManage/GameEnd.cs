@@ -8,7 +8,6 @@ public class GameEnd : MonoBehaviour {
 	public GameObject btnExit;
 	public GameObject GameEnder;
 
-	public GameObject BGMdis;
 
 
 	// Use this for initialization
@@ -27,14 +26,17 @@ public class GameEnd : MonoBehaviour {
 		
 		//int scene = SceneManager.GetActiveScene().buildIndex;
 		//SceneManager.LoadScene(scene, LoadSceneMode.Single);
-	//	string thisScene = SceneManager.GetActiveScene ().name;
-	//	SceneManager.LoadScene (thisScene);
+		//	string thisScene = SceneManager.GetActiveScene ().name;
+		//	SceneManager.LoadScene (thisScene);
+		//BgmHandler.main.ResumeMain(1.4f);
+		//StartCoroutine(BacktoWorld());
+		BgmHandler.main.ResumeMain(1.4f);
+		Scene.main.Battle.gameObject.SetActive (false);
 		GameEnder.SetActive (false);
+		GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
 		SceneManager.LoadScene ("startup");
-
-
-
 	}
+
 	public void Exit(){
 
 		Application.Quit();

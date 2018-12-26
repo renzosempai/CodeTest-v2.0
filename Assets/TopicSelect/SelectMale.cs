@@ -21,8 +21,8 @@ public class SelectMale : MonoBehaviour {
 	}
 	public void CharSelected(){
 
-		GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
 
+		GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
 		if (firstM == 1) {
 			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=0;
 			SceneManager.LoadScene ("Level3");
@@ -30,6 +30,7 @@ public class SelectMale : MonoBehaviour {
 		} else if (secondM == 1) {
 			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=0;
 			SceneManager.LoadScene ("Level2"); 
+
 
 
 		} else if (thirdM == 1) {

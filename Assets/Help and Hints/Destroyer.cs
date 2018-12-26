@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 	static Destroyer instance;
 	public GameObject disabler;
 	public GameObject disabler1;
+	//public GameObject disabler2;
 	public int checker;
 
 	void Start(){
@@ -17,12 +18,14 @@ using UnityEngine.SceneManagement;
 void Update(){
 		DontDestroyOnLoad (this);
 		DontDestroyOnLoad (disabler);
+		//DontDestroyOnLoad (disabler2);
 
 
 
 		if (checker % 2 != 0) {
 			disabler.SetActive (false);
 			disabler1.SetActive (false);
+			//disabler2.SetActive (false);
 		
 		}
 		else 
