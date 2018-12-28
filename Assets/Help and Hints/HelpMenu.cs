@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HelpMenu : MonoBehaviour {
 
-	private bool running;
+	//private bool running;
 
 	public GameObject DisableHelpMenu;
 
@@ -17,23 +17,21 @@ public class HelpMenu : MonoBehaviour {
 	}
 		
 
-	public IEnumerator control(){
+	//public IEnumerator control(){
 		//sceneTransition.FadeIn();
-		StartCoroutine (ScreenFade.main.Fade (true, ScreenFade.defaultSpeed));
-		running = true;
+	//	StartCoroutine (ScreenFade.main.Fade (true, ScreenFade.defaultSpeed));
+	//	running = true;
 
 
-		while (running) {
+	void Update() {
 
-			if (Input.GetButton("Back")) {
+			if (Input.anyKeyDown) {
 				//yield return new WaitForSeconds(sceneTransition.FadeOut());
 //				yield return StartCoroutine (ScreenFade.main.Fade (false, ScreenFade.defaultSpeed));
 //				running = false;
 				DisableHelpMenu.SetActive(false);
-			}
-			yield return null;
-			this.gameObject.SetActive (false);
-		}
+
 
 }
+	}
 }
