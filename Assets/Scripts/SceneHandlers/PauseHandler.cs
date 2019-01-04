@@ -42,6 +42,8 @@ public class PauseHandler : MonoBehaviour
 	private bool running;
 //	public GameObject activebomb;
 
+	public GameObject DisableHealthBars;
+
 
 	void Awake()
 	{
@@ -460,7 +462,7 @@ public class PauseHandler : MonoBehaviour
 					{
 
 						//TrainerCard
-						//                        SfxHandler.Play(selectClip);
+						SfxHandler.Play(selectClip);
 						////                        StartCoroutine(fadeIcons(0.4f));
 						//////                        yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
 						yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
@@ -492,6 +494,7 @@ public class PauseHandler : MonoBehaviour
 						//                    //        if (SaveData.currentSave.gymsBeaten[i])
 						//                     //       {
 						//                     //           badgeTotal += 1;
+						SfxHandler.Play(selectClip);
 						yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
 						yield return new WaitForSeconds(1f);
 						//                            }
@@ -562,10 +565,12 @@ public class PauseHandler : MonoBehaviour
 						//yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
 						yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
 						hideIcons();
+						DisableHealthBars.SetActive (false);
 
 						yield return StartCoroutine(runSceneUntilDeactivated(Scene.main.Settings.gameObject));
 
 						unhideIcons();
+						DisableHealthBars.SetActive (true);
 						//StartCoroutine(unfadeIcons(0.4f));
 						//yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
 						yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));

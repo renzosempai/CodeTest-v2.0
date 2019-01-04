@@ -11,7 +11,7 @@ public class BattleHandler : MonoBehaviour
 //
     private AudioSource BattleAudio;
     public AudioClip defaultTrainerBGM;
-    public int defaultTrainerBGMLoopStart = 577000;
+    public int defaultTrainerBGMLoopStart = 0;
 
     public AudioClip defaultTrainerVictoryBGM;
     public int defaultTrainerVictoryBGMLoopStart = 79000;

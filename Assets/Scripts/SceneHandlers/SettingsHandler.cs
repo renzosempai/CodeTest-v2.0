@@ -57,6 +57,7 @@ public class SettingsHandler : MonoBehaviour
     private GUIText DialogBoxTextShadow;
     private GUITexture DialogBoxBorder;
 
+
     void Awake()
     {
         SettingsAudio = transform.GetComponent<AudioSource>();
@@ -86,13 +87,13 @@ public class SettingsHandler : MonoBehaviour
         DialogBoxText = DialogBox.transform.Find("DescriptionText").GetComponent<GUIText>();
         DialogBoxTextShadow = DialogBox.transform.Find("DescriptionTextShadow").GetComponent<GUIText>();
         DialogBoxBorder = DialogBox.transform.Find("DescriptionBorder").GetComponent<GUITexture>();
+
     }
 
     void Start()
     {
         updateResolutions();
         gameObject.SetActive(false);
-
     }
 
     public void drawDialogBox()
@@ -567,9 +568,12 @@ public class SettingsHandler : MonoBehaviour
                 //yield return new WaitForSeconds(sceneTransition.FadeOut());
                 yield return StartCoroutine(ScreenFade.main.Fade(false, ScreenFade.defaultSpeed));
                 running = false;
+
             }
             yield return null;
         }
         this.gameObject.SetActive(false);
     }
+
+
 }
