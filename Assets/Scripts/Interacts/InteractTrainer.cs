@@ -35,7 +35,8 @@ public class InteractTrainer : MonoBehaviour
 		MultipleChoice8,
 		TextQuiz,
 		TrueorFalse,
-		TrueorFalse1
+		TrueorFalse1,
+		TrueorFalse2
 	}
 
 	public GameObject MultipleChoice;
@@ -50,6 +51,7 @@ public class InteractTrainer : MonoBehaviour
 	public GameObject TextQuiz;
 	public GameObject TrueorFalse;
 	public GameObject TrueorFalse1;
+	public GameObject TrueorFalse2;
 
     public Gender trainerGender;
     public TrainerBehaviour trainerBehaviour;
@@ -682,8 +684,16 @@ public class InteractTrainer : MonoBehaviour
 															if (exercise == Exercise.TrueorFalse1) {
 																StartCoroutine (DelayTrueORFalse1 ());
 															} 
+															else {
+																if (exercise == Exercise.TrueorFalse2) {
+																	StartCoroutine (DelayTrueORFalse2 ());
+																} 
+
+															}
 
 														}
+
+
 													}
 												}
 											}
@@ -821,5 +831,9 @@ public class InteractTrainer : MonoBehaviour
 	IEnumerator DelayTrueORFalse1(){
 		yield return new WaitForSeconds(0.9f);
 		TrueorFalse1.SetActive (true);
+	}
+	IEnumerator DelayTrueORFalse2(){
+		yield return new WaitForSeconds(0.9f);
+		TrueorFalse2.SetActive (true);
 	}
 }

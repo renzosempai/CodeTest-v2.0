@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour {
 	public GameObject HealthIcon;
@@ -12,6 +13,7 @@ public class HealthManager : MonoBehaviour {
 	public Text tracker;
 	public int trackcount;
 	public GameObject endcount;
+
 	// Use this for initialization
 	void Start () {
 		trackcount = 10;
@@ -37,6 +39,11 @@ public class HealthManager : MonoBehaviour {
 		if (healthcounter == 3) {
 			endcount.SetActive (true);
 		}
+		if (trackcount == 0) {
+			SceneManager.LoadScene ("Completed");
+		}
 	}
+
+
 
 }
