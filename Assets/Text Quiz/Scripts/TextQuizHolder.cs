@@ -27,7 +27,7 @@ public class TextQuizHolder : MonoBehaviour {
 
 	public GameObject btnHint;
 	public GameObject HintText;
-	public GameObject NoteText;
+
 //	public string Question;
 
 
@@ -48,7 +48,6 @@ public class TextQuizHolder : MonoBehaviour {
 		DontDestroyOnLoad (thistext);
 		DontDestroyOnLoad (btnHint);
 		DontDestroyOnLoad (HintText);
-		DontDestroyOnLoad (NoteText);
 	}
 
 	void LockInput(InputField input)
@@ -84,7 +83,6 @@ public class TextQuizHolder : MonoBehaviour {
 			btnDone.SetActive (true);
 			btnHint.SetActive (false);
 			HintText.SetActive (false);
-			NoteText.SetActive (false);
 			Debug.Log ("Correct");
 			//			counter++;
 
