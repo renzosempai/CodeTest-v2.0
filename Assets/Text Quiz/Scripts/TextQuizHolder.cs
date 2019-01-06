@@ -63,7 +63,7 @@ public class TextQuizHolder : MonoBehaviour {
 	}
 
 	void Awake(){
-		sagot = Answer;
+		sagot = Answer.ToLower();
 //		text.GetComponent<Text> ().text = Question;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = false;
 			
@@ -76,7 +76,7 @@ public class TextQuizHolder : MonoBehaviour {
 	}
 
 	void CompareGuesses(string guess){
-		if (guess == sagot) {
+		if (guess.ToLower() == sagot) {
 
 			thistext.text = "Correct Answer: " + guess + ", Please click Done to continue";
 			wrong.SetActive (false);
