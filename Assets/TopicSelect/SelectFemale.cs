@@ -43,9 +43,16 @@ public class SelectFemale : MonoBehaviour {
 				Resources.LoadAll<Sprite> ("PlayerSprites/");
 
 		} else if (fourthF == 1) {
-//			SceneManager.LoadScene (" ");
+			SceneManager.LoadScene ("FemaleLevelCaveWithSpotLights");
+			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=1;
+			GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().playerTrainer1Animation =
+				Resources.LoadAll<Sprite> ("PlayerSprites/");
+			
 		} else if (fifthF == 1) {
-//			SceneManager.LoadScene (" ");
+			SceneManager.LoadScene ("FemaleLevelCaveWithLight");
+			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=1;
+			GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().playerTrainer1Animation =
+				Resources.LoadAll<Sprite> ("PlayerSprites/");
 		}
 
 //		GameObject.Find ("Player").GetComponent<PlayerMovement> ().spriteSheet = Resources.LoadAll<Sprite>("PlayerSprites/");

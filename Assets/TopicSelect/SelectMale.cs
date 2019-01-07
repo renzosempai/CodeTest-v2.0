@@ -30,17 +30,18 @@ public class SelectMale : MonoBehaviour {
 		} else if (secondM == 1) {
 			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=0;
 			SceneManager.LoadScene ("Level2"); 
-
-
-
+		
 		} else if (thirdM == 1) {
 			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=0;
 			SceneManager.LoadScene ("Level4");
 
 		} else if (fourthM == 1) {
-//			SceneManager.LoadScene (" ");
+			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=0;
+			SceneManager.LoadScene ("LevelCaveWithSpotLights");
+
 		} else if (fifthM == 1) {
-//			SceneManager.LoadScene (" ");
+			GameObject.Find ("Carrier").GetComponent<ToHold> ().countthis=0;
+			SceneManager.LoadScene ("LevelCaveWithLight");
 		}
 	}
 }
