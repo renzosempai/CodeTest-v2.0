@@ -13,14 +13,14 @@ public class StartSetting : MonoBehaviour {
 	void Update () {
 		
 	}
-//	private IEnumerator Options(){
-//		bool running = true;
-//		while (running)
-//		Scene.main.Settings.gameObject.SetActive(true);
-//		StartCoroutine(Scene.main.Settings.control());
-//		while (Scene.main.Settings.gameObject.activeSelf)
-//		{
-//			yield return null;
-//		}
-//}
+	private IEnumerator Options(){
+		bool running = true;
+		while (running)
+		Scene.main.Settings.gameObject.SetActive(true);
+		StartCoroutine(Scene.main.Settings.control());
+		while (Scene.main.Settings.gameObject.activeSelf)
+		{
+			yield return null;
+		}
+}
 }

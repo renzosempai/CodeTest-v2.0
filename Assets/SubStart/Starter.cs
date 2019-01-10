@@ -14,7 +14,8 @@ public class Starter : MonoBehaviour {
 		
 	}
 	public void Option(){
-		Scene.main.Settings.gameObject.SetActive(true);
+	//	Scene.main.Settings.gameObject.SetActive(true);
+	//	this.gameObject.SetActive (false);
 		//Setting.SetActive(true);
 	}
 	public void Quit(){
