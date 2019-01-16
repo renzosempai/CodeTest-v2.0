@@ -195,27 +195,27 @@ public class SettingsHandler : MonoBehaviour
         if (1710 < resWidth && 960 < resHeight)
         {
             screenSize.text = "x1     x2     x3     x4     x5";
-            selectedOptionSize[4] = 5;
+            selectedOptionSize[5] = 5;
         }
         else if (1368 < resWidth && 768 < resHeight)
         {
             screenSize.text = "x1     x2     x3     x4";
-            selectedOptionSize[4] = 4;
+            selectedOptionSize[5] = 4;
         }
         else if (1026 < resWidth && 576 < resHeight)
         {
-            screenSize.text = "x1     x2     x3";
-            selectedOptionSize[4] = 3;
+            screenSize.text = "x1    x2     x3";
+            selectedOptionSize[5] = 3;
         }
         else if (684 < resWidth && 384 < resHeight)
         {
             screenSize.text = "x1     x2";
-            selectedOptionSize[4] = 2;
+            selectedOptionSize[5] = 2;
         }
         else
         {
             screenSize.text = "x1";
-            selectedOptionSize[4] = 1;
+            selectedOptionSize[5] = 1;
         }
     }
 
@@ -474,6 +474,7 @@ public class SettingsHandler : MonoBehaviour
                     updateOption();
                     yield return new WaitForSeconds(0.2f);
                 }
+
                 else
                 {
                     if (selectedOptionIndex[selectedOption] < selectedOptionSize[selectedOption] - 1)
