@@ -9,7 +9,9 @@ public class exitscript : MonoBehaviour {
 		if (Input.anyKeyDown) {
 			// I am assuming your start screen is level 0
 			// The rest of the game would be level 1
-			Application.Quit();
+			GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
+			SceneManager.LoadScene("startup");
+
 		}
 	}
 }
