@@ -93,15 +93,18 @@ public class MultipleChoiceHolder : MonoBehaviour {
 		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = 0;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = true;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().busy = false;
-		StartCoroutine(BacktoWorld());
-	}
-
-	IEnumerator BacktoWorld(){
-		yield return new WaitForSeconds(0.4f);
+		/* StartCoroutine(BacktoWorld()); */
 		CallMultipleChoice.SetActive (false);
 		StartCoroutine(ScreenFade.main.Fade(true, 2f));
 		Scene.main.Battle.gameObject.SetActive(false);
 	}
+
+/* 	IEnumerator BacktoWorld(){
+		yield return new WaitForSeconds(0.4f);
+		CallMultipleChoice.SetActive (false);
+		StartCoroutine(ScreenFade.main.Fade(true, 2f));
+		Scene.main.Battle.gameObject.SetActive(false);
+	} */
 		
 //	IEnumerator Wait(){
 //		yield return new WaitForSeconds(0.4f);
