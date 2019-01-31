@@ -595,25 +595,25 @@ public class PartyHandler : MonoBehaviour
                         chosenIndex = Dialog.chosenIndex;
                         if (chosenIndex == 3)
                         {
-                            //Summary
-                            SfxHandler.Play(selectClip);
-                            //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
-                            yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
-
-                            //Set SceneSummary to be active so that it appears
-                            Scene.main.Summary.gameObject.SetActive(true);
-                            StartCoroutine(Scene.main.Summary.control(SaveData.currentSave.PC.boxes[0], currentPosition));
-                            //Start an empty loop that will only stop when SceneSummary is no longer active (is closed)
-                            while (Scene.main.Summary.gameObject.activeSelf)
-                            {
-                                yield return null;
-                            }
-                            chosenIndex = 0;
-                            Dialog.undrawChoiceBox();
-                            Dialog.drawDialogBox();
-                            Dialog.drawTextInstant("Choose a Pokémon.");
-                            //yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
-                            yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
+//                            //Summary
+//                            SfxHandler.Play(selectClip);
+//                            //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
+//                            yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+//
+//                            //Set SceneSummary to be active so that it appears
+//                            Scene.main.Summary.gameObject.SetActive(true);
+//                            StartCoroutine(Scene.main.Summary.control(SaveData.currentSave.PC.boxes[0], currentPosition));
+//                            //Start an empty loop that will only stop when SceneSummary is no longer active (is closed)
+//                            while (Scene.main.Summary.gameObject.activeSelf)
+//                            {
+//                                yield return null;
+//                            }
+//                            chosenIndex = 0;
+//                            Dialog.undrawChoiceBox();
+//                            Dialog.drawDialogBox();
+//                            Dialog.drawTextInstant("Choose a Pokémon.");
+//                            //yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
+//                            yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
                         }
                         else if (chosenIndex == 2)
                         {
@@ -652,85 +652,85 @@ public class PartyHandler : MonoBehaviour
                                 if (chosenIndex == 2)
                                 {
                                     //Swap
-                                    SfxHandler.Play(selectClip);
-                                    //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
-                                    yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
-
-                                    Scene.main.Bag.gameObject.SetActive(true);
-                                    StartCoroutine(Scene.main.Bag.control(false, true));
-                                    while (Scene.main.Bag.gameObject.activeSelf)
-                                    {
-                                        yield return null;
-                                    }
-
-                                    string chosenItem = Scene.main.Bag.chosenItem;
-
-                                    Dialog.undrawChoiceBox();
-                                    Dialog.drawDialogBox();
-                                    if (string.IsNullOrEmpty(chosenItem))
-                                    {
-                                        Dialog.drawTextInstant("Choose a Pokémon.");
-                                    }
-                                    //yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
-                                    yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
-
-                                    if (!string.IsNullOrEmpty(chosenItem))
-                                    {
-                                        Dialog.drawDialogBox();
-                                        yield return
-                                            StartCoroutine(
-                                                Dialog.drawText("Swap " + selectedPokemon.getHeldItem() + " for " +
-                                                                chosenItem + "?"));
-                                        Dialog.drawChoiceBox();
-                                        yield return StartCoroutine(Dialog.choiceNavigate());
-
-                                        chosenIndex = Dialog.chosenIndex;
-                                        Dialog.undrawChoiceBox();
-
-                                        if (chosenIndex == 1)
-                                        {
-                                            string receivedItem = selectedPokemon.swapHeldItem(chosenItem);
-                                            SaveData.currentSave.Bag.addItem(receivedItem, 1);
-                                            SaveData.currentSave.Bag.removeItem(chosenItem, 1);
-
-                                            Dialog.drawDialogBox();
-                                            yield return
-                                                Dialog.StartCoroutine("drawText",
-                                                    "Gave " + chosenItem + " to " + selectedPokemon.getName() + ",");
-                                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                                            {
-                                                yield return null;
-                                            }
-                                            Dialog.drawDialogBox();
-                                            yield return
-                                                Dialog.StartCoroutine("drawText",
-                                                    "and received " + receivedItem + " in return.");
-                                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                                            {
-                                                yield return null;
-                                            }
-                                        }
+//                                    SfxHandler.Play(selectClip);
+//                                    //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
+//                                    yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+//
+//                                    Scene.main.Bag.gameObject.SetActive(true);
+//                                    StartCoroutine(Scene.main.Bag.control(false, true));
+//                                    while (Scene.main.Bag.gameObject.activeSelf)
+//                                    {
+//                                        yield return null;
+//                                    }
+//
+//                                    string chosenItem = Scene.main.Bag.chosenItem;
+//
+//                                    Dialog.undrawChoiceBox();
+//                                    Dialog.drawDialogBox();
+//                                    if (string.IsNullOrEmpty(chosenItem))
+//                                    {
+//                                        Dialog.drawTextInstant("Choose a Pokémon.");
+//                                    }
+//                                    //yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
+//                                    yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
+//
+//                                    if (!string.IsNullOrEmpty(chosenItem))
+//                                    {
+//                                        Dialog.drawDialogBox();
+//                                        yield return
+//                                            StartCoroutine(
+//                                                Dialog.drawText("Swap " + selectedPokemon.getHeldItem() + " for " +
+//                                                                chosenItem + "?"));
+//                                        Dialog.drawChoiceBox();
+//                                        yield return StartCoroutine(Dialog.choiceNavigate());
+//
+//                                        chosenIndex = Dialog.chosenIndex;
+//                                        Dialog.undrawChoiceBox();
+//
+//                                        if (chosenIndex == 1)
+//                                        {
+////                                            string receivedItem = selectedPokemon.swapHeldItem(chosenItem);
+////                                            SaveData.currentSave.Bag.addItem(receivedItem, 1);
+////                                            SaveData.currentSave.Bag.removeItem(chosenItem, 1);
+////
+////                                            Dialog.drawDialogBox();
+////                                            yield return
+////                                                Dialog.StartCoroutine("drawText",
+////                                                    "Gave " + chosenItem + " to " + selectedPokemon.getName() + ",");
+////                                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+////                                            {
+////                                                yield return null;
+////                                            }
+////                                            Dialog.drawDialogBox();
+////                                            yield return
+////                                                Dialog.StartCoroutine("drawText",
+////                                                    "and received " + receivedItem + " in return.");
+////                                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+////                                            {
+////                                                yield return null;
+////                                            }
+//                                        }
                                     }
                                 }
                                 else if (chosenIndex == 1)
                                 {
                                     //Take
-                                    Dialog.undrawChoiceBox();
-                                    string receivedItem = selectedPokemon.swapHeldItem("");
-                                    SaveData.currentSave.Bag.addItem(receivedItem, 1);
-
-                                    updateParty();
-                                    updateFrames();
-
-                                    Dialog.drawDialogBox();
-                                    yield return
-                                        StartCoroutine(
-                                            Dialog.drawText("Took " + receivedItem + " from " +
-                                                            selectedPokemon.getName() + "."));
-                                    while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                                    {
-                                        yield return null;
-                                    }
+//                                    Dialog.undrawChoiceBox();
+//                                    string receivedItem = selectedPokemon.swapHeldItem("");
+//                                    SaveData.currentSave.Bag.addItem(receivedItem, 1);
+//
+//                                    updateParty();
+//                                    updateFrames();
+//
+//                                    Dialog.drawDialogBox();
+//                                    yield return
+//                                        StartCoroutine(
+//                                            Dialog.drawText("Took " + receivedItem + " from " +
+//                                                            selectedPokemon.getName() + "."));
+//                                    while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+//                                    {
+//                                        yield return null;
+//                                    }
                                 }
                             }
                             else
@@ -751,45 +751,45 @@ public class PartyHandler : MonoBehaviour
                                 if (chosenIndex == 1)
                                 {
                                     //Give
-                                    SfxHandler.Play(selectClip);
-                                    //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
-                                    yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
-
-                                    Scene.main.Bag.gameObject.SetActive(true);
-                                    StartCoroutine(Scene.main.Bag.control(false, true));
-                                    while (Scene.main.Bag.gameObject.activeSelf)
-                                    {
-                                        yield return null;
-                                    }
-
-                                    string chosenItem = Scene.main.Bag.chosenItem;
-
-                                    Dialog.undrawChoiceBox();
-                                    Dialog.drawDialogBox();
-                                    if (string.IsNullOrEmpty(chosenItem))
-                                    {
-                                        Dialog.drawTextInstant("Choose a Pokémon.");
-                                    }
-                                    //yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
-                                    yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
-
-                                    if (!string.IsNullOrEmpty(chosenItem))
-                                    {
-                                        selectedPokemon.swapHeldItem(chosenItem);
-                                        SaveData.currentSave.Bag.removeItem(chosenItem, 1);
-
-                                        updateParty();
-                                        updateFrames();
-
-                                        Dialog.drawDialogBox();
-                                        yield return
-                                            Dialog.StartCoroutine("drawText",
-                                                "Gave " + chosenItem + " to " + selectedPokemon.getName() + ".");
-                                        while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                                        {
-                                            yield return null;
-                                        }
-                                    }
+//                                    SfxHandler.Play(selectClip);
+//                                    //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f));
+//                                    yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+//
+//                                    Scene.main.Bag.gameObject.SetActive(true);
+//                                    StartCoroutine(Scene.main.Bag.control(false, true));
+//                                    while (Scene.main.Bag.gameObject.activeSelf)
+//                                    {
+//                                        yield return null;
+//                                    }
+//
+//                                    string chosenItem = Scene.main.Bag.chosenItem;
+//
+//                                    Dialog.undrawChoiceBox();
+//                                    Dialog.drawDialogBox();
+//                                    if (string.IsNullOrEmpty(chosenItem))
+//                                    {
+//                                        Dialog.drawTextInstant("Choose a Pokémon.");
+//                                    }
+//                                    //yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
+//                                    yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
+//
+//                                    if (!string.IsNullOrEmpty(chosenItem))
+//                                    {
+//                                        selectedPokemon.swapHeldItem(chosenItem);
+//                                        SaveData.currentSave.Bag.removeItem(chosenItem, 1);
+//
+//                                        updateParty();
+//                                        updateFrames();
+//
+//                                        Dialog.drawDialogBox();
+//                                        yield return
+//                                            Dialog.StartCoroutine("drawText",
+//                                                "Gave " + chosenItem + " to " + selectedPokemon.getName() + ".");
+//                                        while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+//                                        {
+//                                            yield return null;
+//                                        }
+//                                    }
                                 }
                             }
 
@@ -806,32 +806,31 @@ public class PartyHandler : MonoBehaviour
                     }
                 }
             }
-            else if (Input.GetButton("Back"))
-            {
-                if (switching)
-                {
-                    switching = false;
-                    swapPosition = -1;
-                    updateFrames();
-                    Dialog.undrawChoiceBox();
-                    Dialog.drawDialogBox();
-                    Dialog.drawTextInstant("Choose a Pokémon.");
-                    yield return new WaitForSeconds(0.2f);
-                }
-                else
-                {
-                    currentPosition = 6;
-                    updateFrames();
-                    SfxHandler.Play(selectClip);
-                    running = false;
-                }
-            }
-            yield return null;
+//            else if (Input.GetButton("Back"))
+//            {
+//                if (switching)
+//                {
+//                    switching = false;
+//                    swapPosition = -1;
+//                    updateFrames();
+//                    Dialog.undrawChoiceBox();
+//                    Dialog.drawDialogBox();
+//                    Dialog.drawTextInstant("Choose a Pokémon.");
+//                    yield return new WaitForSeconds(0.2f);
+//                }
+//                else
+//                {
+//                    currentPosition = 6;
+//                    updateFrames();
+//                    SfxHandler.Play(selectClip);
+//                    running = false;
+//                }
+//            }
+//            yield return null;
         }
-        StopCoroutine("animateIcons");
-        //yield return new WaitForSeconds(sceneTransition.FadeOut());
-        yield return StartCoroutine(ScreenFade.main.Fade(false, ScreenFade.defaultSpeed));
-        GlobalVariables.global.resetFollower();
-        this.gameObject.SetActive(false);
+//        StopCoroutine("animateIcons");
+//        //yield return new WaitForSeconds(sceneTransition.FadeOut());
+//        yield return StartCoroutine(ScreenFade.main.Fade(false, ScreenFade.defaultSpeed));
+//        GlobalVariables.global.resetFollower();
+//        this.gameObject.SetActive(false);
     }
-}

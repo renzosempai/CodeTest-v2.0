@@ -420,23 +420,23 @@ public class CustomEvent : MonoBehaviour
 
                         if (nicknameCI == 1)
                         {
-                            //give nickname
-                            //SfxHandler.Play(selectClip);
-                            yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
-
-                            Scene.main.Typing.gameObject.SetActive(true);
-                            StartCoroutine(Scene.main.Typing.control(10, "", pkGender,
-                                Pokemon.GetIconsFromID_(currentEvent.ints[0], currentEvent.bool0)));
-                            while (Scene.main.Typing.gameObject.activeSelf)
-                            {
-                                yield return null;
-                            }
-                            if (Scene.main.Typing.typedString.Length > 0)
-                            {
-                                nickname = Scene.main.Typing.typedString;
-                            }
-
-                            yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
+//                            //give nickname
+//                            //SfxHandler.Play(selectClip);
+//                            yield return StartCoroutine(ScreenFade.main.Fade(false, 0.4f));
+//
+//                            Scene.main.Typing.gameObject.SetActive(true);
+//                            StartCoroutine(Scene.main.Typing.control(10, "", pkGender,
+//                                Pokemon.GetIconsFromID_(currentEvent.ints[0], currentEvent.bool0)));
+//                            while (Scene.main.Typing.gameObject.activeSelf)
+//                            {
+//                                yield return null;
+//                            }
+//                            if (Scene.main.Typing.typedString.Length > 0)
+//                            {
+//                                nickname = Scene.main.Typing.typedString;
+//                            }
+//
+//                            yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
                         }
                     }
                     if (!EventRequiresDialogBox(nextEvent.eventType))

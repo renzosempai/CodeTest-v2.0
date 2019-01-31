@@ -605,162 +605,162 @@ public class EvolutionHandler : MonoBehaviour
     }
 
 
-    private IEnumerator LearnMove(Pokemon selectedPokemon, string move)
-    {
-        int chosenIndex = 1;
-        if (chosenIndex == 1)
-        {
-            bool learning = true;
-            while (learning)
-            {
-                //Moveset is full
-                if (selectedPokemon.getMoveCount() == 4)
-                {
-                    dialog.DrawDialogBox();
-                    yield return
-                        StartCoroutine(
-                            dialog.DrawText(selectedPokemon.getName() + " wants to learn the \nmove " + move + "."));
-                    while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                    {
-                        yield return null;
-                    }
-                    dialog.DrawDialogBox();
-                    yield return
-                        StartCoroutine(
-                            dialog.DrawText("However, " + selectedPokemon.getName() + " already \nknows four moves."));
-                    while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                    {
-                        yield return null;
-                    }
-                    dialog.DrawDialogBox();
-                    yield return
-                        StartCoroutine(dialog.DrawText("Should a move be deleted and \nreplaced with " + move + "?"));
+    private IEnumerator LearnMove (Pokemon selectedPokemon, string move)
+	{
+		int chosenIndex = 1;
+		if (chosenIndex == 1) {
+			bool learning = true;
+			while (learning) {
+				//Moveset is full
+				if (selectedPokemon.getMoveCount () == 4) {
+					dialog.DrawDialogBox ();
+					yield return
+                        StartCoroutine (
+						dialog.DrawText (selectedPokemon.getName () + " wants to learn the \nmove " + move + "."));
+					while (!Input.GetButtonDown ("Select") && !Input.GetButtonDown ("Back")) {
+						yield return null;
+					}
+					dialog.DrawDialogBox ();
+					yield return
+                        StartCoroutine (
+						dialog.DrawText ("However, " + selectedPokemon.getName () + " already \nknows four moves."));
+					while (!Input.GetButtonDown ("Select") && !Input.GetButtonDown ("Back")) {
+						yield return null;
+					}
+					dialog.DrawDialogBox ();
+					yield return
+                        StartCoroutine (dialog.DrawText ("Should a move be deleted and \nreplaced with " + move + "?"));
 
-                    yield return StartCoroutine(dialog.DrawChoiceBox());
-                    chosenIndex = dialog.chosenIndex;
-                    dialog.UndrawChoiceBox();
-                    if (chosenIndex == 1)
-                    {
-                        dialog.DrawDialogBox();
-                        yield return StartCoroutine(dialog.DrawText("Which move should \nbe forgotten?"));
-                        while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                        {
-                            yield return null;
-                        }
-
-                        yield return StartCoroutine(ScreenFade.main.Fade(false, ScreenFade.defaultSpeed));
-
-                        //Set SceneSummary to be active so that it appears
-                        Scene.main.Summary.gameObject.SetActive(true);
-                        StartCoroutine(Scene.main.Summary.control(selectedPokemon, move));
-                        //Start an empty loop that will only stop when SceneSummary is no longer active (is closed)
-                        while (Scene.main.Summary.gameObject.activeSelf)
-                        {
-                            yield return null;
-                        }
-
-                        string replacedMove = Scene.main.Summary.replacedMove;
-                        yield return StartCoroutine(ScreenFade.main.Fade(true, ScreenFade.defaultSpeed));
-
-                        if (!string.IsNullOrEmpty(replacedMove))
-                        {
-                            dialog.DrawDialogBox();
-                            yield return StartCoroutine(dialog.DrawTextSilent("1, "));
-                            yield return new WaitForSeconds(0.4f);
-                            yield return StartCoroutine(dialog.DrawTextSilent("2, "));
-                            yield return new WaitForSeconds(0.4f);
-                            yield return StartCoroutine(dialog.DrawTextSilent("and... "));
-                            yield return new WaitForSeconds(0.4f);
-                            yield return StartCoroutine(dialog.DrawTextSilent("... "));
-                            yield return new WaitForSeconds(0.4f);
-                            yield return StartCoroutine(dialog.DrawTextSilent("... "));
-                            yield return new WaitForSeconds(0.4f);
-                            SfxHandler.Play(forgetMoveClip);
-                            yield return StartCoroutine(dialog.DrawTextSilent("Poof!"));
-                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                            {
-                                yield return null;
-                            }
-
-                            dialog.DrawDialogBox();
-                            yield return
-                                StartCoroutine(
-                                    dialog.DrawText(selectedPokemon.getName() + " forgot how to \nuse " + replacedMove +
-                                                    "."));
-                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                            {
-                                yield return null;
-                            }
-                            dialog.DrawDialogBox();
-                            yield return StartCoroutine(dialog.DrawText("And..."));
-                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                            {
-                                yield return null;
-                            }
-
-                            dialog.DrawDialogBox();
-                            AudioClip mfx = Resources.Load<AudioClip>("Audio/mfx/GetAverage");
-                            BgmHandler.main.PlayMFX(mfx);
-                            StartCoroutine(dialog.DrawTextSilent(selectedPokemon.getName() + " learned \n" + move + "!"));
-                            yield return new WaitForSeconds(mfx.length);
-                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                            {
-                                yield return null;
-                            }
-                            dialog.UndrawDialogBox();
-                            learning = false;
-                        }
-                        else
-                        {
-                            //give up?
-                            chosenIndex = 0;
-                        }
-                    }
-                    if (chosenIndex == 0)
-                    {
-                        //NOT ELSE because this may need to run after (chosenIndex == 1) runs
-                        dialog.DrawDialogBox();
-                        yield return StartCoroutine(dialog.DrawText("Give up on learning the move \n" + move + "?"));
-
-                        yield return StartCoroutine(dialog.DrawChoiceBox());
-                        chosenIndex = dialog.chosenIndex;
-                        dialog.UndrawChoiceBox();
-                        if (chosenIndex == 1)
-                        {
-                            learning = false;
-                            chosenIndex = 0;
-                        }
-                    }
-                }
-                //Moveset is not full, can fit the new move easily
-                else
-                {
-                    selectedPokemon.addMove(move);
-
-                    dialog.DrawDialogBox();
-                    AudioClip mfx = Resources.Load<AudioClip>("Audio/mfx/GetAverage");
-                    BgmHandler.main.PlayMFX(mfx);
-                    StartCoroutine(dialog.DrawTextSilent(selectedPokemon.getName() + " learned \n" + move + "!"));
-                    yield return new WaitForSeconds(mfx.length);
-                    while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-                    {
-                        yield return null;
-                    }
-                    dialog.UndrawDialogBox();
-                    learning = false;
-                }
-            }
-        }
-        if (chosenIndex == 0)
-        {
-            //NOT ELSE because this may need to run after (chosenIndex == 1) runs
-            //cancel learning loop
-            dialog.DrawDialogBox();
-            yield return StartCoroutine(dialog.DrawText(selectedPokemon.getName() + " did not learn \n" + move + "."));
-            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
-            {
-                yield return null;
-            }
-        }
-    }
+					yield return StartCoroutine (dialog.DrawChoiceBox ());
+					chosenIndex = dialog.chosenIndex;
+					dialog.UndrawChoiceBox ();
+				}
+			}
+		}
+	}
 }
+//                    if (chosenIndex == 1)
+//                    {
+//                        dialog.DrawDialogBox();
+//                        yield return StartCoroutine(dialog.DrawText("Which move should \nbe forgotten?"));
+//                        while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+//                        {
+//                            yield return null;
+//                        }
+//
+//                        yield return StartCoroutine(ScreenFade.main.Fade(false, ScreenFade.defaultSpeed));
+//
+//                        //Set SceneSummary to be active so that it appears
+//                        Scene.main.Summary.gameObject.SetActive(true);
+//                        StartCoroutine(Scene.main.Summary.control(selectedPokemon, move));
+//                        //Start an empty loop that will only stop when SceneSummary is no longer active (is closed)
+//                        while (Scene.main.Summary.gameObject.activeSelf)
+//                        {
+//                            yield return null;
+//                        }
+//
+//                        string replacedMove = Scene.main.Summary.replacedMove;
+//                        yield return StartCoroutine(ScreenFade.main.Fade(true, ScreenFade.defaultSpeed));
+//
+//                        if (!string.IsNullOrEmpty(replacedMove))
+//                        {
+//                            dialog.DrawDialogBox();
+//                            yield return StartCoroutine(dialog.DrawTextSilent("1, "));
+//                            yield return new WaitForSeconds(0.4f);
+//                            yield return StartCoroutine(dialog.DrawTextSilent("2, "));
+//                            yield return new WaitForSeconds(0.4f);
+//                            yield return StartCoroutine(dialog.DrawTextSilent("and... "));
+//                            yield return new WaitForSeconds(0.4f);
+//                            yield return StartCoroutine(dialog.DrawTextSilent("... "));
+//                            yield return new WaitForSeconds(0.4f);
+//                            yield return StartCoroutine(dialog.DrawTextSilent("... "));
+//                            yield return new WaitForSeconds(0.4f);
+//                            SfxHandler.Play(forgetMoveClip);
+//                            yield return StartCoroutine(dialog.DrawTextSilent("Poof!"));
+//                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+//                            {
+//                                yield return null;
+//                            }
+//
+//                            dialog.DrawDialogBox();
+//                            yield return
+//                                StartCoroutine(
+//                                    dialog.DrawText(selectedPokemon.getName() + " forgot how to \nuse " + replacedMove +
+//                                                    "."));
+//                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+//                            {
+//                                yield return null;
+//                            }
+//                            dialog.DrawDialogBox();
+//                            yield return StartCoroutine(dialog.DrawText("And..."));
+//                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+//                            {
+//                                yield return null;
+//                            }
+//
+//                            dialog.DrawDialogBox();
+//                            AudioClip mfx = Resources.Load<AudioClip>("Audio/mfx/GetAverage");
+//                            BgmHandler.main.PlayMFX(mfx);
+//                            StartCoroutine(dialog.DrawTextSilent(selectedPokemon.getName() + " learned \n" + move + "!"));
+//                            yield return new WaitForSeconds(mfx.length);
+//                            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+//                            {
+//                                yield return null;
+//                            }
+//                            dialog.UndrawDialogBox();
+//                            learning = false;
+//                        }
+//                        else
+//                        {
+//                            //give up?
+//                            chosenIndex = 0;
+//                        }
+//                    }
+//                    if (chosenIndex == 0)
+//                    {
+//                        //NOT ELSE because this may need to run after (chosenIndex == 1) runs
+//                        dialog.DrawDialogBox();
+//                        yield return StartCoroutine(dialog.DrawText("Give up on learning the move \n" + move + "?"));
+//
+//                        yield return StartCoroutine(dialog.DrawChoiceBox());
+//                        chosenIndex = dialog.chosenIndex;
+//                        dialog.UndrawChoiceBox();
+//                        if (chosenIndex == 1)
+//                        {
+//                            learning = false;
+//                            chosenIndex = 0;
+//                        }
+//                    }
+//                }
+//                //Moveset is not full, can fit the new move easily
+//                else
+//                {
+//                    selectedPokemon.addMove(move);
+//
+//                    dialog.DrawDialogBox();
+//                    AudioClip mfx = Resources.Load<AudioClip>("Audio/mfx/GetAverage");
+//                    BgmHandler.main.PlayMFX(mfx);
+//                    StartCoroutine(dialog.DrawTextSilent(selectedPokemon.getName() + " learned \n" + move + "!"));
+//                    yield return new WaitForSeconds(mfx.length);
+//                    while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+//                    {
+//                        yield return null;
+//                    }
+//                    dialog.UndrawDialogBox();
+//                    learning = false;
+//                }
+//            }
+//        }
+//        if (chosenIndex == 0)
+//        {
+//            //NOT ELSE because this may need to run after (chosenIndex == 1) runs
+//            //cancel learning loop
+//            dialog.DrawDialogBox();
+//            yield return StartCoroutine(dialog.DrawText(selectedPokemon.getName() + " did not learn \n" + move + "."));
+//            while (!Input.GetButtonDown("Select") && !Input.GetButtonDown("Back"))
+//            {
+//                yield return null;
+//            }
+//        }
+//    }
+//}

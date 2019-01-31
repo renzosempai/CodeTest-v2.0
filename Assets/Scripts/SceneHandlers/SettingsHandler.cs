@@ -363,7 +363,7 @@ public class SettingsHandler : MonoBehaviour
             selectedOptionIndex[3] = PlayerPrefs.GetInt("frameStyle") - 1;
 //            selectedOptionIndex[4] = PlayerPrefs.GetInt("battleScene");
 //            selectedOptionIndex[5] = PlayerPrefs.GetInt("battleStyle");
-            selectedOptionIndex[4] = PlayerPrefs.GetInt("screenSize") - 1;
+            selectedOptionIndex[4] = PlayerPrefs.GetInt("screenSize");
         }
         for (int i = 0; i < 8; i++)
         {

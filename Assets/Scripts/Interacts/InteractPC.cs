@@ -111,21 +111,21 @@ public class InteractPC : MonoBehaviour
 
                             if (accessedBox == 1)
                             {
-                                //access Move
-                                SfxHandler.Play(selectClip);
-                                StartCoroutine(ScreenFade.main.Fade(false, ScreenFade.defaultSpeed));
-                                yield return new WaitForSeconds(ScreenFade.defaultSpeed + 0.4f);
-                                //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f) + 0.4f);
-                                SfxHandler.Play(openClip);
-                                //Set ScenePC to be active so that it appears
-                                Scene.main.PC.gameObject.SetActive(true);
-                                StartCoroutine(Scene.main.PC.control());
-                                //Start an empty loop that will only stop when ScenePC is no longer active (is closed)
-                                while (Scene.main.PC.gameObject.activeSelf)
-                                {
-                                    yield return null;
-                                }
-                                yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
+//                                //access Move
+//                                SfxHandler.Play(selectClip);
+//                                StartCoroutine(ScreenFade.main.Fade(false, ScreenFade.defaultSpeed));
+//                                yield return new WaitForSeconds(ScreenFade.defaultSpeed + 0.4f);
+//                                //yield return new WaitForSeconds(sceneTransition.FadeOut(0.4f) + 0.4f);
+//                                SfxHandler.Play(openClip);
+//                                //Set ScenePC to be active so that it appears
+//                                Scene.main.PC.gameObject.SetActive(true);
+//                                StartCoroutine(Scene.main.PC.control());
+//                                //Start an empty loop that will only stop when ScenePC is no longer active (is closed)
+//                                while (Scene.main.PC.gameObject.activeSelf)
+//                                {
+//                                    yield return null;
+//                                }
+//                                yield return StartCoroutine(ScreenFade.main.Fade(true, 0.4f));
                                 //yield return new WaitForSeconds(sceneTransition.FadeIn(0.4f));
                             }
 

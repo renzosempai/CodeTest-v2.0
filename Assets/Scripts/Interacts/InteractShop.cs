@@ -73,18 +73,18 @@ public class InteractShop : MonoBehaviour
             {
                 if (chosenIndex == 1)
                 {
-                    Dialog.undrawDialogBox();
-                    yield return StartCoroutine(PlayerMovement.player.moveCameraTo(new Vector3(7, 0, 0), 0.35f));
-
-                    Scene.main.Bag.gameObject.SetActive(true);
-                    StartCoroutine(Scene.main.Bag.control(itemCatalog));
-
-                    while (Scene.main.Bag.gameObject.activeSelf)
-                    {
-                        yield return null;
-                    }
-
-                    yield return StartCoroutine(PlayerMovement.player.moveCameraTo(new Vector3(0, 0, 0), 0.35f));
+//                    Dialog.undrawDialogBox();
+//                    yield return StartCoroutine(PlayerMovement.player.moveCameraTo(new Vector3(7, 0, 0), 0.35f));
+//
+//                    Scene.main.Bag.gameObject.SetActive(true);
+//                    StartCoroutine(Scene.main.Bag.control(itemCatalog));
+//
+//                    while (Scene.main.Bag.gameObject.activeSelf)
+//                    {
+//                        yield return null;
+//                    }
+//
+//                    yield return StartCoroutine(PlayerMovement.player.moveCameraTo(new Vector3(0, 0, 0), 0.35f));
                 }
 
                 Dialog.drawDialogBox();
