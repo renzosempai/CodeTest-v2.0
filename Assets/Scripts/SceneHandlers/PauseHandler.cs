@@ -60,7 +60,7 @@ public class PauseHandler : MonoBehaviour
 		//        iconPokedex = transform.Find("IconPokedex").GetComponent<RotatableGUIItem>();
 		//        iconParty = transform.Find("IconParty").GetComponent<RotatableGUIItem>();
 		//        iconBag = transform.Find("IconBag").GetComponent<RotatableGUIItem>();
-		iconHelp = transform.Find("IconTrainer").GetComponent<RotatableGUIItem>();
+		iconHelp = transform.Find("IconHelp").GetComponent<RotatableGUIItem>();
 		iconSave = transform.Find("IconSave").GetComponent<RotatableGUIItem>();
 		iconSettings = transform.Find("IconSettings").GetComponent<RotatableGUIItem>();
 
