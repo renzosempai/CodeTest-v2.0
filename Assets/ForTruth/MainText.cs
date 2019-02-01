@@ -79,7 +79,7 @@ public class MainText : MonoBehaviour {
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().busy = false;
 	/* 	StartCoroutine(BacktoWorld()); */
 		CallTrueORFalse.SetActive (false);
-		StartCoroutine(ScreenFade.main.Fade(true, 2f));
+	//	StartCoroutine(ScreenFade.main.Fade(true, 2f));
 		Scene.main.Battle.gameObject.SetActive(false);
 	}
 
