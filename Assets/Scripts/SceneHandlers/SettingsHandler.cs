@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public class SettingsHandler : MonoBehaviour
@@ -375,7 +376,7 @@ public class SettingsHandler : MonoBehaviour
 
     private void saveSettings()
     {
-        PlayerPrefs.SetInt("textSpeed", selectedOptionIndex[0]);
+        PlayerPrefs.SetInt("textSpeed", selectedOptionIndex[3]);
         float mVol = ((float) selectedOptionIndex[1] / 20f) * ((float) selectedOptionIndex[1] / 20f);
         float sVol = ((float) selectedOptionIndex[2] / 20f) * ((float) selectedOptionIndex[2] / 20f);
         PlayerPrefs.SetFloat("musicVolume", mVol);
@@ -545,7 +546,7 @@ public class SettingsHandler : MonoBehaviour
             {
                 Dialog.drawDialogBox();
                 yield return
-                    Dialog.StartCoroutine("drawText", "Would you like to save the currently \\selected settings?");
+                Dialog.StartCoroutine("drawText", "Would you like to save the currently \\selected settings?");
                 Dialog.drawChoiceBoxNo();
                 yield return new WaitForSeconds(0.2f);
                 yield return StartCoroutine(Dialog.choiceNavigateNo());
