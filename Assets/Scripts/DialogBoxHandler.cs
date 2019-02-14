@@ -273,7 +273,7 @@ public class DialogBoxHandler : MonoBehaviour
 
     public IEnumerator drawText(string textLine)
     {
-        SfxHandler.Play(selectClip);
+        /* SfxHandler.Play(selectClip);
         int textSpeed = PlayerPrefs.GetInt("textSpeed") + 1;
         charPerSec = 16 + (textSpeed * textSpeed * 9);
         float secPerChar = 1 / charPerSec;
@@ -298,6 +298,50 @@ public class DialogBoxHandler : MonoBehaviour
             else
             {
                 yield return StartCoroutine(drawChar(chars[i], secPerChar));
+            }
+        } */
+
+        int textSpeed = PlayerPrefs.GetInt("textSpeed") + 1;
+        float charPerSec = 16 + (textSpeed * textSpeed * 9);
+        float secPerChar = 1 / charPerSec;
+        //split textLine into an array of each character, so it may be printed 1 bit at a time
+        char[] chars = textLine.ToCharArray();
+        for (int i = 0; i < textLine.Length; i++)
+        {
+            if (chars[i].Equals('\\'))
+            {
+                //   \ is used to designate line breaks
+                DialogBoxText.text += "\n";
+                DialogBoxTextShadow.text = DialogBoxText.text;
+            }
+            else
+            {
+                DialogBoxText.text += chars[i].ToString();
+                DialogBoxTextShadow.text = DialogBoxText.text;
+            }
+            if (Time.deltaTime < secPerChar)
+            {
+                yield return new WaitForSeconds(secPerChar);
+            } //wait for (seconds per character print) before printing the next
+            else
+            {
+                i += 1;
+                if (i < textLine.Length)
+                {
+                    //if not at the end, repeat and wait double time
+                    if (chars[i].Equals('\\'))
+                    {
+                        //   \ is used to designate line breaks
+                        DialogBoxText.text += "\n";
+                        DialogBoxTextShadow.text = DialogBoxText.text;
+                    }
+                    else
+                    {
+                        DialogBoxText.text += chars[i].ToString();
+                        DialogBoxTextShadow.text = DialogBoxText.text;
+                    }
+                    yield return new WaitForSeconds(secPerChar * 2);
+                }
             }
         }
     }

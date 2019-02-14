@@ -376,7 +376,7 @@ public class SettingsHandler : MonoBehaviour
 
     private void saveSettings()
     {
-        PlayerPrefs.SetInt("textSpeed", selectedOptionIndex[3]);
+        /* PlayerPrefs.SetInt("textSpeed", selectedOptionIndex[3]); */
         float mVol = ((float) selectedOptionIndex[1] / 20f) * ((float) selectedOptionIndex[1] / 20f);
         float sVol = ((float) selectedOptionIndex[2] / 20f) * ((float) selectedOptionIndex[2] / 20f);
         PlayerPrefs.SetFloat("musicVolume", mVol);
