@@ -7,6 +7,7 @@ public class ThirdT : MonoBehaviour {
 
 	public GameObject CharSelection;
 	public GameObject Topics;
+	public Vector3 transfer; 
 	// Use this for initialization
 	void Start () {
 
@@ -21,5 +22,6 @@ public class ThirdT : MonoBehaviour {
 		Topics.SetActive (false);
 		GameObject.Find ("Male").GetComponent<SelectMale> ().thirdM++;
 		GameObject.Find ("Female").GetComponent<SelectFemale> ().thirdF++;
+		GlobalVariables.global.playerPosition = transfer;
 	}
 }

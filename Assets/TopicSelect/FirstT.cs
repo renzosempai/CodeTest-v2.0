@@ -6,10 +6,11 @@ using UnityEngine;
 public class FirstT : MonoBehaviour {
 	public GameObject CharSelection;
 	public GameObject Topics;
+	public Vector3 transfer;
 
 	// Use this for initialization
 	void Start () {
-		
+	//	DontDestroyOnLoad (this);
 	}
 	
 	// Update is called once per frame
@@ -23,6 +24,8 @@ public class FirstT : MonoBehaviour {
 		Topics.SetActive (false);
 		GameObject.Find ("Male").GetComponent<SelectMale> ().firstM++;
 		GameObject.Find ("Female").GetComponent<SelectFemale> ().firstF++;
+		GlobalVariables.global.playerPosition = transfer;
+		//PlayerMovement.player.transform.position = transfer;
 	}
 
 }

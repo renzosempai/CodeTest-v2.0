@@ -5,6 +5,7 @@ using UnityEngine;
 public class FourthT : MonoBehaviour {
 	public GameObject CharSelection;
 	public GameObject Topics;
+	public Vector3 transfer;
 
 	// Use this for initialization
 	void Start () {
@@ -22,5 +23,6 @@ public class FourthT : MonoBehaviour {
 		Topics.SetActive (false);
 		GameObject.Find ("Male").GetComponent<SelectMale> ().fourthM++;
 		GameObject.Find ("Female").GetComponent<SelectFemale> ().fourthF++;
+		GlobalVariables.global.playerPosition = transfer;
 	}
 }

@@ -6,6 +6,7 @@ public class FifthT : MonoBehaviour {
 
 	public GameObject CharSelection;
 	public GameObject Topics;
+	public Vector3 transfer;
 
 	// Use this for initialization
 	void Start () {
@@ -23,5 +24,6 @@ public class FifthT : MonoBehaviour {
 		Topics.SetActive (false);
 		GameObject.Find ("Male").GetComponent<SelectMale> ().fifthM++;
 		GameObject.Find ("Female").GetComponent<SelectFemale> ().fifthF++;
+		GlobalVariables.global.playerPosition = transfer;
 	}
 }

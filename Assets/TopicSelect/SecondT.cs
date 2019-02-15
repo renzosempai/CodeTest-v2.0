@@ -7,6 +7,7 @@ public class SecondT : MonoBehaviour {
 
 	public GameObject CharSelection;
 	public GameObject Topics;
+	public Vector3 transfer;
 	// Use this for initialization
 	void Start () {
 
@@ -22,5 +23,6 @@ public class SecondT : MonoBehaviour {
 		Topics.SetActive (false);
 		GameObject.Find ("Male").GetComponent<SelectMale> ().secondM++;
 		GameObject.Find ("Female").GetComponent<SelectFemale> ().secondF++;
+		GlobalVariables.global.playerPosition = transfer;
 	}
 }
