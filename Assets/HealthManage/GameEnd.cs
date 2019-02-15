@@ -7,7 +7,8 @@ public class GameEnd : MonoBehaviour {
 	public GameObject btnAgain;
 	public GameObject btnExit;
 	public GameObject GameEnder;
-
+	public Vector3 transferPosition;
+	public int transferDirection;
 
 
 	// Use this for initialization
@@ -31,8 +32,12 @@ public class GameEnd : MonoBehaviour {
 		//BgmHandler.main.ResumeMain(1.4f);
 		//StartCoroutine(BacktoWorld());
 		BgmHandler.main.ResumeMain(1.4f);
-		Scene.main.Battle.gameObject.SetActive (false);
+/* 		Scene.main.Battle.gameObject.SetActive (false); */
 		GameEnder.SetActive (false);
+		GlobalVariables.global.playerPosition = transferPosition;
+		 GlobalVariables.global.playerDirection = transferDirection;
+		PlayerMovement.player.transform.position = transferPosition;
+		PlayerMovement.player.updateDirection(transferDirection);
 		//GameObject.Find ("Bomb").GetComponent<Destroyer> ().checker++;
 		//SceneManager.LoadScene ("startup");
 	}
