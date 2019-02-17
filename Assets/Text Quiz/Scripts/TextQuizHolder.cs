@@ -34,6 +34,21 @@ public class TextQuizHolder : MonoBehaviour {
 	public string Answer;
 	private string sagot;
 
+//	private bool wasFocused;
+//
+//	public void Update(){
+//		{
+//			if (wasFocused && Input.GetKeyDown(KeyCode.Return)) {
+//				Submit(input.text);
+//			}
+//
+//			wasFocused = input.isFocused;
+//		}
+//	}
+//	private void Submit(string text)
+//	{
+//		Debug.Log("Submit=" + text);
+//	}
 	public void Start()
 	{
 		//Adds a listener that invokes the "LockInput" method when the player finishes editing the main input field.
@@ -60,6 +75,7 @@ public class TextQuizHolder : MonoBehaviour {
 		{
 			Debug.Log("Submitted empty");
 		}
+
 	}
 
 	void Awake(){

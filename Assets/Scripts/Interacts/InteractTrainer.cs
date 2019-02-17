@@ -774,66 +774,66 @@ public class InteractTrainer : MonoBehaviour
     }
 
 	IEnumerator DelayMultipleChoice(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		MultipleChoice.SetActive (true);
 	}
 
 	IEnumerator DelayMultipleChoice1(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		MultipleChoice1.SetActive (true);
 	}
 
 	IEnumerator DelayMultipleChoice2(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		MultipleChoice2.SetActive (true);
 	}
 
 	IEnumerator DelayMultipleChoice3(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		MultipleChoice3.SetActive (true);
 	}
 
 	IEnumerator DelayMultipleChoice4(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		MultipleChoice4.SetActive (true);
 	}
 
 	IEnumerator DelayMultipleChoice5(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		MultipleChoice5.SetActive (true);
 	}
 
 	IEnumerator DelayMultipleChoice6(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		MultipleChoice6.SetActive (true);
 	}
 
 	IEnumerator DelayMultipleChoice7(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		MultipleChoice7.SetActive (true);
 	}
 
 	IEnumerator DelayMultipleChoice8(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		MultipleChoice8.SetActive (true);
 	}
 
 	IEnumerator DelayTextQuiz(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		TextQuiz.SetActive (true);
 	}
 
 	IEnumerator DelayTrueORFalse(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		TrueorFalse.SetActive (true);
 	}
 
 	IEnumerator DelayTrueORFalse1(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		TrueorFalse1.SetActive (true);
 	}
 	IEnumerator DelayTrueORFalse2(){
-		yield return new WaitForSeconds(0.9f);
+		yield return new WaitForSeconds(1.5f);
 		TrueorFalse2.SetActive (true);
 	}
 }
