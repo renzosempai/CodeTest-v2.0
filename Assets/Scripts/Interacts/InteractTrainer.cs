@@ -33,10 +33,15 @@ public class InteractTrainer : MonoBehaviour
 		MultipleChoice6,
 		MultipleChoice7,
 		MultipleChoice8,
+        MultipleChoice9,
+        MultipleChoice10,
+        MultipleChoice11,
+        MultipleChoice12,
 		TextQuiz,
 		TrueorFalse,
 		TrueorFalse1,
-		TrueorFalse2
+		TrueorFalse2,
+        ClickFastMiniGame
 	}
 
 	public GameObject MultipleChoice;
@@ -48,10 +53,17 @@ public class InteractTrainer : MonoBehaviour
 	public GameObject MultipleChoice6;
 	public GameObject MultipleChoice7;
 	public GameObject MultipleChoice8;
+    public GameObject MultipleChoice9;
+    public GameObject MultipleChoice10;
+    public GameObject MultipleChoice11;
+    public GameObject MultipleChoice12;
 	public GameObject TextQuiz;
 	public GameObject TrueorFalse;
 	public GameObject TrueorFalse1;
 	public GameObject TrueorFalse2;
+
+    //MiniGame
+    public GameObject ClickFastMiniGame;
 
     public Gender trainerGender;
     public TrainerBehaviour trainerBehaviour;
@@ -687,13 +699,33 @@ public class InteractTrainer : MonoBehaviour
 															else {
 																if (exercise == Exercise.TrueorFalse2) {
 																	StartCoroutine (DelayTrueORFalse2 ());
-																} 
-
-															}
-
+																    } 
+                                                                else {
+																    if (exercise == Exercise.ClickFastMiniGame) {
+																	StartCoroutine (DelayClickFastMiniGame ());
+																    }
+                                                                    else {
+                                                                        if (exercise == Exercise.MultipleChoice9) {
+                                                                        StartCoroutine (DelayMultipleChoice9 ());
+                                                                        }
+                                                                
+                                                                        else {
+                                                                            if (exercise == Exercise.MultipleChoice10) {
+                                                                            StartCoroutine (DelayMultipleChoice10 ());
+                                                                            }
+                                                                        
+                                                                        else {
+                                                                            if (exercise == Exercise.MultipleChoice11) {
+                                                                            StartCoroutine (DelayMultipleChoice11 ());
+                                                                            }
+                                                                        
+                                                                        else {
+                                                                            if (exercise == Exercise.MultipleChoice12) {
+                                                                            StartCoroutine (DelayMultipleChoice12 ());
+                                                                            }
+                                                                        
+															    }
 														}
-
-
 													}
 												}
 											}
@@ -704,6 +736,11 @@ public class InteractTrainer : MonoBehaviour
 						}
 					}
 				}
+                }
+                }
+                }
+                }
+                }
 
                 //custom cutouts not yet implemented
                 StartCoroutine(ScreenFade.main.FadeCutout(false, ScreenFade.slowedSpeed, null));
@@ -835,5 +872,25 @@ public class InteractTrainer : MonoBehaviour
 	IEnumerator DelayTrueORFalse2(){
 		yield return new WaitForSeconds(1.5f);
 		TrueorFalse2.SetActive (true);
+	}
+    IEnumerator DelayClickFastMiniGame(){
+		yield return new WaitForSeconds(1.5f);
+		ClickFastMiniGame.SetActive (true);
+	}
+    IEnumerator DelayMultipleChoice9(){
+		yield return new WaitForSeconds(1.5f);
+		MultipleChoice9.SetActive (true);
+	}
+    IEnumerator DelayMultipleChoice10(){
+		yield return new WaitForSeconds(1.5f);
+		MultipleChoice10.SetActive (true);
+	}
+    IEnumerator DelayMultipleChoice11(){
+		yield return new WaitForSeconds(1.5f);
+		MultipleChoice11.SetActive (true);
+	}
+    IEnumerator DelayMultipleChoice12(){
+		yield return new WaitForSeconds(1.5f);
+		MultipleChoice12.SetActive (true);
 	}
 }
