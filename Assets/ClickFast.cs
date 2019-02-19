@@ -14,17 +14,50 @@ public class ClickFast : MonoBehaviour {
 	public int totalClickDirection;
 	public Text timeOver;
 	public int clickcounts;
+	public int click2;
+	public int click3;
+	public GameObject bttn1;
+	public GameObject bttn2;
+	public GameObject bttn3;
 /* 
+ 
 	public Text clickCounter; */
 
 	// Use this for initialization
 	void Start () {
 		StartCoroutine("LoseTime");
 	}
-	
+	public void Clicked(){
+		clickcounts++;
+		Debug.Log ("btn 1 was clicked");
+	}
+
+	public void ClickedTwo(){
+		click2++;
+		Debug.Log ("btn 2 was clicked");
+	}
+	public void ClickedThree(){
+		click3++;
+		Debug.Log ("btn 3 was clicked");
+	}
 	// Update is called once per frame
 	void Update () {
 		direction.text = (" Click "	+ totalClickDirection + " times within "	+ timeLeft +	" seconds ");
+
+		if (clickcounts == 7) {
+			bttn1.SetActive (false);
+			bttn2.SetActive (true);
+
+		}
+		if (click2 == 9) {
+			bttn2.SetActive (false);
+			bttn3.SetActive (true);
+
+		}
+		if (click3 == 5) {
+			bttn3.SetActive (false);
+			Debug.Log ("all done");
+		}
 	}
 
 	public void ProceedORTerminate()
@@ -38,13 +71,10 @@ public class ClickFast : MonoBehaviour {
         }
 	}
 
-	public void Clicked(){
-		clickcounts++;
-		Debug.Log(clickcounts);
-	}
+
 
 	public void Done(){
-		GameObject.Find ("HealthBars").GetComponent<HealthManager> ().trackcount--;
+	//	GameObject.Find ("HealthBars").GetComponent<HealthManager> ().trackcount--;
 		BgmHandler.main.ResumeMain(1.4f);
 		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = 0;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = true;
