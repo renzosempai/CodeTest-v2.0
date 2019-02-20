@@ -7,7 +7,7 @@ public class GuessTracker : MonoBehaviour {
 	public Transform text;
 	public Text guess;
 	public int guesscount;
-	public GameObject health1;
+//	public GameObject health1;
 	public GameObject hidecount;
 
 
@@ -21,9 +21,10 @@ public class GuessTracker : MonoBehaviour {
 		
 		guess.text = "Guesses: " + guesscount; 
 		if (guesscount == 0) {
-			health1.SetActive (false);
+		//	health1.SetActive (false);
 			GameObject.Find ("Questions").GetComponent<MiniGameScript> ().monitor++;
 			hidecount.SetActive (false);
+			GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
 		}
 	}
 }

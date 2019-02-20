@@ -59,8 +59,8 @@ public class MiniGameScript : MonoBehaviour {
 		}
 		if (monitor == 1) {
 
-			Debug.Log("i worked");
-			resultsObj.GetComponent<Text> ().text = "You failed to guess correctly!";
+		//	Debug.Log("i worked");
+			resultsObj.GetComponent<Text> ().text = "You failed to guess correctly LOL!";
 			btn.SetActive (true);
 			Disable1.SetActive (false);
 			Disable2.SetActive (false);
@@ -69,7 +69,7 @@ public class MiniGameScript : MonoBehaviour {
 			Disable5.SetActive (false);
 			btnHint.SetActive (false);
 			HintText.SetActive (false);
-			GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
+			//GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
 		}
 		//Debug.Log (questions [randQuestion]);
 		if (choiceSelected == "y") {
@@ -77,7 +77,7 @@ public class MiniGameScript : MonoBehaviour {
 			choiceSelected = "n"; 
 			if (correctAnswer[randQuestion] == selectedAnswer) {
 
-				resultsObj.GetComponent<Text> ().text = "Correct, click Done to continue";
+				resultsObj.GetComponent<Text> ().text = "Wow you did it, good job!";
 				btn.SetActive (true);
 				Disable1.SetActive (false);
 				Disable2.SetActive (false);
@@ -90,7 +90,7 @@ public class MiniGameScript : MonoBehaviour {
 			}
 			if (correctAnswer[randQuestion] != selectedAnswer) {
 
-				resultsObj.GetComponent<Text> ().text = "Wrong Answer";
+				resultsObj.GetComponent<Text> ().text = "Uh-oh, last guess left!";
 				btnHint.SetActive (true);
 				GameObject.Find ("Guess").GetComponent<GuessTracker> ().guesscount--;
 				//				StartCoroutine(Wait());
