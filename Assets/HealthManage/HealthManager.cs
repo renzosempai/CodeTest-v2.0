@@ -25,7 +25,7 @@ public class HealthManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		tracker.text = "Remaining Enemy NPC: " + trackcount;
+		tracker.text = "Exercises Left: " + trackcount;
 		if (healthcounter >= 1) {
 			HealthIcon.SetActive (false);
 		}

@@ -33,15 +33,15 @@ public class InteractTrainer : MonoBehaviour
 		MultipleChoice6,
 		MultipleChoice7,
 		MultipleChoice8,
-        MultipleChoice9,
-        MultipleChoice10,
-        MultipleChoice11,
-        MultipleChoice12,
 		TextQuiz,
 		TrueorFalse,
 		TrueorFalse1,
 		TrueorFalse2,
-        ClickFastMiniGame
+        ClickFastMiniGame,
+        MiniMulti,
+        MiniMulti1,
+        MiniMulti2,
+        MiniMulti3,
 	}
 
 	public GameObject MultipleChoice;
@@ -53,10 +53,6 @@ public class InteractTrainer : MonoBehaviour
 	public GameObject MultipleChoice6;
 	public GameObject MultipleChoice7;
 	public GameObject MultipleChoice8;
-    public GameObject MultipleChoice9;
-    public GameObject MultipleChoice10;
-    public GameObject MultipleChoice11;
-    public GameObject MultipleChoice12;
 	public GameObject TextQuiz;
 	public GameObject TrueorFalse;
 	public GameObject TrueorFalse1;
@@ -64,6 +60,10 @@ public class InteractTrainer : MonoBehaviour
 
     //MiniGame
     public GameObject ClickFastMiniGame;
+    public GameObject MiniMulti;
+    public GameObject MiniMulti1;
+    public GameObject MiniMulti2;
+    public GameObject MiniMulti3;
 
     public Gender trainerGender;
     public TrainerBehaviour trainerBehaviour;
@@ -705,23 +705,23 @@ public class InteractTrainer : MonoBehaviour
 																	StartCoroutine (DelayClickFastMiniGame ());
 																    }
                                                                     else {
-                                                                        if (exercise == Exercise.MultipleChoice9) {
-                                                                        StartCoroutine (DelayMultipleChoice9 ());
+                                                                        if (exercise == Exercise.MiniMulti) {
+                                                                        StartCoroutine (DelayMiniMulti ());
                                                                         }
                                                                 
                                                                         else {
-                                                                            if (exercise == Exercise.MultipleChoice10) {
-                                                                            StartCoroutine (DelayMultipleChoice10 ());
+                                                                            if (exercise == Exercise.MiniMulti1) {
+                                                                            StartCoroutine (DelayMiniMulti1 ());
                                                                             }
                                                                         
                                                                         else {
-                                                                            if (exercise == Exercise.MultipleChoice11) {
-                                                                            StartCoroutine (DelayMultipleChoice11 ());
+                                                                            if (exercise == Exercise.MiniMulti2) {
+                                                                            StartCoroutine (DelayMiniMulti2 ());
                                                                             }
                                                                         
                                                                         else {
-                                                                            if (exercise == Exercise.MultipleChoice12) {
-                                                                            StartCoroutine (DelayMultipleChoice12 ());
+                                                                            if (exercise == Exercise.MiniMulti3) {
+                                                                            StartCoroutine (DelayMiniMulti3 ());
                                                                             }
                                                                         
 															    }
@@ -877,20 +877,20 @@ public class InteractTrainer : MonoBehaviour
 		yield return new WaitForSeconds(1.5f);
 		ClickFastMiniGame.SetActive (true);
 	}
-    IEnumerator DelayMultipleChoice9(){
+    IEnumerator DelayMiniMulti(){
 		yield return new WaitForSeconds(1.5f);
-		MultipleChoice9.SetActive (true);
+		MiniMulti.SetActive (true);
 	}
-    IEnumerator DelayMultipleChoice10(){
+    IEnumerator DelayMiniMulti1(){
 		yield return new WaitForSeconds(1.5f);
-		MultipleChoice10.SetActive (true);
+		MiniMulti1.SetActive (true);
 	}
-    IEnumerator DelayMultipleChoice11(){
+    IEnumerator DelayMiniMulti2(){
 		yield return new WaitForSeconds(1.5f);
-		MultipleChoice11.SetActive (true);
+		MiniMulti2.SetActive (true);
 	}
-    IEnumerator DelayMultipleChoice12(){
+    IEnumerator DelayMiniMulti3(){
 		yield return new WaitForSeconds(1.5f);
-		MultipleChoice12.SetActive (true);
+		MiniMulti3.SetActive (true);
 	}
 }
