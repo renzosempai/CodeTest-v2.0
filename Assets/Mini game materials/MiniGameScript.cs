@@ -39,7 +39,7 @@ public class MiniGameScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		
 		DontDestroyOnLoad (resultsObj);
 		DontDestroyOnLoad (btn);
 		DontDestroyOnLoad (btnHint);

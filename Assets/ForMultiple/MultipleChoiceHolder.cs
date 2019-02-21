@@ -73,7 +73,7 @@ public class MultipleChoiceHolder : MonoBehaviour {
 				}
 			if (correctAnswer[randQuestion] != selectedAnswer) {
 
-					resultsObj.GetComponent<Text> ().text = "Wrong Answer";
+					resultsObj.GetComponent<Text> ().text = "Wrong Answer! Try again!";
 					btnHint.SetActive (true);
 				GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
 	//				StartCoroutine(Wait());
