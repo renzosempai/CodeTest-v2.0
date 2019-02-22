@@ -6,23 +6,20 @@ using UnityEngine.UI;
 public class ClickFast : MonoBehaviour {
 
 	public int timeLeft;
-
-	private int totalClicks = 0;
+	private int totalClicks;
+	private int click1;
+	
+	public int ClickAmount;
 
 	public Text direction;
 	public Text playerResult;
-	public int click1;
-	public int click2;
-	public int click3;
+	public Text directionText;
+
 	public GameObject bttn1;
-	public GameObject bttn2;
-	public GameObject bttn3;
-
 	public GameObject btnDone;
-
-	public GameObject boxBG;
-	
 	public GameObject CallClickFastMiniGame;
+	public GameObject disableText;
+	public GameObject disableText1;
 
 	// Use this for initialization
 	void Start () {
@@ -30,56 +27,46 @@ public class ClickFast : MonoBehaviour {
 	}
 	public void Clicked(){
 		click1++;
-		Debug.Log ("btn 1 was clicked");
+		Debug.Log ("I was clicked " + click1 + " times");
 	}
 
-	public void ClickedTwo(){
-		click2++;
-		Debug.Log ("btn 2 was clicked");
-	}
-	public void ClickedThree(){
-		click3++;
-		Debug.Log ("btn 3 was clicked");
-	}
 	// Update is called once per frame
 	void Update () {
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = false;
-		direction.text = ("Click all of the buttons appearing within "	+ timeLeft +	" seconds ");
-		if (click1 == 7) {
-			bttn1.SetActive (false);
-			bttn2.SetActive (true);
 
-		}
-		if (click2 == 9) {
-			bttn2.SetActive (false);
-			bttn3.SetActive (true);
+		direction.text = ("Warning! You have about "	+ timeLeft +	" seconds to click the button " + ClickAmount + 
+							" times as fast as you can, or you're in for a world of hurt.");
 
+		directionText.text = ("Total Clicks: " + click1);
+
+		if (timeLeft <= 1)
+		{
+			direction.text = ("Warning! You have about "	+ timeLeft +	" second to click the button " + ClickAmount + 
+								" times as fast as you can, or you're in for a world of hurt.");
 		}
-		if (click3 == 5) {
-			bttn3.SetActive (false);
-			if (timeLeft > 0)
-			{
-				playerResult.text = "FINISHED";
-				boxBG.SetActive(false);
-				bttn1.SetActive (false);
-				bttn2.SetActive (false);
-				bttn3.SetActive (false);
-				btnDone.SetActive(true);
-			}else if (timeLeft == 0){
+
+		if (click1 == ClickAmount){
+			if(timeLeft > 0){
 				StopCoroutine("LoseTime");
-				playerResult.text = "YOU FAILED!";
-				boxBG.SetActive(false);
-				bttn1.SetActive (false);
-				bttn2.SetActive (false);
-				bttn3.SetActive (false);
-				btnDone.SetActive(true);
-				GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
+				bttn1.SetActive(false);
+				playerResult.text = "Perfect!";
+				StartCoroutine("WaitToAppear");
+			} 
+		}
+		else{ 
+			if(timeLeft <= 0){
+				StopCoroutine("LoseTime");
+				bttn1.SetActive(false);
+				playerResult.text = "You have failed this minigame!";
+				StartCoroutine("WaitToAppear");
 			}
 		}
 	}
 
-
 	public void Done(){
+		if(timeLeft <= 0){
+			GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
+		}
 		BgmHandler.main.ResumeMain(1.4f);
 		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = 0;
 		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = true;
@@ -96,5 +83,10 @@ public class ClickFast : MonoBehaviour {
             timeLeft--;
         }
     }
+
+	IEnumerator WaitToAppear(){
+		yield return new WaitForSeconds(1f); 
+		btnDone.SetActive(true);
+	}
 
 }
