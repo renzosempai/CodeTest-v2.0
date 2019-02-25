@@ -81,7 +81,7 @@ public class TextQuizHolder : MonoBehaviour {
 	void Awake(){
 		sagot = Answer.ToLower();
 //		text.GetComponent<Text> ().text = Question;
-		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = false;
+		/* GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = false; */
 			
 	}
 
