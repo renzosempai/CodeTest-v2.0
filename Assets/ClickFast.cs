@@ -18,6 +18,8 @@ public class ClickFast : MonoBehaviour {
 	public GameObject bttn1;
 	public GameObject btnDone;
 	public GameObject CallClickFastMiniGame;
+	public GameObject disableText;
+	public GameObject disableText1;
 
 	// Use this for initialization
 	void Start () {
@@ -61,7 +63,7 @@ public class ClickFast : MonoBehaviour {
 		}
 	}
 
-	public void MiniDone(){
+	public void Done(){
 		if(timeLeft <= 0){
 			GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
 		}
