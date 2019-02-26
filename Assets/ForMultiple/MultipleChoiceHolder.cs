@@ -12,7 +12,6 @@ public class MultipleChoiceHolder : MonoBehaviour {
 //	public Text textquest;
 	public List<string> ChosenAnswer;
 	public RectTransform resultsObj;																																																																										
-	public GameObject btn;
 
 //	public enum TheAnswer{
 //		Choice1,
@@ -20,20 +19,23 @@ public class MultipleChoiceHolder : MonoBehaviour {
 //		Choice3,
 //		Choice4
 //	}
+
+	public GameObject btn;
+
 	public GameObject Disable1;
 	public GameObject Disable2;
 	public GameObject Disable3;
 	public GameObject Disable4;
+
+	public GameObject CallMultipleChoice;
+	public GameObject btnHint;
+	public GameObject HintText;
 
 	public static string selectedAnswer;																																																																									
 
 	public static string choiceSelected="n";
 
 	public static int randQuestion = -1;
-
-	public GameObject CallMultipleChoice;
-	public GameObject btnHint;
-	public GameObject HintText;
 
 	// Use this for initialization
 	void Start () {
@@ -43,6 +45,7 @@ public class MultipleChoiceHolder : MonoBehaviour {
 		DontDestroyOnLoad (btnHint);
 		DontDestroyOnLoad (HintText);
 		correctAnswer = ChosenAnswer;
+
 	}
 
 	// Update is called once per frame
@@ -75,7 +78,7 @@ public class MultipleChoiceHolder : MonoBehaviour {
 
 					resultsObj.GetComponent<Text> ().text = "Wrong Answer! Try again!";
 					btnHint.SetActive (true);
-				GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
+					GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
 	//				StartCoroutine(Wait());
 
 				}
