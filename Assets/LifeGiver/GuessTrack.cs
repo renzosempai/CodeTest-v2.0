@@ -22,9 +22,9 @@ public class GuessTrack : MonoBehaviour {
 		guess.text = "Guesses: " + guesscount; 
 		if (guesscount == 0) {
 		//	health1.SetActive (false);
-			GameObject.Find ("Questions").GetComponent<MiniGameScript> ().monitor++;
+			GameObject.Find ("NotQuestions").GetComponent<GiveLife> ().monitor++;
 			hidecount.SetActive (false);
-			GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter--;
+		//	GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter--;
 		}
 	}
 }

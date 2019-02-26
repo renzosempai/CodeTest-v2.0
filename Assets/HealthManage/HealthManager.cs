@@ -10,8 +10,8 @@ public class HealthManager : MonoBehaviour {
 	public GameObject HealthIcon2;
 	public GameObject HealthIcon3;
 	public GameObject HealthIcon4;
-	//add health:
-	public GameObject addHealth;
+
+
 
 	public int healthcounter;
 	public Transform text;
@@ -35,30 +35,31 @@ public class HealthManager : MonoBehaviour {
 	void Update () {
 		tracker.text = "Exercises Left: " + trackcount;
 
-		if (healthcounter == 1) {
+		if (healthcounter >= 1) {
 			HealthIcon.SetActive (false);
 	
 		}else
 			HealthIcon.SetActive (true);
 		
-		if (healthcounter == 2) {
+		if (healthcounter >= 2) {
 			HealthIcon1.SetActive (false);
 		}else
 			HealthIcon1.SetActive (true);
-		if (healthcounter == 3) {
+		if (healthcounter >= 3) {
 			HealthIcon2.SetActive (false);		
 
 		}else
 			HealthIcon2.SetActive (true);
-		if (healthcounter == 4) {
+		if (healthcounter >= 4) {
 			HealthIcon3.SetActive (false);
 
 		}else
 			HealthIcon3.SetActive (true);
 		if(healthcounter == 5){
 			HealthIcon4.SetActive (false);
-		}else
-			HealthIcon4.SetActive (true);
+		}
+		//else
+//			HealthIcon4.SetActive (true);
 		if (healthcounter >= 5) {
 			endcount.SetActive (true);
 		}

@@ -41,6 +41,8 @@ public class GiveLife : MonoBehaviour {
 	public GameObject btnHint;
 	public GameObject HintText;
 
+	public GameObject NoHealth;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -65,7 +67,7 @@ public class GiveLife : MonoBehaviour {
 
 		//	Debug.Log("i worked");
 			resultsObj.GetComponent<Text> ().text = "You failed to guess correctly LOL!";
-			btn.SetActive (true);
+			//btn.SetActive (true);
 			Disable1.SetActive (false);
 			Disable2.SetActive (false);
 			Disable3.SetActive (false);
@@ -73,6 +75,7 @@ public class GiveLife : MonoBehaviour {
 			Disable5.SetActive (false);
 			btnHint.SetActive (false);
 			HintText.SetActive (false);
+			NoHealth.SetActive (true);
 			//GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
 		}
 		//Debug.Log (questions [randQuestion]);
@@ -109,6 +112,14 @@ public class GiveLife : MonoBehaviour {
 		Debug.Log ("clicked");
 	}
 
+	public void WrongDone(){
+		BgmHandler.main.ResumeMain(1.4f);
+		GameObject.Find ("SceneBattle").GetComponent<BattleHandler> ().victor = 0;
+		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().defeated = true;
+		GameObject.Find ("TrainerCole").GetComponent<InteractTrainer> ().busy = false;
+		CallMultipleChoice.SetActive (false);
+		Scene.main.Battle.gameObject.SetActive(false);
+	}
 
 	public void MiniDone(){
 
