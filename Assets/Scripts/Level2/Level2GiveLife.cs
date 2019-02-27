@@ -28,8 +28,8 @@ public class Level2GiveLife : MonoBehaviour {
 	public GameObject Disable5;
 
 	//for healthgiving
-	public int LifeTrack;
-	public GameObject enableHealth;
+	//public int LifeTrack;
+//	public GameObject enableHealth;
 
 	public static string selectedAnswer;																																																																									
 
@@ -66,7 +66,7 @@ public class Level2GiveLife : MonoBehaviour {
 		if (monitor == 1) {
 
 		//	Debug.Log("i worked");
-			resultsObj.GetComponent<Text> ().text = "You failed to guess correctly LOL!";
+			resultsObj.GetComponent<Text> ().text = "You failed to guess correctly, sorry!";
 			//btn.SetActive (true);
 			Disable1.SetActive (false);
 			Disable2.SetActive (false);

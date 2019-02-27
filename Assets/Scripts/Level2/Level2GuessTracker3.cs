@@ -22,7 +22,7 @@ public class Level2GuessTracker3 : MonoBehaviour {
 		guess.text = "Guesses: " + guesscount; 
 		if (guesscount == 0) {
 		//	health1.SetActive (false);
-			GameObject.Find ("Questions").GetComponent<Level2GiveLife> ().monitor++;
+			GameObject.Find ("NotQuestions").GetComponent<Level2GiveLife> ().monitor++;
 			hidecount.SetActive (false);
 			GameObject.Find ("HealthBars").GetComponent<HealthManager> ().healthcounter++;
 		}

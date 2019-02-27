@@ -28,8 +28,8 @@ public class Level3GiveLife : MonoBehaviour {
 	public GameObject Disable5;
 
 	//for healthgiving
-	public int LifeTrack;
-	public GameObject enableHealth;
+	//public int LifeTrack;
+	//public GameObject enableHealth;
 
 	public static string selectedAnswer;																																																																									
 
