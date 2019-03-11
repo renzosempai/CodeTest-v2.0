@@ -193,22 +193,22 @@ public class SettingsHandler : MonoBehaviour
     {
         int resWidth = Screen.currentResolution.width + 10; //add a buffer
         int resHeight = Screen.currentResolution.height + 6;
-        if (1710 < resWidth && 960 < resHeight)
+        if (1920 < resWidth && 1080 < resHeight)
         {
             screenSize.text = "x1     x2     x3     x4     x5";
             selectedOptionSize[5] = 5;
         }
-        else if (1368 < resWidth && 768 < resHeight)
+        else if (1600 < resWidth && 900 < resHeight)
         {
             screenSize.text = "x1     x2     x3     x4";
             selectedOptionSize[5] = 4;
         }
-        else if (1026 < resWidth && 576 < resHeight)
+        else if (1366 < resWidth && 768 < resHeight)
         {
             screenSize.text = "x1    x2     x3";
             selectedOptionSize[5] = 3;
         }
-        else if (684 < resWidth && 384 < resHeight)
+        else if (1280 < resWidth && 720 < resHeight)
         {
             screenSize.text = "x1     x2";
             selectedOptionSize[5] = 2;
@@ -280,7 +280,7 @@ public class SettingsHandler : MonoBehaviour
                 screenSizeHighlight.pixelOffset = new Vector2(150, 67);
                 if (!Screen.fullScreen)
                 {
-                    Screen.SetResolution(342, 192, Screen.fullScreen);
+                    Screen.SetResolution(684, 384, Screen.fullScreen);
                 }
             }
             else if (selectedOptionIndex[selectedOption] == 1)
@@ -289,7 +289,7 @@ public class SettingsHandler : MonoBehaviour
 				screenSizeHighlight.pixelOffset = new Vector2(177, 67);
                 if (!Screen.fullScreen)
                 {
-                    Screen.SetResolution(684, 384, Screen.fullScreen);
+                    Screen.SetResolution(1280, 720, Screen.fullScreen);
                 }
             }
             else if (selectedOptionIndex[selectedOption] == 2)
@@ -298,7 +298,7 @@ public class SettingsHandler : MonoBehaviour
 				screenSizeHighlight.pixelOffset = new Vector2(204, 67);
                 if (!Screen.fullScreen)
                 {
-                    Screen.SetResolution(1026, 576, Screen.fullScreen);
+                    Screen.SetResolution(1366, 768, Screen.fullScreen);
                 }
             }
             else if (selectedOptionIndex[selectedOption] == 3)
@@ -307,7 +307,7 @@ public class SettingsHandler : MonoBehaviour
 				screenSizeHighlight.pixelOffset = new Vector2(231, 67);
                 if (!Screen.fullScreen)
                 {
-                    Screen.SetResolution(1366, 768, Screen.fullScreen);
+                    Screen.SetResolution(1600, 900, Screen.fullScreen);
                 }
             }
             else
@@ -316,7 +316,7 @@ public class SettingsHandler : MonoBehaviour
 				screenSizeHighlight.pixelOffset = new Vector2(258, 67);
                 if (!Screen.fullScreen)
                 {
-                    Screen.SetResolution(1710, 960, Screen.fullScreen);
+                    Screen.SetResolution(1920, 1080, Screen.fullScreen);
                 }
             }
         }

@@ -4,7 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Press : MonoBehaviour {
-
+ void Start()
+    { 
+		Screen.SetResolution (1980, 1080, false);
+       // StartCoroutine(control());
+    }
 	void Update() {
 		if (Input.anyKeyDown) {
 			// I am assuming your start screen is level 0

@@ -74,7 +74,7 @@ public class MainMenuHandler : MonoBehaviour
 
     void Start()
     { 
-		Screen.SetResolution (1280, 720, false);
+		Screen.SetResolution (1980, 1080, false);
         StartCoroutine(control());
     }
 
